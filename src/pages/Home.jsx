@@ -77,7 +77,6 @@ export default function Home(){
             </aside>
           </div>
         </section>
-  <div className="section-divider--vivid" aria-hidden="true"></div>
 
         
 
@@ -105,8 +104,6 @@ export default function Home(){
           </div>
         </section>
 
-  <div className="section-divider--wave" aria-hidden="true"></div>
-
         {/* EXPERIENCE (moved out from About) */}
         <section id="experience" className="experience-section min-h-screen px-12 py-24">
           <div className="site-container">
@@ -117,8 +114,6 @@ export default function Home(){
             <Timeline />
           </div>
         </section>
-
-  <div className="section-divider--bars" aria-hidden="true"></div>
 
         {/* PROJECTS (merged) */}
         <section id="projects" className="projects-section min-h-screen px-12 py-24">
