@@ -1,0 +1,630 @@
+/* Cleaned index.css: keep only classes referenced in src files and useful helpers.
+   Removed unused/duplicated utilities (animated underline, accent buttons, soft-transition, etc.)
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+
+:root {
+  --bg-primary: #0a0614;
+  --text-primary: #e8e6ef;
+  /* New color palette variables (color) */
+  --color-50: #efe9fc;
+  --color-100: #d1c1f6;
+  --color-200: #b498f0;
+  --color-300: #9770eb;
+  --color-400: #7a48e5;
+  --color-500: #5c20df;
+  --color-600: #511cc7;
+  --color-700: #3b148f;
+  --color-800: #2b0f67;
+  --color-900: #1a093e;
+  --color-950: #090316;
+  --violet-500: var(--color-500);
+  /* brighter, more visible violet shadows (restored) */
+  --violet-shadow: 0 18px 60px rgba(92, 32, 223, 0.16);
+  --shadow-light: 0 12px 40px rgba(92, 32, 223, 0.12);
+  --text-base: 1rem;
+  --h1-hero: clamp(2.5rem, 6vw, 5rem);
+  --h2-section: clamp(2.25rem, 5.5vw, 3.5rem);
+  --lh-tight: 0.95;
+  --lh-regular: 1.6;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* Tailwind directives (kept) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Site container */
+.site-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Slightly tighter vertical spacing for main sections */
+.about-section,
+.projects-section,
+.experience-section {
+  padding-top: 3.5rem; /* ~56px */
+  padding-bottom: 3.5rem;
+}
+
+/* tech label backdrop used in projects */
+.tech-shadow {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+  padding: 0 6px;
+  color: var(--violet-500);
+}
+.tech-shadow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: -2px -6px;
+  background: rgba(255, 255, 255, 0.06);
+  filter: blur(8px);
+  border-radius: 6px;
+  z-index: -1;
+  pointer-events: none;
+}
+.projects-list .tech-shadow::before,
+.project-item .tech-shadow::before {
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(10px);
+}
+.card-hover:hover .tech-shadow::before,
+.tech-shadow:hover::before {
+  background: rgba(255, 255, 255, 0.14);
+  filter: blur(12px);
+}
+
+/* Typography helpers */
+.hero-title {
+  letter-spacing: -0.02em;
+  line-height: var(--lh-tight);
+  font-size: var(--h1-hero);
+}
+.section-title {
+  letter-spacing: -0.02em;
+  font-size: var(--h2-section);
+}
+.body-text {
+  font-size: var(--text-base);
+  line-height: var(--lh-regular);
+  font-weight: 300;
+}
+
+/* Card and hover utilities used by components */
+.card-hover {
+  transition: transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1),
+    box-shadow 220ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 30px 80px rgba(92, 32, 223, 0.16);
+}
+.hover-elevate {
+  will-change: transform, box-shadow;
+}
+.hover-elevate:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 26px 70px rgba(92, 32, 223, 0.14);
+}
+
+.card-border {
+  border: 1px solid rgba(232, 230, 239, 0.04);
+}
+.img-elevated {
+  /* brighter violet shadow to match previous look */
+  box-shadow: var(--violet-shadow);
+}
+
+/* specific elevated style for the Stack container: deeper shadow with a brighter glow */
+.stack-elevated {
+  /* reverted to subtle violet shadow; strong glow removed */
+  box-shadow: var(--violet-shadow);
+}
+
+/* Icon helpers (referenced in Home.jsx) */
+.icon-sm {
+  font-size: 20px !important;
+  width: 20px;
+  height: 20px;
+}
+.icon-md {
+  font-size: 28px !important;
+  width: 28px;
+  height: 28px;
+}
+.icon-lg {
+  font-size: 40px !important;
+  width: 40px;
+  height: 40px;
+  color: var(--text-primary);
+}
+
+/* vertical HOME word */
+.vertical-rl {
+  writing-mode: vertical-rl;
+}
+
+/* Right-side large menu words (ABOUT, EXPERIENCE, PROJECTS) - make them more subtle */
+.visual-nav-inner .nav-word {
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  color: rgba(232, 230, 239, 0.28);
+  letter-spacing: 0.02em;
+}
+.visual-nav-inner .nav-word:hover {
+  color: rgba(232, 230, 239, 0.58);
+}
+
+/* make only the word clickable: anchors inside nav-word should be inline-block */
+.visual-nav-inner .nav-word a {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* nav micro-interactions */
+.nav-icon {
+  transition: transform 160ms ease, background 160ms ease;
+}
+.nav-icon:hover {
+  transform: scale(1.08);
+}
+.nav-icon .nav-label {
+  transform-origin: left center;
+}
+.nav-icon:focus-within .nav-label,
+.nav-icon:hover .nav-label {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  pointer-events: auto;
+}
+.nav-icon.active {
+  transform: scale(1.12);
+}
+.nav-target-animate {
+  animation: navPulse 700ms ease forwards;
+}
+@keyframes navPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(94, 36, 219, 0.12);
+    transform: translateY(0);
+  }
+  40% {
+    box-shadow: 0 18px 60px rgba(94, 36, 219, 0.12);
+    transform: translateY(-6px);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(94, 36, 219, 0);
+    transform: translateY(0);
+  }
+}
+
+/* skill sheen and labels (used in Home.jsx) */
+.skill-sheen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: box-shadow 220ms ease, background 200ms ease, transform 180ms ease;
+}
+.skill-sheen::after {
+  content: "";
+  position: absolute;
+  left: -120%;
+  top: -20%;
+  width: 40%;
+  height: 140%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(-20deg);
+  transition: left 520ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.skill-sheen:hover::after,
+.skill-sheen:focus-within::after {
+  left: 120%;
+}
+.skill-sheen:hover {
+  box-shadow: var(--shadow-light);
+}
+
+/* Animated underline utility: limited to text width, uses palette color */
+.underline-animated {
+  display: inline-block; /* only underline the word */
+  background-image: linear-gradient(var(--color-500), var(--color-500));
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.22s ease, color 0.16s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.underline-animated:hover,
+.underline-animated:focus {
+  background-size: 100% 2px;
+}
+
+/* Subtle button utility */
+.btn-subtle {
+  transition: transform 180ms cubic-bezier(0.2, 0.9, 0.3, 1),
+    box-shadow 220ms ease, color 160ms ease, background 160ms ease;
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(92, 32, 223, 0.14); /* visible border by default */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-subtle:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 44px rgba(92, 32, 223, 0.18);
+  border-color: rgba(92, 32, 223, 0.22);
+  background: linear-gradient(
+    180deg,
+    rgba(92, 32, 223, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+}
+.btn-subtle:active {
+  transform: translateY(-1px) scale(0.995);
+}
+.btn-subtle:focus-visible {
+  box-shadow: 0 0 0 6px rgba(92, 32, 223, 0.08);
+  outline: none;
+}
+
+/* Primary CTA button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  background: linear-gradient(
+    90deg,
+    rgba(92, 32, 223, 1) 0%,
+    rgba(124, 58, 237, 1) 100%
+  );
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 14px 44px rgba(92, 32, 223, 0.22);
+  transition: transform 180ms cubic-bezier(0.2, 0.9, 0.3, 1),
+    box-shadow 220ms ease, opacity 160ms ease;
+}
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 24px 80px rgba(92, 32, 223, 0.28);
+}
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.997);
+}
+.btn-primary:focus-visible {
+  box-shadow: 0 0 0 6px rgba(92, 32, 223, 0.12);
+  outline: none;
+}
+
+/* larger hero CTA variant */
+.hero-cta-large {
+  padding: 0.9rem 1.25rem;
+  font-size: 1.02rem;
+}
+
+/* Hero CTA wrapper: center on small screens */
+.hero-cta-wrapper {
+  display: flex;
+  align-items: center;
+}
+.hero-cta-wrapper .btn-primary {
+  margin-left: 0;
+}
+@media (max-width: 767px) {
+  .hero-cta-wrapper {
+    justify-content: center;
+  }
+}
+
+/* Slight adjustments for hero headline responsiveness */
+.hero-headline-large {
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+}
+.hero-headline-small {
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+}
+
+/* Icon microinteraction */
+.icon-hover {
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.icon-hover:hover {
+  transform: scale(1.08);
+  opacity: 0.98;
+}
+
+/* Focus ring */
+.focus-ring {
+  box-shadow: 0 0 0 4px rgba(92, 32, 223, 0.12);
+  outline: none;
+  border-radius: 0.375rem;
+}
+
+/* Animation utilities */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-soft-pulse {
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes softPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.skills-grid img,
+.skill-sheen img {
+  transform: rotate(0deg) !important;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  will-change: transform, box-shadow;
+}
+.skill-label {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 8px);
+  background: rgba(10, 6, 20, 0.9);
+  color: var(--text-primary);
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+  white-space: nowrap;
+  border: 1px solid rgba(232, 230, 239, 0.04);
+}
+.skill-sheen:hover .skill-label,
+.skill-sheen:focus-within .skill-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Stack section helpers (used by Home.jsx) */
+.stack-block {
+  margin-top: 3rem; /* extra spacing; Home adds mt-12 but keep a fallback */
+}
+
+.stack-block .bg-transparent {
+  background: transparent;
+}
+
+.category-block {
+  /* category container: small padding and stacking */
+  padding: 0.25rem;
+}
+
+.category-block h5 {
+  margin-bottom: 0.75rem;
+  color: rgba(232, 230, 239, 0.6);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+}
+
+.skills-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* Visual helpers referenced by Home.jsx */
+.box-violet {
+  box-shadow: var(--violet-shadow);
+}
+
+.elevated {
+  box-shadow: var(--violet-shadow);
+}
+
+/* subtle glass background utility used in the stack block in production build */
+.glass-soft {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  backdrop-filter: blur(6px);
+}
+
+/* minimal scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(232, 230, 239, 0.08);
+  border-radius: 4px;
+}
+
+/* enforce left alignment */
+body,
+p,
+li,
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+input,
+textarea {
+  text-align: left !important;
+}
+
+/* Section dividers - more vivid, decorative variants */
+
+/* Vivid neon radial swoosh */
+.section-divider--vivid {
+  pointer-events: none;
+  width: 100%;
+  height: 180px;
+  position: relative;
+  overflow: visible;
+}
+.section-divider--vivid::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) rotate(-6deg);
+  top: -10px;
+  width: 120%;
+  height: 220px;
+  background: linear-gradient(
+    90deg,
+    rgba(124, 58, 237, 0.14),
+    rgba(92, 32, 223, 0.12) 40%,
+    rgba(92, 32, 223, 0.06) 70%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  filter: blur(34px) saturate(120%);
+  opacity: 0.98;
+  z-index: 0;
+  animation: vividFloat 6s ease-in-out infinite;
+}
+
+@keyframes vividFloat {
+  0% {
+    transform: translateX(-50%) rotate(-6deg) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) rotate(-6deg) translateY(-8px);
+  }
+  100% {
+    transform: translateX(-50%) rotate(-6deg) translateY(0);
+  }
+}
+
+/* Wave divider using pseudo-SVG look */
+.section-divider--wave {
+  pointer-events: none;
+  width: 100%;
+  height: 120px;
+  position: relative;
+}
+.section-divider--wave::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: radial-gradient(
+      circle at 20% 40%,
+      rgba(92, 32, 223, 0.12),
+      transparent 12%
+    ),
+    radial-gradient(circle at 80% 60%, rgba(124, 58, 237, 0.1), transparent 15%);
+  filter: blur(20px);
+  z-index: 0;
+}
+.section-divider--wave::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 40px;
+  background: linear-gradient(
+    90deg,
+    rgba(92, 32, 223, 0.08),
+    rgba(124, 58, 237, 0.06)
+  );
+  clip-path: polygon(
+    0 30%,
+    10% 20%,
+    25% 40%,
+    40% 25%,
+    55% 45%,
+    70% 20%,
+    85% 35%,
+    100% 30%,
+    100% 100%,
+    0 100%
+  );
+}
+
+/* Stacked neon bars divider */
+.section-divider--bars {
+  pointer-events: none;
+  width: 100%;
+  height: 140px;
+  position: relative;
+}
+.section-divider--bars::before,
+.section-divider--bars::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 18px;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(92, 32, 223, 0.16),
+    rgba(124, 58, 237, 0.12)
+  );
+  filter: blur(18px);
+}
+.section-divider--bars::before {
+  top: 20px;
+  transform: translateY(0);
+}
+.section-divider--bars::after {
+  top: 60px;
+  transform: translateY(0) scaleX(0.95);
+  opacity: 0.9;
+}
