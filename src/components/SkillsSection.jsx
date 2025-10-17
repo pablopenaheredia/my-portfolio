@@ -35,9 +35,7 @@ const skillCategories = {
     { src: nestImg, name: 'NestJS' },
     { src: pythonSvg, name: 'Python' },
     { src: mysqlPng, name: 'MySQL' },
-    { src: sqlPng, name: 'SQL' }
-  ],
-  Frameworks: [
+    { src: sqlPng, name: 'SQL' },
     { src: typeormPng, name: 'TypeORM' }
   ],
   Testing: [
@@ -65,8 +63,9 @@ export default function SkillsSection(){
 
   return (
     <div className="stack-block site-container mt-12">
+      {/* Section heading moved outside the icons container for clarity */}
+      <h2 className="app-h2 text-color-100 text-center mb-6">Skills</h2>
       <div className="bg-transparent rounded-lg p-6 elevated w-full">
-        <h4 className="text-color-100 text-sm font-medium text-center mb-6">Stack</h4>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Object.entries(skillCategories).map(([category, list], catIndex) => {
             const dir = catIndex % 2 === 0 ? -1 : 1
@@ -81,7 +80,7 @@ export default function SkillsSection(){
                           <GitHubIcon className="icon-lg" />
                         </div>
                       ) : (
-                        <img src={skill.src} alt={skill.name} className="w-12 h-12 object-contain" />
+                        <img src={skill.src} alt={skill.name} loading="lazy" className="w-12 h-12 object-contain" />
                       )}
                       <span className="skill-label">{skill.name}</span>
                     </motion.li>

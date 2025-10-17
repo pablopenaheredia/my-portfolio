@@ -3,6 +3,7 @@
 */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&display=swap");
 
 :root {
   --bg-primary: #0a0614;
@@ -41,9 +42,10 @@ body {
   padding: 0;
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial;
-  font-weight: 300;
+  /* Use Expletus Sans across the site with sensible fallbacks */
+  font-family: "Expletus Sans", "Inter", system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
   overflow-x: hidden;
 }
 
@@ -54,7 +56,8 @@ body {
 
 /* Site container */
 .site-container {
-  max-width: 1000px;
+  /* increased max-width for wider content area */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -113,6 +116,61 @@ body {
   font-weight: 300;
 }
 
+/* Application heading styles used across pages */
+.app-h2 {
+  font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  margin: 0 0 0.75rem 0;
+  /* use Expletus Sans for section headings for a distinctive look */
+  font-family: "Expletus Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+.app-h3 {
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 300;
+  margin: 0 0 0.5rem 0;
+  font-family: "Expletus Sans", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+/* Utility classes for Expletus Sans variants (pattern: .expletus-sans-<weight>) */
+.expletus-sans {
+  font-family: "Expletus Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.expletus-sans-400 {
+  font-family: "Expletus Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.expletus-sans-600 {
+  font-family: "Expletus Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.expletus-sans-700 {
+  font-family: "Expletus Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Make main content sections have equal vertical spacing */
+.about-section,
+.projects-section,
+.experience-section {
+  padding-top: 6rem; /* uniform spacing above */
+  padding-bottom: 6rem; /* uniform spacing below */
+}
+
 /* Card and hover utilities used by components */
 .card-hover {
   transition: transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1),
@@ -151,9 +209,9 @@ body {
   height: 20px;
 }
 .icon-md {
-  font-size: 28px !important;
-  width: 28px;
-  height: 28px;
+  font-size: 32px !important;
+  width: 32px;
+  height: 32px;
 }
 .icon-lg {
   font-size: 40px !important;
@@ -293,6 +351,57 @@ body {
 .btn-subtle:focus-visible {
   box-shadow: 0 0 0 6px rgba(92, 32, 223, 0.08);
   outline: none;
+}
+
+/* Variant: remove border for icon-only subtle buttons */
+.btn-no-border {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0.5rem !important; /* increased clickable area */
+}
+.btn-no-border:hover {
+  border-color: transparent !important;
+  box-shadow: 0 10px 30px rgba(92, 32, 223, 0.08) !important;
+}
+
+/* Gloss / sheen hover effect for icon buttons */
+.btn-gloss {
+  position: relative;
+  overflow: hidden;
+}
+.btn-gloss::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -120%;
+  width: 40%;
+  height: 180%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(-20deg) translateX(0);
+  transition: transform 420ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 300ms ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.btn-gloss:hover::after,
+.btn-gloss:focus-visible::after {
+  transform: rotate(-20deg) translateX(320%);
+  opacity: 1;
+}
+
+/* Slight stronger sheen for borderless icons to keep visibility */
+.btn-no-border.btn-gloss::after {
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0)
+  );
 }
 
 /* Primary CTA button */
@@ -503,4 +612,22 @@ button,
 input,
 textarea {
   text-align: left !important;
+}
+
+/* Skip link: visible when focused for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  z-index: 60;
+  transition: top 160ms ease;
+}
+.skip-link:focus {
+  top: 12px;
+  outline: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }

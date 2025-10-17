@@ -18,23 +18,19 @@ export default function Home(){
 
   return (
   <main id="home" className="min-h-screen bg-color-950 relative overflow-hidden">
+    {/* Skip link for keyboard users */}
+    <a href="#home" className="skip-link">Saltar al contenido</a>
     <InPageNavManager />
       {/* left nav with anchors to sections */}
-      <nav className="fixed left-0 top-0 h-screen w-16 z-50">
+      <nav className="fixed left-0 top-0 h-screen w-16 z-50" aria-label="Main navigation">
         <div className="relative h-full flex items-center">
             <div className="absolute top-6 left-0 w-full flex flex-col items-center gap-2">
             <a href="#home" className="hidden md:inline-block text-color-100 text-sm font-light tracking-wider rotate-180 vertical-rl">HOME</a>
             <a href="#home" className="md:hidden text-color-100 text-sm font-light tracking-wider">HOME</a>
 
-            {/* social icons under HOME (vertical) */}
-            <div className="left-socials hidden md:flex flex-col items-center gap-3 mt-6">
-              <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="social-icon p-1 rounded">
-                <LinkedInIcon className="icon-sm icon-hover" />
-              </a>
-
-              <a href="https://github.com/" target="_blank" rel="noreferrer noopener" aria-label="GitHub" className="social-icon p-1 rounded">
-                <GitHubIcon className="icon-sm icon-hover" />
-              </a>
+            {/* social icons (moved next to hero CTA on desktop) */}
+            <div className="left-socials hidden md:flex flex-col items-center gap-3 mt-6" aria-hidden="true">
+              {/* empty placeholder to preserve left column spacing on desktop */}
             </div>
           </div>
 
@@ -58,7 +54,25 @@ export default function Home(){
               </motion.div>
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-                <GradientHero ctaLabel={"Download CV"} ctaHref={"/resume.pdf"} ctaDownload={true} />
+                <GradientHero
+                  ctaLabel={"Download CV"}
+                  ctaHref={"/resume.pdf"}
+                  ctaDownload={true}
+                  extraActions={(
+                    <>
+                      <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="btn-subtle btn-no-border btn-gloss p-2 rounded focus-ring" title="LinkedIn">
+                        <LinkedInIcon className="icon-md icon-hover" />
+                      </a>
+
+                      <a href="https://github.com/" target="_blank" rel="noreferrer noopener" aria-label="GitHub" className="btn-subtle btn-no-border btn-gloss p-2 rounded focus-ring" title="GitHub">
+                        <GitHubIcon className="icon-md icon-hover" />
+                      </a>
+
+                      {/* Email shown next to GitHub */}
+                      <a href="mailto:pablopenaheredia@gmail.com" className="ml-3 text-color-100/80 text-base font-medium hover:text-color-100 transition-colors" aria-label="Send email to Pablo">pablopenaheredia@gmail.com</a>
+                    </>
+                  )}
+                />
               </motion.div>
             </header>
 

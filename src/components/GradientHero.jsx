@@ -8,6 +8,7 @@ export default function GradientHero({
   ctaLabel = null,
   ctaHref = null,
   ctaDownload = false,
+  extraActions = null,
 }) {
   // allow newline in highlight ("QA\nAUTOMATION")
   const parts = String(highlight).split('\n')
@@ -31,7 +32,7 @@ export default function GradientHero({
       )}
 
       {ctaLabel && ctaHref && (
-        <div className="mt-6">
+        <div className="mt-6 hero-cta-wrapper">
           <a href={ctaHref} download={ctaDownload} className="btn-primary inline-flex items-center hero-cta-large" aria-label={ctaLabel}>
             {/* download icon */}
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="-ml-1">
@@ -41,6 +42,12 @@ export default function GradientHero({
             </svg>
             <span className="ml-2">{ctaLabel}</span>
           </a>
+
+          {extraActions && (
+            <div className="ml-4 flex items-center gap-3">
+              {extraActions}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -54,4 +61,5 @@ GradientHero.propTypes = {
   ctaLabel: PropTypes.string,
   ctaHref: PropTypes.string,
   ctaDownload: PropTypes.bool,
+  extraActions: PropTypes.node,
 }
