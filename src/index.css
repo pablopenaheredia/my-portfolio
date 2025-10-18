@@ -35,7 +35,8 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
+  /* avoid smooth scrolling during initial load / browser restore to prevent animated jumps */
+  scroll-behavior: auto;
 }
 body {
   margin: 0;
@@ -630,4 +631,37 @@ textarea {
   top: 12px;
   outline: none;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Vertical timeline: ensure bullets are visible and content area is wider.
+   Keep the vertical line centered (default behavior) so elements don't detach.
+*/
+.vertical-timeline {
+  /* don't add left padding that shifts layout; keep container as the library expects */
+  padding: 0;
+  position: relative;
+}
+.vertical-timeline::before {
+  /* restore centered line (library default uses 50% + negative margin) */
+  left: 50%;
+  margin-left: -2px;
+}
+.vertical-timeline .vertical-timeline-element-content {
+  max-width: 820px; /* allow wider description blocks if layout permits */
+  padding: 18px 22px;
+}
+.vertical-timeline .vertical-timeline-element-content ul {
+  list-style-type: disc !important;
+  list-style-position: outside !important;
+  padding-left: 1.25rem !important;
+  margin-top: 8px !important;
+  color: rgba(232, 230, 239, 0.66) !important;
+}
+.vertical-timeline .vertical-timeline-element-content li {
+  margin-bottom: 6px !important;
+}
+
+/* Slightly increase the width available for the experience section on large screens */
+.experience-section .site-container {
+  max-width: 1100px;
 }

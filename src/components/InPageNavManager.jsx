@@ -5,10 +5,30 @@ import { useEffect } from 'react'
 export default function InPageNavManager(){
   useEffect(()=>{
     // custom smooth-scroll for hash links with a distinctive overshoot + settle animation
+    // delay attachment until initial load to avoid conflicts with scroll restoration
+    function attach(){
+      document.addEventListener('click', onClick)
+    }
+
     function onClick(e){
       const el = e.target.closest('a[href^="#"]')
       if(!el) return
       const href = el.getAttribute('href')
+        // Prevent native hash navigation during initial load which can cause jumps.
+        // This capture-phase listener stops the browser from instantly jumping to anchors
+        // until our custom smooth-scroll handler is attached after load.
+        function preventNativeHashJump(e){
+          try{
+            const el = e.target.closest && e.target.closest('a[href^="#"]')
+            if(!el) return
+            const href = el.getAttribute('href')
+            if(!href || href === '#') return
+            // prevent native jump
+            e.preventDefault()
+          }catch(err){ /* ignore */ }
+        }
+
+        document.addEventListener('click', preventNativeHashJump, true)
       if(!href || href === '#') return
       const id = href.slice(1)
       const target = document.getElementById(id)
@@ -57,7 +77,8 @@ export default function InPageNavManager(){
   pulseTarget(target)
     }
 
-    document.addEventListener('click', onClick)
+  if(document.readyState === 'complete') attach()
+  else window.addEventListener('load', attach, { once: true })
 
     // IntersectionObserver to toggle active class on nav icons
     const sections = Array.from(document.querySelectorAll('main section[id]'))
@@ -84,10 +105,10 @@ export default function InPageNavManager(){
       return ()=>{
         observer.disconnect()
         document.removeEventListener('click', onClick)
+        window.removeEventListener('load', attach)
       }
     }
-
-    return ()=> document.removeEventListener('click', onClick)
+    return ()=> window.removeEventListener('load', attach)
   }, [])
 
   return null

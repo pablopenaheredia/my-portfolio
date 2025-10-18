@@ -4,10 +4,60 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './index.css'
 
-createRoot(document.getElementById('root')).render(
+// Prevent the browser from restoring scroll position automatically
+// before the app and fonts/styles are fully loaded which can cause jumps.
+try{
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+}catch(e){/* ignore */}
+
+const root = createRoot(document.getElementById('root'))
+root.render(
   <React.StrictMode>
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
 )
+
+// Once the window is fully loaded (fonts/images), allow the browser to manage scroll again
+window.addEventListener('load', ()=>{
+  try{ if ('scrollRestoration' in history) history.scrollRestoration = 'auto' }catch(e){}
+})
+
+// Additional protections to avoid initial jump caused by hash restore or focus
+try{
+  // Remove any existing hash from the URL to avoid browser auto-jump on reload
+  const initialHash = window.location.hash
+  if(initialHash){
+    history.replaceState(null, '', window.location.pathname + window.location.search)
+  }
+
+  // Make skip-link unfocusable initially; enable on first Tab press
+  const makeSkipLinkKeyboardAccessible = ()=>{
+    const skip = document.querySelector('.skip-link')
+    if(!skip) return
+    skip.setAttribute('tabindex','-1')
+    function enableOnTab(e){
+      if(e.key === 'Tab'){
+        skip.removeAttribute('tabindex')
+        window.removeEventListener('keydown', enableOnTab)
+      }
+    }
+    window.addEventListener('keydown', enableOnTab)
+  }
+  // If DOM is ready run immediately, otherwise wait for load
+  if(document.readyState === 'complete') makeSkipLinkKeyboardAccessible()
+  else window.addEventListener('load', makeSkipLinkKeyboardAccessible, { once: true })
+
+  // Force scroll to top for a short window to avoid jumps due to late layout shifts
+  const holdScrollTop = ()=>{
+    window.scrollTo(0,0)
+    const start = performance.now()
+    const id = setInterval(()=>{
+      window.scrollTo(0,0)
+      if(performance.now() - start > 160) clearInterval(id)
+    }, 20)
+  }
+  if(document.readyState === 'complete') holdScrollTop()
+  else window.addEventListener('load', holdScrollTop, { once: true })
+}catch(e){/* ignore */}

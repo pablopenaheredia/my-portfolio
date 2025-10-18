@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import NavDot from '../components/NavDot'
 import InPageNavManager from '../components/InPageNavManager'
@@ -7,6 +7,8 @@ import GradientHero from '../components/GradientHero'
 // MUI icons for social buttons
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import GitHubIcon from '@mui/icons-material/GitHub'
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
+import Toast from '../components/Toast'
 
 import css3 from '../assets/css3.svg'
 import SkillsSection from '../components/SkillsSection'
@@ -14,9 +16,13 @@ import SkillsSection from '../components/SkillsSection'
 import projects from '../data/projects'
 
 export default function Home(){
-  useEffect(()=>{ window.scrollTo({top:0, behavior:'auto'}) }, [])
+  // Ensure we reset scroll to top before first paint to avoid jump on reload
+  useLayoutEffect(()=>{ window.scrollTo(0,0) }, [])
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState('')
 
   return (
+  <>
   <main id="home" className="min-h-screen bg-color-950 relative overflow-hidden">
     {/* Skip link for keyboard users */}
     <a href="#home" className="skip-link">Saltar al contenido</a>
@@ -68,8 +74,45 @@ export default function Home(){
                         <GitHubIcon className="icon-md icon-hover" />
                       </a>
 
-                      {/* Email shown next to GitHub */}
-                      <a href="mailto:pablopenaheredia@gmail.com" className="ml-3 text-color-100/80 text-base font-medium hover:text-color-100 transition-colors" aria-label="Send email to Pablo">pablopenaheredia@gmail.com</a>
+                      {/* Email icon + address shown next to GitHub - matches social buttons spacing and style */}
+                      <button
+                        type="button"
+                        aria-label="Copiar email"
+                        title="Copiar email"
+                        className="btn-subtle btn-no-border btn-gloss p-2 rounded focus-ring flex items-center gap-2"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          const email = 'pablopenaheredia@gmail.com'
+                          const doShowSuccess = () => {
+                            setToastMessage('Email copiado en el portapapeles')
+                            setShowToast(true)
+                          }
+
+                          const doShowFail = () => {
+                            setToastMessage('No se pudo copiar el email')
+                            setShowToast(true)
+                          }
+
+                          if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(email).then(() => doShowSuccess()).catch(() => doShowFail())
+                          } else {
+                            try {
+                              const ta = document.createElement('textarea')
+                              ta.value = email
+                              document.body.appendChild(ta)
+                              ta.select()
+                              document.execCommand('copy')
+                              document.body.removeChild(ta)
+                              doShowSuccess()
+                            } catch (err) {
+                              doShowFail()
+                            }
+                          }
+                        }}
+                      >
+                        <EmailOutlinedIcon className="icon-md icon-hover" />
+                        <span className="text-color-100 text-base font-medium hidden sm:inline">pablopenaheredia@gmail.com</span>
+                      </button>
                     </>
                   )}
                 />
@@ -110,7 +153,7 @@ export default function Home(){
             <aside className="about-visual" aria-labelledby="stack-heading">
               <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.4 }} className="sticky-wrapper max-w-md mx-auto lg:sticky lg:top-20">
                 <div className="image-container w-full">
-                  <img src="/profile.svg" alt="Pablo Peña" className="w-full h-auto rounded-lg mb-4 img-elevated animate-soft-pulse" />
+                  <img src="/profile.svg" alt="Pablo Peña" loading="lazy" width="560" height="420" className="w-full h-auto rounded-lg mb-4 img-elevated animate-soft-pulse" />
                 </div>
                 {/* Profile image only; Stack moved to Projects section */}
               </motion.div>
@@ -137,19 +180,24 @@ export default function Home(){
           </header>
 
           <div className="projects-list site-container">
-            <div className="grid grid-cols-6 gap-6">
-              {projects.map((project, i) => {
-                const isLarge = i % 3 === 0
-                return (
-                  <motion.article key={project.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.06 }} className={`project-item group ${isLarge ? 'col-span-4 md:col-span-4' : 'col-span-2 md:col-span-2'}`}>
-                      <div className="block mb-4 overflow-hidden rounded-lg card-hover box-violet card-border">
-                        <img src={project.image} alt={project.name} className="w-full h-[220px] object-cover transition-transform duration-500 group-hover:scale-105 card-border" />
-                      </div>
+            <div className="grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-6">
+              {projects.slice(0,3).map((project, i) => {
+                // Bento layout: first item is large (left) spanning 4 cols and 2 rows on md+
+                const itemClass = i === 0 ? 'col-span-1 md:col-span-4 md:row-span-2' : 'col-span-1 md:col-span-2'
+                const imgClass = i === 0 ? 'w-full h-auto md:h-[520px] object-cover' : 'w-full h-auto md:h-[260px] object-cover'
 
-                      <h3 className="app-h3 text-color-100 font-light mb-1">{project.name}</h3>
-                      <p className="text-color-100/60 text-sm font-light leading-relaxed mb-3">{project.description}</p>
-                      <p className="text-color-500 text-xs mb-2 font-medium tech-shadow">{project.technologies.join(' · ')}</p>
+                return (
+                  <motion.article key={project.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }} className={`project-item group ${itemClass}`}>
+                    <div className="block mb-4 overflow-hidden rounded-lg card-hover box-violet card-border">
+                      <img src={project.image} alt={project.name} loading="lazy" width="1000" height="600" className={`${imgClass} transition-transform duration-500 group-hover:scale-105`} />
+                    </div>
+
+                    <div className="px-0 md:px-2">
+                      <h3 className="app-h3 text-color-100 font-light mb-2">{project.name}</h3>
+                      <p className="text-color-100/60 text-base font-light leading-relaxed mb-4">{project.description}</p>
+                      <p className="text-color-500 text-sm mb-4 font-medium tech-shadow">{project.technologies.join(' · ')}</p>
                       <a href={`#projects`} className="text-color-100/60 text-sm hover:text-color-500 transition-colors">View case →</a>
+                    </div>
                   </motion.article>
                 )
               })}
@@ -163,5 +211,8 @@ export default function Home(){
 
       </div>
     </main>
+    {/* Toast portal */}
+    <Toast message={toastMessage} show={showToast} onClose={() => setShowToast(false)} />
+  </>
   )
 }

@@ -1,32 +1,24 @@
 const experiences = [
   {
-    year: '2024',
-    title: 'Senior Product Designer',
-    position: 'Senior Product Designer',
-    company: 'Detail',
-    description: 'Leading product design and cross-functional QA initiatives.'
+    year: '2025',
+    title: 'XAcademy - QA Automation',
+    position: 'QA Automation (Course)',
+    company: 'XAcademy',
+    description: 'Formación en testing automatizado usando Cypress y JavaScript. Desarrollo y ejecución de scripts de prueba sobre una aplicación web de prueba (Ticketazo). Documentación de plan de pruebas y codificación de pruebas E2E para funcionalidades críticas.'
   },
   {
-    year: '2021',
-    title: 'QA Automation Lead',
-    position: 'QA Automation Lead',
-    company: 'Acme Corp',
-    description: 'Built end-to-end test platforms using Playwright and Cypress.'
+    year: '2025',
+    title: 'XAcademy - QA Manual',
+    position: 'QA Manual (Course)',
+    company: 'XAcademy',
+    description: 'Formación en testing manual. Lideré, junto a otros 2 testers, un grupo de 20 personas para realizar pruebas funcionales de la aplicación de una startup (Quien x Mi / QxM). Diseñé el plan de pruebas, creación y ejecución de casos de prueba y comunicación directa con el CEO y el equipo de QA del cliente.'
   },
   {
-    year: '2019',
-    title: 'Fullstack Developer',
-    position: 'Fullstack Developer',
-    company: 'Startup X',
-    description: 'Developed APIs and frontend features with React and NestJS.'
-  },
-  // Extra experience from CV (placeholder) — replace with real details if provided
-  {
-    year: '2017',
-    title: 'QA Engineer',
-    position: 'QA Engineer',
-    company: 'Empresa Y',
-    description: 'Worked on test plans, automation and regression suites. (Placeholder — update from CV)'
+    year: '2023 – 2024',
+    title: 'UPEX - QA Manual Trainee',
+    position: 'QA Manual Trainee',
+    company: 'UPEX',
+    description: `• Desarrollé y diseñé test plans para garantizar la cobertura de requisitos y escenarios de uso.\n• Realicé pruebas manuales según casos de prueba establecidos, registrando resultados y observaciones.\n• Participé en bug triage y seguimiento de defectos usando Jira + Xray.\n• Re-ejecuté casos modificados para verificar correcciones y mantener la integridad del producto.`
   }
 ]
 
