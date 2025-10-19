@@ -95,6 +95,51 @@ body {
   background: rgba(255, 255, 255, 0.08);
   filter: blur(10px);
 }
+
+/* Projects grid: make items align and have consistent heights on md+ screens */
+@media (min-width: 768px) {
+  .projects-list .grid {
+    /* use a slightly smaller fixed row height so images are smaller (user requested) */
+    grid-auto-rows: 220px;
+    align-items: start;
+  }
+
+  .project-item {
+    display: block;
+    height: 100%;
+  }
+
+  /* ensure image blocks fill their grid area and use cover to avoid stretching */
+  .project-item .block {
+    height: 100%;
+    display: block;
+    overflow: hidden;
+  }
+
+  .project-item .block img,
+  .project-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* left big item should span 2 rows (2 * 260px) visually */
+  .projects-list .col-span-1.md\:col-span-4.md\:row-span-2,
+  .projects-list .md\:col-span-4.md\:row-span-2 {
+    grid-row: span 2 / span 2;
+  }
+
+  /* specifically reduce the visible height of the first project image slightly */
+  .projects-list .grid > .project-item:first-child .block img,
+  .projects-list .grid > .project-item:first-child img {
+    height: 85% !important; /* slightly shorter so the first card appears smaller */
+    max-height: calc(
+      2 * 220px - 24px
+    ) !important; /* keep within the two-row visual height */
+    object-fit: cover;
+  }
+}
 .card-hover:hover .tech-shadow::before,
 .tech-shadow:hover::before {
   background: rgba(255, 255, 255, 0.14);
@@ -165,42 +210,142 @@ body {
 }
 
 /* Make main content sections have equal vertical spacing */
-.about-section,
-.projects-section,
+.about-section {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
 .experience-section {
-  padding-top: 6rem; /* uniform spacing above */
-  padding-bottom: 6rem; /* uniform spacing below */
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
-/* Card and hover utilities used by components */
-.card-hover {
-  transition: transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1),
-    box-shadow 220ms ease;
-}
-.card-hover:hover {
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 30px 80px rgba(92, 32, 223, 0.16);
-}
-.hover-elevate {
-  will-change: transform, box-shadow;
-}
-.hover-elevate:hover {
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 26px 70px rgba(92, 32, 223, 0.14);
+.projects-section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
-.card-border {
-  border: 1px solid rgba(232, 230, 239, 0.04);
-}
-.img-elevated {
-  /* brighter violet shadow to match previous look */
-  box-shadow: var(--violet-shadow);
+.skills-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
-/* specific elevated style for the Stack container: deeper shadow with a brighter glow */
-.stack-elevated {
-  /* reverted to subtle violet shadow; strong glow removed */
-  box-shadow: var(--violet-shadow);
+/* Force clear separation between major sections (use margins with high specificity) */
+#experience {
+  margin-top: 6rem !important;
+  margin-bottom: 4rem !important;
+}
+
+#projects {
+  margin-top: 6rem !important;
+  margin-bottom: 4rem !important;
+}
+
+#skills {
+  margin-top: 5rem !important;
+}
+
+/* Section divider: centered word with decorative lines and shimmer */
+.section-divider-wrapper {
+  display: flex;
+  justify-content: center; /* center the divider across the page */
+  width: 100%;
+  margin: 3.5rem 0; /* more vertical spacing between divider and content */
+}
+
+.section-divider {
+  position: relative;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: transparent;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem); /* larger and responsive */
+  /* match GradientHero highlight: horizontal violet gradient clipped to text */
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--color-300), var(--color-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 26vw;
+  height: 2px; /* thicker line for better visibility */
+  background: rgba(232, 230, 239, 0.2); /* lighter/brighter base */
+  transform: translateY(-50%);
+  pointer-events: none;
+  overflow: hidden;
+}
+.section-divider::before {
+  left: calc(-26vw - 1.2rem);
+}
+.section-divider::after {
+  right: calc(-26vw - 1.2rem);
+}
+
+/* Shimmer applied to both lines; mirror effect achieved by reversing animation on the left line */
+.section-divider::before {
+  background: rgba(92, 32, 223, 0.12); /* tinted to match --color-500 */
+  opacity: 1;
+}
+.section-divider::after {
+  background: rgba(92, 32, 223, 0.12);
+  opacity: 1;
+}
+
+/* dividerShimmer removed (static dividers requested) */
+
+@media (max-width: 767px) {
+  .section-divider::before,
+  .section-divider-wrapper {
+    display: flex;
+    justify-content: center; /* keep divider centered */
+    width: 100%;
+    margin: 2.5rem 0; /* slightly larger mobile spacing */
+  }
+
+  .section-divider {
+    position: relative;
+    display: inline-block;
+    padding: 0.65rem 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: transparent;
+    font-size: clamp(1.25rem, 2.2vw, 1.8rem); /* mobile size tuning */
+    color: transparent;
+    background-image: linear-gradient(
+      90deg,
+      var(--color-300),
+      var(--color-500)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  /* Mobile: static thin lines for dividers */
+  .section-divider::before,
+  .section-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 18vw;
+    height: 1px;
+    background: rgba(92, 32, 223, 0.12);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  .section-divider::before {
+    left: calc(-18vw - 1rem);
+  }
+  .section-divider::after {
+    right: calc(-18vw - 1rem);
+  }
 }
 
 /* Icon helpers (referenced in Home.jsx) */
@@ -240,6 +385,29 @@ body {
 .visual-nav-inner .nav-word a {
   display: inline-block;
   cursor: pointer;
+  /* use a brighter violet for the initial state so it reads differently from the subtitle */
+  color: var(--color-300) !important; /* brighter/lighter violet */
+}
+
+/* Slightly brighter on hover to give clear affordance (only color) */
+.visual-nav-inner .nav-word a:hover {
+  color: var(--color-400) !important;
+}
+
+/* Position the hero visual aside so its text inset matches the hero content's left inset.
+   The value is provided by Home.jsx via --hero-left-inset; fallback to 32px if not set. */
+@media (min-width: 768px) {
+  .hero-visual {
+    display: block !important; /* override utility classes when present */
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    /* align the right edge to match the hero content left inset. Use fallback 32px (~2rem). */
+    right: calc(var(--hero-left-inset, 32px) - 160px) !important;
+    width: 33.333% !important;
+    max-width: 520px !important;
+    padding-right: 1.5rem !important; /* pr-6 */
+  }
 }
 
 /* nav micro-interactions */
@@ -277,6 +445,13 @@ body {
     box-shadow: 0 0 0 0 rgba(94, 36, 219, 0);
     transform: translateY(0);
   }
+}
+
+/* Remove violet pulse on nav targets - keep interaction without purple shadow */
+.nav-target-animate {
+  animation: none !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 /* skill sheen and labels (used in Home.jsx) */
@@ -664,4 +839,51 @@ textarea {
 /* Slightly increase the width available for the experience section on large screens */
 .experience-section .site-container {
   max-width: 1100px;
+}
+
+/* Make timeline cards wider only inside the Experience section so other timelines remain unaffected */
+.experience-section .vertical-timeline .vertical-timeline-element-content {
+  max-width: 980px; /* wider cards for experience section */
+  padding: 22px 26px;
+}
+
+/* On very large screens, allow even more space while keeping layout centered */
+@media (min-width: 1400px) {
+  .experience-section .vertical-timeline .vertical-timeline-element-content {
+    max-width: 1100px;
+  }
+}
+
+/* Force narrower timeline cards inside Experience and keep the date aligned outside the center line */
+.experience-section .vertical-timeline .vertical-timeline-element-content {
+  width: 46% !important;
+  max-width: 680px !important;
+  padding: 18px 22px !important;
+  box-sizing: border-box !important;
+}
+
+.experience-section .vertical-timeline .vertical-timeline-element-date {
+  position: absolute !important;
+  left: calc(
+    50% + 18px
+  ) !important; /* put date just right of the vertical line */
+  transform: translateX(0) !important;
+  white-space: nowrap !important;
+  color: rgba(232, 230, 239, 0.75) !important;
+}
+
+/* Responsive: stack timeline content and move date below content on small screens */
+@media (max-width: 767px) {
+  .experience-section .vertical-timeline .vertical-timeline-element-content {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .experience-section .vertical-timeline .vertical-timeline-element-date {
+    position: relative !important;
+    left: auto !important;
+    transform: none !important;
+    display: block !important;
+    margin-top: 8px !important;
+  }
 }

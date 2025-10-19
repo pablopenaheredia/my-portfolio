@@ -20,6 +20,25 @@ export default function Home(){
   useLayoutEffect(()=>{ window.scrollTo(0,0) }, [])
   const [showToast, setShowToast] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
+  // expose hero content left inset as a CSS variable so the right-side visual nav can align to it
+  useEffect(() => {
+    const setInset = () => {
+      try {
+        // measure the hero content container (site-container) to avoid counting the fixed left nav
+        const heroContainer = document.querySelector('.hero-content-container')
+        if (!heroContainer) return
+        const rect = heroContainer.getBoundingClientRect()
+        const inset = Math.round(rect.left)
+        document.documentElement.style.setProperty('--hero-left-inset', `${inset}px`)
+      } catch (err) {
+        // ignore
+      }
+    }
+
+    setInset()
+    window.addEventListener('resize', setInset)
+    return () => window.removeEventListener('resize', setInset)
+  }, [])
 
   return (
   <>
@@ -50,7 +69,7 @@ export default function Home(){
         </div>
       </nav>
 
-      <div className="content ml-16 min-h-screen">
+  <div className="content ml-16">
         {/* HERO */}
         <section id="home" className="hero min-h-screen flex items-center px-12 relative">
           <div className="hero-content-container site-container w-full mx-0 flex items-center justify-between gap-8">
@@ -138,10 +157,12 @@ export default function Home(){
         
 
         {/* ABOUT (merged) */}
-        <section id="about" className="about-section min-h-screen px-12 py-24">
+  <div className="section-divider-wrapper">
+    <div className="section-divider" aria-hidden="true">ABOUT</div>
+  </div>
+  <section id="about" className="about-section px-12 py-12">
           <div className="about-container site-container grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <article className="about-text">
-              <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="app-h2 text-color-100 font-light leading-[1.1] tracking-tight mb-8">About</motion.h2>
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-color-100 text-xl font-light leading-relaxed mb-8">I'm Pablo. QA engineer, automation specialist and fullstack developer focused on quality and scalability.</motion.p>
 
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="bio-text space-y-6 text-color-100/70 text-base leading-relaxed font-light">
@@ -162,22 +183,22 @@ export default function Home(){
         </section>
 
         {/* EXPERIENCE (moved out from About) */}
-        <section id="experience" className="experience-section min-h-screen px-12 py-24">
+  <div className="section-divider-wrapper">
+    <div className="section-divider" aria-hidden="true">EXPERIENCE</div>
+  </div>
+  <section id="experience" className="experience-section px-12 py-48">
           <div className="site-container">
             <header className="mb-8">
-              <h2 className="app-h2 text-[#e8e6ef] font-light">Experience</h2>
-              <p className="text-[#e8e6ef]/60 mt-2">Extract from CV — roles and responsibilities.</p>
             </header>
             <Timeline />
           </div>
         </section>
 
-        {/* PROJECTS (merged) */}
-        <section id="projects" className="projects-section min-h-screen px-12 py-24">
-          <header className="section-header site-container mb-12">
-            <motion.h2 className="app-h2 text-[#e8e6ef] font-light leading-[1.1] mb-4">Projects</motion.h2>
-            <p className="text-[#e8e6ef]/60 text-base font-light max-w-2xl">A curated selection of work across automation, fullstack development and product.</p>
-          </header>
+  {/* PROJECTS (merged) */}
+  <div className="section-divider-wrapper">
+    <div className="section-divider" aria-hidden="true">PROJECTS</div>
+  </div>
+  <section id="projects" className="projects-section px-12 py-32">
 
           <div className="projects-list site-container">
             <div className="grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-6">
@@ -194,9 +215,9 @@ export default function Home(){
 
                     <div className="px-0 md:px-2">
                       <h3 className="app-h3 text-color-100 font-light mb-2">{project.name}</h3>
-                      <p className="text-color-100/60 text-base font-light leading-relaxed mb-4">{project.description}</p>
+                      <p className="text-color-100 text-base font-light leading-relaxed mb-4">{project.description}</p>
                       <p className="text-color-500 text-sm mb-4 font-medium tech-shadow">{project.technologies.join(' · ')}</p>
-                      <a href={`#projects`} className="text-color-100/60 text-sm hover:text-color-500 transition-colors">View case →</a>
+                      <a href={`#projects`} className="text-color-100 text-sm hover:text-color-500 transition-colors">View case →</a>
                     </div>
                   </motion.article>
                 )
@@ -204,7 +225,18 @@ export default function Home(){
             </div>
           </div>
 
-          <SkillsSection />
+        </section>
+
+        {/* SKILLS (moved out from Projects) */}
+        <div className="section-divider-wrapper">
+          <div className="section-divider" aria-hidden="true">SKILLS</div>
+        </div>
+        <section id="skills" className="skills-section px-12 py-24">
+          <div className="site-container">
+            <header className="mb-8">
+            </header>
+            <SkillsSection />
+          </div>
         </section>
 
         {/* contact section removed */}

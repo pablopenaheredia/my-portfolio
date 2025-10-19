@@ -64,7 +64,6 @@ export default function SkillsSection(){
   return (
     <div className="stack-block site-container mt-12">
       {/* Section heading moved outside the icons container for clarity */}
-      <h2 className="app-h2 text-color-100 text-center mb-6">Skills</h2>
       <div className="bg-transparent rounded-lg p-6 elevated w-full">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Object.entries(skillCategories).map(([category, list], catIndex) => {

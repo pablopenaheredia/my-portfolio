@@ -35,9 +35,11 @@ export default function InPageNavManager(){
       if(!target) return
       e.preventDefault()
 
-      const startY = window.scrollY || window.pageYOffset
-      const rect = target.getBoundingClientRect()
-      const targetY = startY + rect.top
+  const startY = window.scrollY || window.pageYOffset
+  const rect = target.getBoundingClientRect()
+  // offset to show the section a bit higher than usual (e.g., leave space for a fixed header)
+  const offset = 80
+  const targetY = startY + rect.top - offset
 
       // overshoot amount (pixels)
       const overshoot = Math.max(48, Math.min(120, Math.abs(targetY - startY) * 0.08))
@@ -66,10 +68,12 @@ export default function InPageNavManager(){
       }
 
       // highlight animation on the target
-      function pulseTarget(el){
-        el.classList.add('nav-target-animate')
-        window.setTimeout(()=> el.classList.remove('nav-target-animate'), 700)
-      }
+        function pulseTarget(el){
+          // no-op: disable violet pulse animation on target elements
+          // previous behaviour added the 'nav-target-animate' class which created a violet shadow
+          // we intentionally leave this empty to avoid that visual effect
+          return
+        }
 
       const firstY = targetY + direction * overshoot
   // run first phase then settle, and pulse the target; do NOT modify the URL hash

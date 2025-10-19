@@ -28,7 +28,7 @@ export default function GradientHero({
       </h1>
 
       {description && (
-        <p className="text-color-100/70 text-base lg:text-lg max-w-xl leading-relaxed font-light">{description}</p>
+        <p className="text-color-100 text-base lg:text-lg max-w-xl leading-relaxed font-light">{description}</p>
       )}
 
       {ctaLabel && ctaHref && (
