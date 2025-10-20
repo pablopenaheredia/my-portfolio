@@ -55,10 +55,14 @@ body {
 /* Slightly tighter vertical spacing for main sections */
 .about-section,
 .projects-section,
-.experience-section,
-.skills-section {
+.experience-section {
   padding-top: 3.5rem;
   padding-bottom: 3.5rem;
+}
+
+.skills-section {
+  padding-top: 2rem;
+  padding-bottom: 5rem;
 }
 
 @media (max-width: 767px) {
@@ -106,6 +110,31 @@ body {
 .projects-list .tech-shadow::before {
   background: rgba(255, 255, 255, 0.08);
   filter: blur(10px);
+}
+
+/* Project Tech Tags */
+.project-tech-tag {
+  @apply px-3 py-1.5 rounded-full text-xs font-medium;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.15),
+    rgba(109, 40, 217, 0.15)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: rgb(var(--color-300));
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.1);
+}
+
+.project-tech-tag:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.25),
+    rgba(109, 40, 217, 0.25)
+  );
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.25);
+  transform: translateY(-1px);
 }
 
 /* Projects grid: make items align and have consistent heights on md+ screens */
@@ -212,26 +241,7 @@ section#skills {
   padding-top: 6rem; /* a bit more space for the skills section so divider isn't flush */
 }
 
-/* Footer styles */
-.site-footer {
-  border-top: 1px solid rgba(232, 230, 239, 0.03);
-  margin-top: 3rem;
-  padding: 3rem 0;
-}
-.site-footer .footer-left p {
-  margin: 0;
-}
-.site-footer .footer-actions .btn-subtle {
-  padding: 0.45rem 0.75rem;
-}
-
-@media (max-width: 767px) {
-  .site-footer {
-    padding: 2rem 0;
-  }
-}
-
-/* increase global bottom padding so final section and footer have breathing room */
+/* increase global bottom padding so final section has breathing room */
 body > main .content {
   padding-bottom: 6rem;
 }
@@ -478,12 +488,11 @@ section#experience {
     display: block;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
-    /* align the right edge to match the hero content left inset. Use fallback 32px (~2rem). */
-    right: calc(var(--hero-left-inset, 32px) - 160px);
-    width: 33.333%;
-    max-width: 520px;
-    padding-right: 1.5rem; /* pr-6 */
+    transform: translateY(-50%) translateX(0);
+    right: 3.5rem;
+    width: 28%;
+    max-width: 420px;
+    padding-right: 0.5rem;
   }
 }
 
@@ -532,7 +541,7 @@ section#experience {
 /* skill sheen and labels (used in Home.jsx) */
 .skill-sheen {
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* allow shadows from inner elevated elements to show */
   border-radius: 10px;
   transition: box-shadow 220ms ease, background 200ms ease, transform 180ms ease;
 }
@@ -557,6 +566,20 @@ section#experience {
 }
 .skill-sheen:hover {
   box-shadow: var(--shadow-light);
+}
+
+/* Ensure individual skill icons/images get the hover transform and violet shadow (reuse .elevated visual) */
+.skill-sheen img,
+.skill-sheen .icon-lg {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  transform-origin: center center;
+}
+.skill-sheen:hover img,
+.skill-sheen:focus-within img,
+.skill-sheen:hover .icon-lg,
+.skill-sheen:focus-within .icon-lg {
+  transform: scale(1.06);
+  box-shadow: var(--violet-shadow);
 }
 
 /* Animated underline utility: limited to text width, uses palette color */
@@ -829,14 +852,17 @@ section#experience {
 
 /* minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(232, 230, 239, 0.08);
-  border-radius: 4px;
+  background: rgba(139, 92, 246, 0.25);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.35);
 }
 
 /* enforce left alignment */
@@ -944,12 +970,37 @@ textarea {
     max-width: none;
   }
 
+  /* hide icon markers on small screens to avoid collisions with the right edge */
+  .experience-section .vertical-timeline .vertical-timeline-element-icon {
+    display: none;
+  }
+
+  /* center timeline cards on mobile and ensure consistent spacing */
+  .experience-section .vertical-timeline .vertical-timeline-element-content {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto 1.25rem auto;
+    text-align: center;
+    box-sizing: border-box;
+    transition: transform 220ms ease, box-shadow 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .experience-section
+    .vertical-timeline
+    .vertical-timeline-element-content:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 34px rgba(92, 32, 223, 0.08);
+    border-color: rgba(92, 32, 223, 0.06);
+  }
+
   .experience-section .vertical-timeline .vertical-timeline-element-date {
     position: relative;
     left: auto;
     transform: none;
     display: block;
-    margin-top: 8px;
+    margin: 8px auto 0 auto;
+    text-align: center;
   }
 }
 
@@ -977,7 +1028,7 @@ textarea {
 
 .timeline-subtitle {
   margin-top: 6px;
-  color: rgba(232, 230, 239, 0.4);
+  color: #d1c1f6;
   font-weight: 400;
 }
 
@@ -1002,6 +1053,30 @@ textarea {
 
 .timeline-description p.first {
   margin: 0;
+}
+
+/* Ensure the last timeline element matches others' visual treatment */
+.vertical-timeline-element:last-child .vertical-timeline-element-content {
+  transition: transform 220ms ease, box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.vertical-timeline-element:last-child .vertical-timeline-element-content:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 34px rgba(92, 32, 223, 0.08);
+  border-color: rgba(92, 32, 223, 0.06);
+}
+
+/* Apply the same transition and hover effect to all timeline cards */
+.vertical-timeline-element .vertical-timeline-element-content {
+  transition: transform 220ms ease, box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.vertical-timeline-element .vertical-timeline-element-content:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 34px rgba(92, 32, 223, 0.08);
+  border-color: rgba(92, 32, 223, 0.06);
 }
 
 /* Contact Section */

@@ -62,16 +62,17 @@ export default function Home(){
               <NavDot href="#experience" label="Experience" />
               <NavDot href="#projects" label="Projects" />
               <NavDot href="#skills" label="Skills" />
+              <NavDot href="#contact" label="Contact" />
             </div>
           </div>
         </div>
       </nav>
 
-  <div className="content ml-16 md:ml-16 ml-0">
+  <div className="content md:ml-14 lg:ml-14 xl:ml-14">
         {/* HERO */}
         <section id="home" className="hero min-h-screen flex items-center px-4 md:px-12 relative">
           <div className="hero-content-container site-container flex items-center justify-between gap-4">
-            <header className="hero-content flex-1 md:-ml-10 lg:-ml-20 xl:-ml-28" aria-labelledby="hero-title">
+            <header className="hero-content flex-1 max-w-2xl" aria-labelledby="hero-title">
               <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="hero-label mb-8">
                 <p className="text-color-100/60 text-sm tracking-[0.3em] uppercase font-light">PABLO PEÑA HEREDIA</p>
               </motion.div>
@@ -145,6 +146,7 @@ export default function Home(){
                     <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#experience" className="underline-animated">EXPERIENCE</a></motion.div>
                     <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#projects" className="underline-animated">PROJECTS</a></motion.div>
                     <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#skills" className="underline-animated">SKILLS</a></motion.div>
+                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#contact" className="underline-animated">CONTACT</a></motion.div>
                 </div>
               </div>
             </aside>
@@ -195,21 +197,29 @@ export default function Home(){
           <div className="projects-list site-container">
             <div className="grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-6">
               {projects.slice(0,3).map((project, i) => {
-                // Bento layout: first item is large (left) spanning 4 cols and 2 rows on md+
                 const itemClass = i === 0 ? 'col-span-1 md:col-span-4 md:row-span-2' : 'col-span-1 md:col-span-2'
                 const imgClass = i === 0 ? 'w-full h-auto md:h-[520px] object-cover' : 'w-full h-auto md:h-[260px] object-cover'
 
                 return (
-                  <motion.article key={project.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }} className={`project-item group ${itemClass}`}>
-                    <div className="mb-4 overflow-hidden rounded-lg elevated">
+                  <motion.article key={project.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }} className={`project-item group ${itemClass} bg-gradient-to-br from-color-900/30 to-color-950/30 rounded-xl border border-color-500/10 hover:border-color-400/30 transition-all duration-300 overflow-hidden`}>
+                    <div className="overflow-hidden">
                       <img src={project.image} alt={project.name} loading="lazy" width="1000" height="600" className={`${imgClass} transition-transform duration-500 group-hover:scale-105`} />
                     </div>
 
-                    <div className="md:px-2">
-                      <h3 className="app-h3 text-color-100 mb-2">{project.name}</h3>
-                      <p className="text-color-100 font-light mb-4">{project.description}</p>
-                      <p className="text-color-500 text-sm mb-4 font-medium tech-shadow">{project.technologies.join(' · ')}</p>
-                      <a href={`#projects`} className="text-color-100 text-sm hover:text-color-500 transition-colors">View case →</a>
+                    <div className="p-6">
+                      <h3 className="text-color-300 text-xl md:text-2xl font-light mb-3 group-hover:text-color-400 transition-colors">{project.name}</h3>
+                      <p className="text-color-100/80 font-light mb-4 text-sm md:text-base leading-relaxed">{project.description}</p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.map((tech, idx) => (
+                          <span key={idx} className="project-tech-tag">{tech}</span>
+                        ))}
+                      </div>
+                      <a href={`#projects`} className="inline-flex items-center gap-2 text-color-400 text-sm hover:text-color-300 transition-colors group/link">
+                        <span>View case</span>
+                        <svg className="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </a>
                     </div>
                   </motion.article>
                 )
@@ -287,20 +297,6 @@ export default function Home(){
 
       </div>
     </main>
-    {/* Footer: page closure */}
-    <footer className="site-footer py-12 mt-8">
-      <div className="site-container flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="footer-left text-color-100/70">
-          <p className="mb-2">Built & curated by Pablo Peña Heredia — QA Analyst & Fullstack Developer</p>
-          <p className="text-sm">© {new Date().getFullYear()} Pablo Peña Heredia. All Rights Reserved.</p>
-        </div>
-
-        <div className="footer-actions flex items-center gap-4">
-          <a href="#home" className="underline-animated text-color-100 hover:text-color-400">Back to top</a>
-          <a href="mailto:pablopenaheredia@gmail.com" className="btn-subtle">Contact</a>
-        </div>
-      </div>
-    </footer>
     {/* Toast portal */}
     <Toast message={toastMessage} show={showToast} onClose={() => setShowToast(false)} />
   </>

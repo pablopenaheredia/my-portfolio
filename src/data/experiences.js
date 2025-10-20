@@ -4,14 +4,18 @@ const experiences = [
     title: 'XAcademy - QA Automation',
     position: 'QA Automation (Course)',
     company: 'XAcademy',
-    description: 'Formación en testing automatizado usando Cypress y JavaScript. Desarrollo y ejecución de scripts de prueba sobre una aplicación web de prueba (Ticketazo). Documentación de plan de pruebas y codificación de pruebas E2E para funcionalidades críticas.'
+    description: `• Formación en testing automatizado usando Cypress y JavaScript.
+• Desarrollo y ejecución de scripts de prueba sobre una aplicación web de prueba (Ticketazo).
+• Documentación de plan de pruebas y codificación de pruebas E2E para funcionalidades críticas.`
   },
   {
     year: '2025',
     title: 'XAcademy - QA Manual',
     position: 'QA Manual (Course)',
     company: 'XAcademy',
-    description: 'Formación en testing manual. Lideré, junto a otros 2 testers, un grupo de 20 personas para realizar pruebas funcionales de la aplicación de una startup (Quien x Mi / QxM). Diseñé el plan de pruebas, creación y ejecución de casos de prueba y comunicación directa con el CEO y el equipo de QA del cliente.'
+    description: `• Formación en testing manual.
+• Lideré, junto a otros 2 testers, un grupo de 20 personas para realizar pruebas funcionales de la aplicación de una startup (Quien x Mi / QxM).
+• Diseñé el plan de pruebas, creación y ejecución de casos de prueba y comunicación directa con el CEO y el equipo de QA del cliente.`
   },
   {
     year: '2023 – 2024',
