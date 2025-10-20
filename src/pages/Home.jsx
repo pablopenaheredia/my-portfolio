@@ -210,7 +210,7 @@ export default function Home(){
             {/* Foto primero en móvil, después en desktop */}
             <aside className="about-visual order-1 lg:order-2" aria-labelledby="stack-heading">
               <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.4 }} className="max-w-md mx-auto lg:sticky lg:top-20 mb-8 lg:mb-0">
-                <img src="/profile.svg" alt="Pablo Peña" loading="lazy" width="560" height="420" className="w-full rounded-lg animate-soft-pulse elevated" />
+                <img src="/profile.svg" alt="Pablo Pena" loading="lazy" width="560" height="420" className="w-full rounded-lg animate-soft-pulse elevated" />
               </motion.div>
             </aside>
 
@@ -293,7 +293,7 @@ export default function Home(){
         <section id="contact" className="contact-section px-4 md:px-12 py-16">
           <div className="site-container max-w-4xl">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <h2 className="text-color-100 text-3xl md:text-4xl font-light mb-4">¿Quieres...</h2>
+              <h2 className="text-color-100 text-3xl md:text-4xl font-light mb-4">Quieres...</h2>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -301,7 +301,7 @@ export default function Home(){
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="contact-card">
                 <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">¿Ofrecer una oportunidad laboral?</h3>
                 <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-                  Estoy abierto a conversar sobre oportunidades laborales o colaboraciones. Con experiencia en desarrollo web e ingeniería de software, me interesan roles que me permitan trabajar en proyectos desafiantes y significativos. Si tienes un proyecto o una posición en mente, contáctame y lo conversamos.
+                  Estoy abierto a oportunidades laborales o colaboraciones. Con experiencia en aseguramiento de calidad y desarrollo de software, me interesan roles que me permitan trabajar en proyectos desafiantes y significativos. Si tienes un proyecto o una posición en mente contáctame!.
                 </p>
               </motion.div>
 
@@ -309,15 +309,15 @@ export default function Home(){
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="contact-card">
                 <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">¿Conectar?</h3>
                 <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-                  El networking es clave en la industria tech, y siempre busco conocer gente nueva y ampliar mi círculo profesional. Si eres desarrollador, diseñador o emprendedor, me encantaría charlar y conocer tu trabajo. Tomemos un café virtual y veamos cómo podemos colaborar.
+                  El networking es clave en la industria IT, y siempre busco conocer gente nueva y ampliar mi círculo profesional. Si compartes intereses similares o estas interesado en conversar sobre algo, no dudes en contactarme.
                 </p>
               </motion.div>
 
               {/* Build Something */}
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="contact-card">
-                <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">¿Construir algo juntos?</h3>
+                <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">¿Que testee tu software o construir algo juntos?</h3>
                 <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-                  Me apasiona desarrollar aplicaciones web innovadoras que resuelvan problemas complejos. Ya sea una plataforma a medida o una app web avanzada, estoy listo para nuevos desafíos. ¡Construyamos algo increíble juntos!
+                  Me apasiona tanto el testing como el desarrollo de software aplicando buenas prácticas. Ya sea desarrollar un proyecto o testear uno existente, estoy listo para nuevos desafíos. Si tienes una idea o proyecto en mente, hablemos y veamos cómo podemos colaborar.
                 </p>
               </motion.div>
             </div>
