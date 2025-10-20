@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import NavDot from '../components/NavDot'
 import InPageNavManager from '../components/InPageNavManager'
-import Timeline from '../components/TimelineOld'
+import Timeline from '../components/Timeline'
 import GradientHero from '../components/GradientHero'
 import MobileMenu from '../components/MobileMenu'
 // MUI icons for social buttons
