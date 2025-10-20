@@ -10,10 +10,12 @@ try{
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
 }catch(e){/* ignore */}
 
+const basename = import.meta.env.MODE === 'production' ? '/portfolio' : ''
+
 const root = createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <BrowserRouter basename={basename} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
