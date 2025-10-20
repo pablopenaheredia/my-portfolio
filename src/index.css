@@ -541,31 +541,39 @@ section#experience {
 /* skill sheen and labels (used in Home.jsx) */
 .skill-sheen {
   position: relative;
-  overflow: visible; /* allow shadows from inner elevated elements to show */
+  overflow: hidden; /* keep the sheen clipped to the icon container */
   border-radius: 10px;
   transition: box-shadow 220ms ease, background 200ms ease, transform 180ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px; /* small padding so hover background fits closely around the icon */
 }
 .skill-sheen::after {
   content: "";
   position: absolute;
-  left: -120%;
-  top: -20%;
+  left: 0;
+  top: -18%;
   width: 40%;
-  height: 140%;
+  height: 160%;
+  /* stronger sheen for better visibility */
   background: linear-gradient(
     120deg,
+    rgba(255, 255, 255, 0.18),
     rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0) 60%
+    rgba(255, 255, 255, 0)
   );
-  transform: rotate(-20deg);
-  transition: left 520ms cubic-bezier(0.2, 0.9, 0.2, 1);
+  transform: translateX(-160%) rotate(-20deg);
+  transition: transform 520ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 220ms ease;
+  pointer-events: none;
+  opacity: 0.98;
 }
 .skill-sheen:hover::after,
 .skill-sheen:focus-within::after {
-  left: 120%;
+  transform: translateX(220%) rotate(-20deg);
 }
 .skill-sheen:hover {
-  box-shadow: var(--shadow-light);
+  box-shadow: 0 18px 48px rgba(92, 32, 223, 0.12);
 }
 
 /* Animated underline utility: limited to text width, uses palette color */
@@ -765,8 +773,22 @@ section#experience {
 .skills-grid img,
 .skill-sheen img {
   transform: rotate(0deg);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 200ms ease;
   will-change: transform, box-shadow;
+}
+
+/* ensure SVG icons inside .icon-img match the bitmap icon sizes */
+.icon-img {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.icon-img .icon-svg,
+.icon-img svg {
+  width: 48px; /* same visual size as .w-12 (Tailwind 12 = 3rem = 48px) */
+  height: 48px;
+  display: block;
 }
 .skill-label {
   position: absolute;
@@ -790,6 +812,8 @@ section#experience {
   transform: translate(-50%, 0);
 }
 
+/* Removed fixed max-width so grid can use full width of its column. */
+
 /* Stack section helpers (used by Home.jsx) */
 .stack-block {
   margin-top: 3rem;
@@ -812,8 +836,19 @@ section#experience {
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-items: center;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 1rem;
+}
+
+/* Center and constrain the overall skills container so icon spacing is tighter
+   and the group appears visually centered on the page. Keep it responsive. */
+.skills-wrapper {
+  max-width: 1100px; /* allow space for 6 columns */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.5rem; /* preserve a little inner spacing */
+  padding-right: 0.5rem;
 }
 
 .skills-grid li {
@@ -821,7 +856,8 @@ section#experience {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: auto; /* don't stretch to full column width so hover fits the icon */
+  justify-self: center;
 }
 
 @media (max-width: 767px) {

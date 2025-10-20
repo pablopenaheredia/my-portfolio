@@ -8,11 +8,11 @@ export default function MobileMenu() {
   const [toastMessage, setToastMessage] = useState('')
 
   const menuItems = [
-    { href: '#about', label: 'About' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#contact', label: 'Contact' }
+    { href: '#about', label: 'Sobre mí' },
+    { href: '#experience', label: 'Experiencia' },
+    { href: '#projects', label: 'Proyectos' },
+    { href: '#skills', label: 'Habilidades' },
+    { href: '#contact', label: 'Contacto' }
   ]
 
   const handleLinkClick = () => {
@@ -57,7 +57,7 @@ export default function MobileMenu() {
             >
               <div className="flex flex-col h-full pt-24 px-6">
                 <div className="mb-8">
-                  <p className="text-color-300 text-xs tracking-[0.3em] uppercase font-light mb-2">Navigation</p>
+                  <p className="text-color-300 text-xs tracking-[0.3em] uppercase font-light mb-2">Navegación</p>
                   <div className="h-px bg-gradient-to-r from-color-500/50 to-transparent" />
                 </div>
 

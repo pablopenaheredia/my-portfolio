@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export default function GradientHero({
-  highlight = 'QA Analyst',
-  titleRest = '& Fullstack Developer',
-  description = 'QA engineer and fullstack developer focused on test automation, reliability and clear architectures. Currently available for projects and collaborations.',
+  highlight = 'Analista QA',
+  titleRest = '& Desarrollador Fullstack',
+  description = 'Ingeniero de QA y desarrollador Fullstack enfocado en automatización de pruebas, confiabilidad y arquitecturas claras. Actualmente disponible para proyectos y colaboraciones.',
   ctaLabel = null,
   ctaHref = null,
   ctaDownload = false,
@@ -32,8 +32,8 @@ export default function GradientHero({
       )}
 
       {ctaLabel && ctaHref && (
-        <div className="mt-6 hero-cta-wrapper">
-          <a href={ctaHref} download={ctaDownload} className="btn-primary inline-flex items-center hero-cta-large" aria-label={ctaLabel}>
+      <div className="mt-6 hero-cta-wrapper">
+        <a href={ctaHref} download={ctaDownload} className="btn-primary inline-flex items-center hero-cta-large" aria-label={ctaLabel}>
             {/* download icon */}
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="-ml-1">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

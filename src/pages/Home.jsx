@@ -52,17 +52,17 @@ export default function Home(){
       <nav className="fixed left-0 top-0 h-screen w-16 z-50 hidden md:flex" aria-label="Main navigation">
         <div className="relative h-full flex items-center">
             <div className="absolute top-6 left-0 w-full flex flex-col items-center gap-2">
-            <a href="#home" className="hidden md:inline-block text-color-100 text-sm font-light tracking-wider rotate-180 vertical-rl">HOME</a>
-            <a href="#home" className="md:hidden text-color-100 text-sm font-light tracking-wider">HOME</a>
+              <a href="#home" className="hidden md:inline-block text-color-100 text-sm font-light tracking-wider rotate-180 vertical-rl">INICIO</a>
+              <a href="#home" className="md:hidden text-color-100 text-sm font-light tracking-wider">INICIO</a>
           </div>
 
           <div className="mx-auto">
               <div className="nav-icons flex flex-col gap-8 items-center">
-              <NavDot href="#about" label="About" />
-              <NavDot href="#experience" label="Experience" />
-              <NavDot href="#projects" label="Projects" />
-              <NavDot href="#skills" label="Skills" />
-              <NavDot href="#contact" label="Contact" />
+                <NavDot href="#about" label="Sobre mí" />
+                <NavDot href="#experience" label="Experiencia" />
+                <NavDot href="#projects" label="Proyectos" />
+                <NavDot href="#skills" label="Habilidades" />
+                <NavDot href="#contact" label="Contacto" />
             </div>
           </div>
         </div>
@@ -74,12 +74,12 @@ export default function Home(){
           <div className="hero-content-container site-container flex items-center justify-between gap-4">
             <header className="hero-content flex-1 max-w-2xl" aria-labelledby="hero-title">
               <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="hero-label mb-8">
-                <p className="text-color-100/60 text-sm tracking-[0.3em] uppercase font-light">PABLO PEÑA HEREDIA</p>
+                <p className="text-color-100/60 text-sm tracking-[0.3em] uppercase font-light">PABLO PENA HEREDIA</p>
               </motion.div>
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
                 <GradientHero
-                  ctaLabel={"Download CV"}
+                  ctaLabel={"Descargar CV"}
                   ctaHref={"/resume.pdf"}
                   ctaDownload={true}
                   extraActions={(
@@ -142,11 +142,11 @@ export default function Home(){
             <aside className="hero-visual" aria-hidden="true">
               <div className="visual-nav-inner">
                 <div className="grid grid-cols-1 gap-6">
-                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#about" className="underline-animated">ABOUT</a></motion.div>
-                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#experience" className="underline-animated">EXPERIENCE</a></motion.div>
-                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#projects" className="underline-animated">PROJECTS</a></motion.div>
-                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#skills" className="underline-animated">SKILLS</a></motion.div>
-                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#contact" className="underline-animated">CONTACT</a></motion.div>
+                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#about" className="underline-animated">SOBRE MÍ</a></motion.div>
+                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#experience" className="underline-animated">EXPERIENCIA</a></motion.div>
+                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#projects" className="underline-animated">PROYECTOS</a></motion.div>
+                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#skills" className="underline-animated">HABILIDADES</a></motion.div>
+                    <motion.div whileHover={{ x: -20 }} className="nav-word"><a href="#contact" className="underline-animated">CONTACTO</a></motion.div>
                 </div>
               </div>
             </aside>
@@ -157,7 +157,7 @@ export default function Home(){
 
         {/* ABOUT (merged) */}
   <div className="section-divider-wrapper">
-    <div className="section-divider" aria-hidden="true">ABOUT</div>
+    <div className="section-divider" aria-hidden="true">SOBRE MÍ</div>
   </div>
   <section id="about" className="about-section px-4 md:px-12">
           <div className="about-container site-container grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -169,11 +169,13 @@ export default function Home(){
             </aside>
 
             <article className="about-text order-2 lg:order-1">
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-color-100 text-xl font-light leading-relaxed mb-8">I'm Pablo. QA engineer, automation specialist and fullstack developer focused on quality and scalability.</motion.p>
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-color-100 text-xl font-light leading-relaxed mb-8">Me llamo Pablo Pena Heredia, y soy Analista QA y Desarrollador Fullstack. Me apasiona asegurar la calidad del software desde el inicio del ciclo de vida del desarrollo.</motion.p>
 
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="bio-text space-y-6 text-color-100/70 font-light">
-                <p>The intersection of software quality and product development has always fascinated me. I've jumped in to try everything from manual testing and Playwright automation to fullstack development with React and NestJS.</p>
-                <p>Fast-forward to 2025: I've worked on test strategy, QA automation, web development, REST APIs, database design and product management. Each project helped me grow toward where I am now.</p>
+                <p>Durante mi recorrido, trabajé como QA Manual Trainee, diseñando planes de prueba, ejecutando casos y gestionando defectos en Jira X-Ray.
+                  Además, desarrollé un proyecto personal de automatización con Playwright y TypeScript. También participé en equipos de trabajo donde aplicamos estrategias de testing reales en entornos de prueba de aplicaciones web de Startups.</p>
+                <p>En mi tésis, desarrollé un sistema fullstack orientado a salones de estética con React, TypeScript, NestJS y MySQL, aplicando buenas prácticas de desarrollo y metodologías ágiles.</p>
+                <p>Hoy mi objetivo es seguir creciendo en el campo de la calidad de software y el desarrollo del mismo, aportando soluciones escalables. Me motiva aprender nuevas tecnologías y compartir lo que aprendo, colaborar con equipos y construyendo productos que ofrezcan experiencias confiables.</p>
               </motion.div>
             </article>
           </div>
@@ -181,7 +183,7 @@ export default function Home(){
 
         {/* EXPERIENCE (moved out from About) */}
   <div className="section-divider-wrapper">
-    <div className="section-divider" aria-hidden="true">EXPERIENCE</div>
+    <div className="section-divider" aria-hidden="true">EXPERIENCIA</div>
   </div>
   <section id="experience" className="experience-section px-4 md:px-12">
           <div className="site-container">
@@ -191,7 +193,7 @@ export default function Home(){
 
   {/* PROJECTS (merged) */}
   <div className="section-divider-wrapper">
-    <div className="section-divider" aria-hidden="true">PROJECTS</div>
+    <div className="section-divider" aria-hidden="true">PROYECTOS</div>
   </div>
   <section id="projects" className="projects-section px-4 md:px-12">
           <div className="projects-list site-container">
@@ -215,7 +217,7 @@ export default function Home(){
                         ))}
                       </div>
                       <a href={`#projects`} className="inline-flex items-center gap-2 text-color-400 text-sm hover:text-color-300 transition-colors group/link">
-                        <span>View case</span>
+                        <span>Ver caso</span>
                         <svg className="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
@@ -231,7 +233,7 @@ export default function Home(){
 
         {/* SKILLS (moved out from Projects) */}
         <div className="section-divider-wrapper">
-          <div className="section-divider" aria-hidden="true">SKILLS</div>
+          <div className="section-divider" aria-hidden="true">HABILIDADES</div>
         </div>
         <section id="skills" className="skills-section px-4 md:px-12">
           <div className="site-container">
@@ -241,46 +243,46 @@ export default function Home(){
 
         {/* CONTACT SECTION */}
         <div className="section-divider-wrapper">
-          <div className="section-divider" aria-hidden="true">CONTACT</div>
+          <div className="section-divider" aria-hidden="true">CONTACTO</div>
         </div>
         <section id="contact" className="contact-section px-4 md:px-12 py-16">
           <div className="site-container max-w-4xl">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-              <h2 className="text-color-100 text-3xl md:text-4xl font-light mb-4">Want To</h2>
+              <h2 className="text-color-100 text-3xl md:text-4xl font-light mb-4">¿Quieres...</h2>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {/* Offer Job Opportunity */}
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="contact-card">
-                <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">offer job opportunity?</h3>
+                <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">¿Ofrecer una oportunidad laboral?</h3>
                 <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-                  I am open to discussing potential job opportunities or collaborations. With experience in web development and software engineering, I am interested in roles that allow me to work on exciting and challenging projects. If you have a project or role in mind, feel free to reach out and let's discuss!
+                  Estoy abierto a conversar sobre oportunidades laborales o colaboraciones. Con experiencia en desarrollo web e ingeniería de software, me interesan roles que me permitan trabajar en proyectos desafiantes y significativos. Si tienes un proyecto o una posición en mente, contáctame y lo conversamos.
                 </p>
               </motion.div>
 
               {/* Connect */}
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="contact-card">
-                <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">Connect?</h3>
+                <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">¿Conectar?</h3>
                 <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-                  Networking is key in the tech industry, and I'm always looking to meet new people and expand my professional circle. Whether you're a fellow developer, designer, or entrepreneur, I'd love to chat and learn more about your work. Let's grab a virtual coffee and see where the conversation takes us!
+                  El networking es clave en la industria tech, y siempre busco conocer gente nueva y ampliar mi círculo profesional. Si eres desarrollador, diseñador o emprendedor, me encantaría charlar y conocer tu trabajo. Tomemos un café virtual y veamos cómo podemos colaborar.
                 </p>
               </motion.div>
 
               {/* Build Something */}
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="contact-card">
-                <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">Build something?</h3>
+                <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">¿Construir algo juntos?</h3>
                 <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-                  I have a passion for developing innovative web applications that solve complex problems. Whether it's building a custom e-commerce platform or a cutting-edge web app, I'm always ready for a new challenge. Let's create something amazing together!
+                  Me apasiona desarrollar aplicaciones web innovadoras que resuelvan problemas complejos. Ya sea una plataforma a medida o una app web avanzada, estoy listo para nuevos desafíos. ¡Construyamos algo increíble juntos!
                 </p>
               </motion.div>
             </div>
 
             {/* Contact Links */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }} className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
-              <a href="mailto:pablopenaheredia@gmail.com" className="contact-link">Email</a>
+              <a href="mailto:pablopenaheredia@gmail.com" className="contact-link">Correo</a>
               <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="contact-link">GitHub</a>
               <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noopener noreferrer" className="contact-link">LinkedIn</a>
-              <a href="/resume.pdf" download className="contact-link">Resume</a>
+              <a href="/resume.pdf" download className="contact-link">CV</a>
             </motion.div>
 
             {/* Back to top arrow */}
