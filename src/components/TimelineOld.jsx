@@ -13,7 +13,7 @@ export default function TimelineOld({ limit = 3 }){
         return (
         <VerticalTimelineElement
           key={it.year + '-' + idx}
-          className="vertical-timeline-element--work exp-card"
+          className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: '7px solid #0a0614' }}
           iconStyle={{ background: 'linear-gradient(135deg,#7B4BE2,#5E24DB)', color: '#fff' }}
           icon={<WorkIcon />}

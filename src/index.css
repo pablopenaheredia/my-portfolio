@@ -568,20 +568,6 @@ section#experience {
   box-shadow: var(--shadow-light);
 }
 
-/* Ensure individual skill icons/images get the hover transform and violet shadow (reuse .elevated visual) */
-.skill-sheen img,
-.skill-sheen .icon-lg {
-  transition: transform 180ms ease, box-shadow 180ms ease;
-  transform-origin: center center;
-}
-.skill-sheen:hover img,
-.skill-sheen:focus-within img,
-.skill-sheen:hover .icon-lg,
-.skill-sheen:focus-within .icon-lg {
-  transform: scale(1.06);
-  box-shadow: var(--violet-shadow);
-}
-
 /* Animated underline utility: limited to text width, uses palette color */
 .underline-animated {
   display: inline-block; /* only underline the word */

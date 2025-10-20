@@ -63,7 +63,7 @@ export default function SkillsSection(){
 
   return (
     <div className="stack-block">
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 rounded-lg elevated contact-card">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 rounded-lg elevated">
         {Object.entries(skillCategories).map(([category, list], catIndex) => {
           const dir = catIndex % 2 === 0 ? -1 : 1
           return (
@@ -71,7 +71,7 @@ export default function SkillsSection(){
               <h5 className="text-color-100/60 uppercase text-xs mb-4 tracking-wider">{category}</h5>
               <ul className="skills-grid">
                 {list.map((skill, i) => (
-                  <motion.li key={i} className="skill-sheen" variants={itemVariant} aria-label={skill.name}>
+                  <motion.li key={i} className="skill-sheen" variants={itemVariant} whileHover={{ scale: 1.06 }} aria-label={skill.name}>
                     {skill.name === 'GitHub' ? (
                         <div className="w-14 h-14 flex items-center justify-center rounded-md elevated">
                           <GitHubIcon className="icon-lg" />
