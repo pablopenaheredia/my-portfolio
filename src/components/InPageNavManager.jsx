@@ -4,6 +4,26 @@ import { useEffect } from 'react'
 // and updates nav icon active state via the 'active' class on .nav-icon elements.
 export default function InPageNavManager(){
   useEffect(()=>{
+    // Normalize URL on load: remove any path or hash so the app stays at root.
+    // We use replaceState so there's no navigation entry created.
+    try{
+      const loc = window.location
+      const isRoot = loc.pathname === '/' && !loc.hash
+      if(!isRoot){
+        history.replaceState(null, '', '/')
+      }
+    }catch(err){ /* ignore */ }
+
+    // Prevent manual navigation via back/forward to endpoints: keep user at root
+    const onPop = (ev) => {
+      try{
+        if(window.location.pathname !== '/' || window.location.hash){
+          history.replaceState(null, '', '/')
+        }
+      }catch(err){/* ignore */}
+    }
+    window.addEventListener('popstate', onPop)
+
     // custom smooth-scroll for hash links with a distinctive overshoot + settle animation
     // delay attachment until initial load to avoid conflicts with scroll restoration
     function attach(){
@@ -11,34 +31,62 @@ export default function InPageNavManager(){
     }
 
     function onClick(e){
-      const el = e.target.closest('a[href^="#"]')
+      const el = e.target.closest && e.target.closest('a[href]')
       if(!el) return
-      const href = el.getAttribute('href')
-        // Prevent native hash navigation during initial load which can cause jumps.
-        // This capture-phase listener stops the browser from instantly jumping to anchors
-        // until our custom smooth-scroll handler is attached after load.
-        function preventNativeHashJump(e){
-          try{
-            const el = e.target.closest && e.target.closest('a[href^="#"]')
-            if(!el) return
-            const href = el.getAttribute('href')
-            if(!href || href === '#') return
-            // prevent native jump
-            e.preventDefault()
-          }catch(err){ /* ignore */ }
-        }
+      let href = el.getAttribute('href')
+      if(!href) return
 
-        document.addEventListener('click', preventNativeHashJump, true)
-      if(!href || href === '#') return
-      const id = href.slice(1)
+      // ignore external links (different origin)
+      try{
+        const url = new URL(href, window.location.href)
+        if(url.origin !== window.location.origin) return
+      }catch(err){ /* ignore malformed URLs */ }
+
+      // Prevent native navigation for hashes and internal paths so we can handle smooth scroll
+      if(href.startsWith('#') || href.startsWith('/')){
+        e.preventDefault()
+      } else {
+        // relative links like 'about' or './about' - treat as path
+        if(!href.startsWith('http')){
+          e.preventDefault()
+        }
+      }
+
+      // Normalize to an id: for hashes it's the fragment; for paths take the last segment
+      let id = null
+      if(href.startsWith('#')){
+        if(href === '#') return
+        id = href.slice(1)
+      } else {
+        // strip query/hash
+        const clean = href.split(/[?#]/)[0]
+        // remove leading/trailing slashes
+        const seg = clean.replace(/^\/+|\/+$/g, '')
+        if(!seg) return
+        id = seg.split('/').pop()
+      }
+
+      if(!id) return
       const target = document.getElementById(id)
       if(!target) return
-      e.preventDefault()
+
+      // If there's a section divider immediately before the section, scroll to the divider
+      // so the divider is visible when navigating from the menu.
+      let scrollTarget = target
+      let isDivider = false
+      try{
+        const prev = target.previousElementSibling
+        if(prev && prev.classList && prev.classList.contains('section-divider-wrapper')){
+          scrollTarget = prev
+          isDivider = true
+        }
+      }catch(err){ /* ignore DOM issues */ }
 
   const startY = window.scrollY || window.pageYOffset
-  const rect = target.getBoundingClientRect()
-  // offset to show the section a bit higher than usual (e.g., leave space for a fixed header)
-  const offset = 80
+  const rect = scrollTarget.getBoundingClientRect()
+  // offset: if we're targeting a divider show it a bit lower so the divider is fully visible;
+  // otherwise keep the larger offset used previously to leave space for any fixed headers.
+  const offset = isDivider ? 40 : 80
   const targetY = startY + rect.top - offset
 
       // overshoot amount (pixels)
@@ -76,7 +124,7 @@ export default function InPageNavManager(){
         }
 
       const firstY = targetY + direction * overshoot
-  // run first phase then settle, and pulse the target; do NOT modify the URL hash
+  // run first phase then settle, and pulse the target; do NOT modify the URL or push state
   animateTo(firstY, 380).then(()=> animateTo(targetY, 320))
   pulseTarget(target)
     }
@@ -85,15 +133,16 @@ export default function InPageNavManager(){
   else window.addEventListener('load', attach, { once: true })
 
     // IntersectionObserver to toggle active class on nav icons
-    const sections = Array.from(document.querySelectorAll('main section[id]'))
-    const navLinks = () => Array.from(document.querySelectorAll('.nav-icon[href^="#"], .nav-icons a[href^="#"]'))
+  const sections = Array.from(document.querySelectorAll('main section[id]'))
+  const navLinks = () => Array.from(document.querySelectorAll('a[href], .nav-icons a[href]'))
 
     if(sections.length){
       const observer = new IntersectionObserver((entries)=>{
         entries.forEach(entry=>{
           if(!entry.target.id) return
           const id = entry.target.id
-          const matches = document.querySelectorAll(`a[href="#${id}"]`)
+          // mark anchors that reference this section via hashes or via paths (/about)
+          const matches = Array.from(document.querySelectorAll(`a[href="#${id}"], a[href$="/${id}"], a[href$="${id}"]`))
           matches.forEach(a=>{
             if(entry.isIntersecting){
               a.classList.add('active')
@@ -110,9 +159,13 @@ export default function InPageNavManager(){
         observer.disconnect()
         document.removeEventListener('click', onClick)
         window.removeEventListener('load', attach)
+        window.removeEventListener('popstate', onPop)
       }
     }
-    return ()=> window.removeEventListener('load', attach)
+    return ()=> {
+      window.removeEventListener('load', attach)
+      window.removeEventListener('popstate', onPop)
+    }
   }, [])
 
   return null

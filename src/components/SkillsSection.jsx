@@ -62,18 +62,17 @@ export default function SkillsSection(){
   }
 
   return (
-    <div className="stack-block site-container mt-12">
-      {/* Section heading moved outside the icons container for clarity */}
-      <div className="bg-transparent rounded-lg p-6 elevated w-full">
+    <div className="stack-block">
+      <div className="rounded-lg p-6 elevated">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Object.entries(skillCategories).map(([category, list], catIndex) => {
             const dir = catIndex % 2 === 0 ? -1 : 1
             return (
               <motion.div key={category} className="category-block" variants={categoryVariant(dir)} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.18 }}>
                 <h5 className="text-color-100/60 uppercase text-xs mb-4 tracking-wider">{category}</h5>
-                <ul className="skills-grid grid grid-cols-4 gap-4 list-none p-0 m-0">
+                <ul className="skills-grid">
                   {list.map((skill, i) => (
-                    <motion.li key={i} className="group relative flex items-center justify-center w-full skill-sheen hover-elevate" variants={itemVariant} whileHover={{ scale: 1.06 }} aria-label={skill.name}>
+                    <motion.li key={i} className="skill-sheen" variants={itemVariant} whileHover={{ scale: 1.06 }} aria-label={skill.name}>
                       {skill.name === 'GitHub' ? (
                         <div className="w-14 h-14 flex items-center justify-center rounded-md">
                           <GitHubIcon className="icon-lg" />

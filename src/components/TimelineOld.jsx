@@ -10,31 +10,18 @@ export default function TimelineOld({ limit = 3 }){
   return (
     <VerticalTimeline>
       {items.map((it, idx) => {
-        const baseWidth = idx === 1 ? 'calc(50% - 50px)' : 'calc(50% - 60px)'
-        const contentStyle = {
-          background: '#0a0614',
-          color: '#e8e6ef',
-          border: '1px solid rgba(232,230,239,0.04)',
-          maxWidth: '900px',
-          width: baseWidth,
-          padding: '18px 22px',
-          boxSizing: 'border-box',
-          position: 'relative'
-        }
-
         return (
         <VerticalTimelineElement
           key={it.year + '-' + idx}
           className="vertical-timeline-element--work"
-          contentStyle={contentStyle}
-          contentArrowStyle={{ borderRight: '7px solid  #0a0614' }}
+          contentArrowStyle={{ borderRight: '7px solid #0a0614' }}
           iconStyle={{ background: 'linear-gradient(135deg,#7B4BE2,#5E24DB)', color: '#fff' }}
           icon={<WorkIcon />}
         >
           {/* Render the date inside the card to avoid overlap with the center line */}
-          <div style={{ position: 'absolute', top: 10, right: 18, color: 'rgba(232,230,239,0.75)', fontSize: '0.9rem' }}>{it.year}</div>
-          <h3 className="vertical-timeline-element-title" style={{ margin: 0, color: '#e8e6ef', fontWeight: 500 }}>{it.title}</h3>
-          <h4 className="vertical-timeline-element-subtitle" style={{ marginTop: 6, color: '#e8e6ef66', fontWeight: 400 }}>{it.position} — <strong style={{ color: '#e8e6ef' }}>{it.company}</strong></h4>
+          <div className="timeline-date">{it.year}</div>
+          <h3 className="vertical-timeline-element-title timeline-title">{it.title}</h3>
+          <h4 className="vertical-timeline-element-subtitle timeline-subtitle">{it.position} — <strong>{it.company}</strong></h4>
           {
             (() => {
               const desc = it.description || ''
@@ -43,18 +30,18 @@ export default function TimelineOld({ limit = 3 }){
 
               if(isBullet){
                 return (
-                  <ul style={{ color: '#e8e6ef', marginTop: 8, paddingLeft: 18 }}>
+                  <ul className="timeline-list">
                     {lines.map((l, i) => (
-                      <li key={i} style={{ marginBottom: 6 }}>{l.replace(/^[-•*]\s*/, '')}</li>
+                      <li key={i}>{l.replace(/^[-•*]\s*/, '')}</li>
                     ))}
                   </ul>
                 )
               }
 
               return (
-                <div style={{ color: '#e8e6ef', marginTop: 8 }}>
+                <div className="timeline-description">
                   {lines.map((l, i) => (
-                    <p key={i} style={{ margin: i === 0 ? 0 : '8px 0 0 0' }}>{l}</p>
+                    <p key={i} className={i === 0 ? 'first' : ''}>{l}</p>
                   ))}
                 </div>
               )

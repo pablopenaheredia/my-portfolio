@@ -15,7 +15,7 @@ export default function GradientHero({
 
   return (
     <div>
-      <h1 className="mb-6 text-color-100 leading-[0.95] tracking-tight font-light">
+      <h1 className="mb-6 text-color-100 font-light">
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-color-300 to-color-500 block hero-headline-large">
           {parts.map((p, i) => (
             <React.Fragment key={i}>
@@ -24,11 +24,11 @@ export default function GradientHero({
             </React.Fragment>
           ))}
         </span>
-        {titleRest && <span className="block text-color-100/70 mt-1 hero-headline-small font-light">{titleRest}</span>}
+        {titleRest && <span className="block text-color-100/70 mt-1 hero-headline-small">{titleRest}</span>}
       </h1>
 
       {description && (
-        <p className="text-color-100 text-base lg:text-lg max-w-xl leading-relaxed font-light">{description}</p>
+        <p className="text-color-100 text-base lg:text-lg max-w-xl font-light">{description}</p>
       )}
 
       {ctaLabel && ctaHref && (

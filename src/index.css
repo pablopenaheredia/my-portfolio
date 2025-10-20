@@ -1,33 +1,16 @@
-/* Cleaned index.css: keep only classes referenced in src files and useful helpers.
-   Removed unused/duplicated utilities (animated underline, accent buttons, soft-transition, etc.)
-*/
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&display=swap");
 
 :root {
   --bg-primary: #0a0614;
   --text-primary: #e8e6ef;
-  /* New color palette variables (color) */
-  --color-50: #efe9fc;
-  --color-100: #d1c1f6;
-  --color-200: #b498f0;
   --color-300: #9770eb;
   --color-400: #7a48e5;
   --color-500: #5c20df;
-  --color-600: #511cc7;
-  --color-700: #3b148f;
   --color-800: #2b0f67;
-  --color-900: #1a093e;
   --color-950: #090316;
-  --violet-500: var(--color-500);
-  /* brighter, more visible violet shadows (restored) */
   --violet-shadow: 0 18px 60px rgba(92, 32, 223, 0.16);
   --shadow-light: 0 12px 40px rgba(92, 32, 223, 0.12);
-  --text-base: 1rem;
-  --h1-hero: clamp(2.5rem, 6vw, 5rem);
-  --h2-section: clamp(2.25rem, 5.5vw, 3.5rem);
-  --lh-tight: 0.95;
   --lh-regular: 1.6;
 }
 
@@ -41,7 +24,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg-primary);
+  background: var(--color-950);
   color: var(--text-primary);
   /* Use Expletus Sans across the site with sensible fallbacks */
   font-family: "Expletus Sans", "Inter", system-ui, -apple-system, "Segoe UI",
@@ -63,12 +46,40 @@ body {
   padding: 0 1rem;
 }
 
+@media (max-width: 767px) {
+  .site-container {
+    padding: 0 0.75rem;
+  }
+}
+
 /* Slightly tighter vertical spacing for main sections */
 .about-section,
 .projects-section,
-.experience-section {
-  padding-top: 3.5rem; /* ~56px */
+.experience-section,
+.skills-section {
+  padding-top: 3.5rem;
   padding-bottom: 3.5rem;
+}
+
+@media (max-width: 767px) {
+  .about-section,
+  .projects-section,
+  .experience-section,
+  .skills-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  section#experience,
+  section#projects,
+  section#skills {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  section#about {
+    padding-top: 2rem;
+  }
 }
 
 /* tech label backdrop used in projects */
@@ -79,6 +90,7 @@ body {
   padding: 0 6px;
   color: var(--violet-500);
 }
+
 .tech-shadow::before {
   content: "";
   position: absolute;
@@ -90,8 +102,8 @@ body {
   z-index: -1;
   pointer-events: none;
 }
-.projects-list .tech-shadow::before,
-.project-item .tech-shadow::before {
+
+.projects-list .tech-shadow::before {
   background: rgba(255, 255, 255, 0.08);
   filter: blur(10px);
 }
@@ -99,8 +111,8 @@ body {
 /* Projects grid: make items align and have consistent heights on md+ screens */
 @media (min-width: 768px) {
   .projects-list .grid {
-    /* use a slightly smaller fixed row height so images are smaller (user requested) */
-    grid-auto-rows: 220px;
+    /* use a fixed row height so the large card equals the stacked cards height */
+    grid-auto-rows: 260px;
     align-items: start;
   }
 
@@ -129,35 +141,24 @@ body {
   .projects-list .md\:col-span-4.md\:row-span-2 {
     grid-row: span 2 / span 2;
   }
+}
 
-  /* specifically reduce the visible height of the first project image slightly */
-  .projects-list .grid > .project-item:first-child .block img,
-  .projects-list .grid > .project-item:first-child img {
-    height: 85% !important; /* slightly shorter so the first card appears smaller */
-    max-height: calc(
-      2 * 220px - 24px
-    ) !important; /* keep within the two-row visual height */
+@media (max-width: 767px) {
+  .project-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
   }
 }
-.card-hover:hover .tech-shadow::before,
-.tech-shadow:hover::before {
+.card-hover:hover .tech-shadow::before {
   background: rgba(255, 255, 255, 0.14);
   filter: blur(12px);
 }
 
 /* Typography helpers */
-.hero-title {
-  letter-spacing: -0.02em;
-  line-height: var(--lh-tight);
-  font-size: var(--h1-hero);
-}
-.section-title {
-  letter-spacing: -0.02em;
-  font-size: var(--h2-section);
-}
-.body-text {
-  font-size: var(--text-base);
+.bio-text {
+  font-size: 1rem;
   line-height: var(--lh-regular);
   font-weight: 300;
 }
@@ -183,66 +184,65 @@ body {
     "Helvetica Neue", Arial;
 }
 
-/* Utility classes for Expletus Sans variants (pattern: .expletus-sans-<weight>) */
-.expletus-sans {
-  font-family: "Expletus Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-.expletus-sans-400 {
-  font-family: "Expletus Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-.expletus-sans-600 {
-  font-family: "Expletus Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
-}
-.expletus-sans-700 {
-  font-family: "Expletus Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
+/* Extra bottom spacing specifically for projects list so scrolling to Skills shows divider cleanly */
+.projects-list {
+  padding-bottom: 5.5rem;
 }
 
-/* Make main content sections have equal vertical spacing */
-.about-section {
-  padding-top: 2.5rem;
+/* extra space under hero icons/CTA area to ensure scroll animation is visible */
+.hero .hero-content-container {
   padding-bottom: 2.5rem;
+  width: 100%;
+  margin: 0;
 }
 
-.experience-section {
-  padding-top: 6rem;
+/* Force clear separation between major sections */
+section#experience {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+
+section#projects {
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+
+section#skills {
+  margin-top: 5rem;
+  padding-top: 6rem; /* a bit more space for the skills section so divider isn't flush */
+}
+
+/* Footer styles */
+.site-footer {
+  border-top: 1px solid rgba(232, 230, 239, 0.03);
+  margin-top: 3rem;
+  padding: 3rem 0;
+}
+.site-footer .footer-left p {
+  margin: 0;
+}
+.site-footer .footer-actions .btn-subtle {
+  padding: 0.45rem 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .site-footer {
+    padding: 2rem 0;
+  }
+}
+
+/* increase global bottom padding so final section and footer have breathing room */
+body > main .content {
   padding-bottom: 6rem;
 }
 
-.projects-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+/* extra spacing so the ABOUT and EXPERIENCE sections sit farther from their dividers */
+section#about {
+  padding-top: 4.5rem;
 }
 
-.skills-section {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
-
-/* Force clear separation between major sections (use margins with high specificity) */
-#experience {
-  margin-top: 6rem !important;
-  margin-bottom: 4rem !important;
-}
-
-#projects {
-  margin-top: 6rem !important;
-  margin-bottom: 4rem !important;
-}
-
-#skills {
-  margin-top: 5rem !important;
+section#experience {
+  padding-top: 6.5rem;
 }
 
 /* Section divider: centered word with decorative lines and shimmer */
@@ -250,7 +250,7 @@ body {
   display: flex;
   justify-content: center; /* center the divider across the page */
   width: 100%;
-  margin: 3.5rem 0; /* more vertical spacing between divider and content */
+  margin: 4.75rem 0; /* increased vertical spacing between divider and content */
 }
 
 .section-divider {
@@ -349,18 +349,21 @@ body {
 }
 
 /* Icon helpers (referenced in Home.jsx) */
+.icon-sm svg,
 .icon-sm {
-  font-size: 20px !important;
+  font-size: 20px;
   width: 20px;
   height: 20px;
 }
+.icon-md svg,
 .icon-md {
-  font-size: 32px !important;
+  font-size: 32px;
   width: 32px;
   height: 32px;
 }
+.icon-lg svg,
 .icon-lg {
-  font-size: 40px !important;
+  font-size: 40px;
   width: 40px;
   height: 40px;
   color: var(--text-primary);
@@ -371,14 +374,88 @@ body {
   writing-mode: vertical-rl;
 }
 
+/* Nav icon styles - redesigned */
+.nav-icon {
+  transition: transform 160ms ease;
+  width: 32px;
+  height: 40px;
+}
+
+.nav-icon:hover {
+  transform: scale(1.08);
+}
+
+.nav-icon.active {
+  transform: scale(1.12);
+}
+
+.nav-line {
+  width: 2px;
+  height: 24px;
+  background: rgba(232, 230, 239, 0.3);
+  border-radius: 2px;
+  position: relative;
+  transition: all 300ms ease;
+}
+
+.nav-line::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: var(--color-400);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.nav-line.active {
+  background: var(--color-400);
+  height: 32px;
+  box-shadow: 0 0 12px rgba(122, 72, 229, 0.5);
+}
+
+.nav-line.active::before {
+  opacity: 1;
+}
+
+.nav-icon:hover .nav-line {
+  background: rgba(232, 230, 239, 0.6);
+}
+
+.nav-icon .nav-label {
+  transform-origin: left center;
+}
+
+.nav-icon:focus-within .nav-label,
+.nav-icon:hover .nav-label {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+  pointer-events: auto;
+}
+
 /* Right-side large menu words (ABOUT, EXPERIENCE, PROJECTS) - make them more subtle */
+.visual-nav-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  text-align: right;
+}
+
 .visual-nav-inner .nav-word {
-  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
-  color: rgba(232, 230, 239, 0.28);
-  letter-spacing: 0.02em;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: rgba(232, 230, 239, 0.7);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-weight: 300;
+  transition: color 300ms ease;
 }
 .visual-nav-inner .nav-word:hover {
-  color: rgba(232, 230, 239, 0.58);
+  color: rgba(232, 230, 239, 1);
 }
 
 /* make only the word clickable: anchors inside nav-word should be inline-block */
@@ -386,27 +463,44 @@ body {
   display: inline-block;
   cursor: pointer;
   /* use a brighter violet for the initial state so it reads differently from the subtitle */
-  color: var(--color-300) !important; /* brighter/lighter violet */
+  color: var(--color-300); /* brighter/lighter violet */
 }
 
 /* Slightly brighter on hover to give clear affordance (only color) */
 .visual-nav-inner .nav-word a:hover {
-  color: var(--color-400) !important;
+  color: var(--color-400);
 }
 
 /* Position the hero visual aside so its text inset matches the hero content's left inset.
    The value is provided by Home.jsx via --hero-left-inset; fallback to 32px if not set. */
 @media (min-width: 768px) {
   .hero-visual {
-    display: block !important; /* override utility classes when present */
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     /* align the right edge to match the hero content left inset. Use fallback 32px (~2rem). */
-    right: calc(var(--hero-left-inset, 32px) - 160px) !important;
-    width: 33.333% !important;
-    max-width: 520px !important;
-    padding-right: 1.5rem !important; /* pr-6 */
+    right: calc(var(--hero-left-inset, 32px) - 160px);
+    width: 33.333%;
+    max-width: 520px;
+    padding-right: 1.5rem; /* pr-6 */
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-visual {
+    display: none;
+  }
+
+  .hero {
+    padding: 1rem;
+    overflow-x: hidden;
+  }
+
+  .hero .hero-content {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
   }
 }
 
@@ -414,44 +508,25 @@ body {
 .nav-icon {
   transition: transform 160ms ease, background 160ms ease;
 }
-.nav-icon:hover {
+
+.nav-icon:hover,
+.nav-icon.active {
   transform: scale(1.08);
 }
+
+.nav-icon.active {
+  transform: scale(1.12);
+}
+
 .nav-icon .nav-label {
   transform-origin: left center;
 }
+
 .nav-icon:focus-within .nav-label,
 .nav-icon:hover .nav-label {
   opacity: 1;
   transform: translateY(-50%) scale(1);
   pointer-events: auto;
-}
-.nav-icon.active {
-  transform: scale(1.12);
-}
-.nav-target-animate {
-  animation: navPulse 700ms ease forwards;
-}
-@keyframes navPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(94, 36, 219, 0.12);
-    transform: translateY(0);
-  }
-  40% {
-    box-shadow: 0 18px 60px rgba(94, 36, 219, 0.12);
-    transform: translateY(-6px);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(94, 36, 219, 0);
-    transform: translateY(0);
-  }
-}
-
-/* Remove violet pulse on nav targets - keep interaction without purple shadow */
-.nav-target-animate {
-  animation: none !important;
-  box-shadow: none !important;
-  transform: none !important;
 }
 
 /* skill sheen and labels (used in Home.jsx) */
@@ -531,14 +606,14 @@ body {
 
 /* Variant: remove border for icon-only subtle buttons */
 .btn-no-border {
-  border: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  padding: 0.5rem !important; /* increased clickable area */
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  padding: 0.5rem; /* increased clickable area */
 }
 .btn-no-border:hover {
-  border-color: transparent !important;
-  box-shadow: 0 10px 30px rgba(92, 32, 223, 0.08) !important;
+  border-color: transparent;
+  box-shadow: 0 10px 30px rgba(92, 32, 223, 0.08);
 }
 
 /* Gloss / sheen hover effect for icon buttons */
@@ -620,6 +695,8 @@ body {
 .hero-cta-wrapper {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 .hero-cta-wrapper .btn-primary {
   margin-left: 0;
@@ -628,19 +705,27 @@ body {
   .hero-cta-wrapper {
     justify-content: center;
   }
+
+  .hero-content {
+    max-width: 100%;
+    overflow: hidden;
+  }
 }
 
 /* Slight adjustments for hero headline responsiveness */
 .hero-headline-large {
   font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
 }
 .hero-headline-small {
   font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  font-weight: 300;
 }
 
 /* Icon microinteraction */
 .icon-hover {
-  transition: transform 0.18s ease, opacity 0.18s ease;
+  transition: transform 180ms ease, opacity 180ms ease;
 }
 .icon-hover:hover {
   transform: scale(1.08);
@@ -648,43 +733,29 @@ body {
 }
 
 /* Focus ring */
-.focus-ring {
+.focus-ring:focus-visible {
   box-shadow: 0 0 0 4px rgba(92, 32, 223, 0.12);
   outline: none;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
 }
 
 /* Animation utilities */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
 .animate-soft-pulse {
   animation: softPulse 3s ease-in-out infinite;
 }
 
-@keyframes float {
+@keyframes softPulse {
   0%,
   100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-@keyframes softPulse {
-  0% {
     transform: scale(1);
   }
   50% {
     transform: scale(1.01);
   }
-  100% {
-    transform: scale(1);
-  }
 }
 .skills-grid img,
 .skill-sheen img {
-  transform: rotate(0deg) !important;
+  transform: rotate(0deg);
   transition: transform 180ms ease, box-shadow 180ms ease;
   will-change: transform, box-shadow;
 }
@@ -712,15 +783,10 @@ body {
 
 /* Stack section helpers (used by Home.jsx) */
 .stack-block {
-  margin-top: 3rem; /* extra spacing; Home adds mt-12 but keep a fallback */
-}
-
-.stack-block .bg-transparent {
-  background: transparent;
+  margin-top: 3rem;
 }
 
 .category-block {
-  /* category container: small padding and stacking */
   padding: 0.25rem;
 }
 
@@ -741,23 +807,24 @@ body {
   gap: 1rem;
 }
 
-/* Visual helpers referenced by Home.jsx */
-.box-violet {
-  box-shadow: var(--violet-shadow);
+.skills-grid li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
+@media (max-width: 767px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+/* Visual helpers referenced by Home.jsx */
 .elevated {
   box-shadow: var(--violet-shadow);
-}
-
-/* subtle glass background utility used in the stack block in production build */
-.glass-soft {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.01)
-  );
-  backdrop-filter: blur(6px);
 }
 
 /* minimal scrollbar */
@@ -787,7 +854,7 @@ a,
 button,
 input,
 textarea {
-  text-align: left !important;
+  text-align: left;
 }
 
 /* Skip link: visible when focused for keyboard users */
@@ -826,14 +893,14 @@ textarea {
   padding: 18px 22px;
 }
 .vertical-timeline .vertical-timeline-element-content ul {
-  list-style-type: disc !important;
-  list-style-position: outside !important;
-  padding-left: 1.25rem !important;
-  margin-top: 8px !important;
-  color: rgba(232, 230, 239, 0.66) !important;
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 1.25rem;
+  margin-top: 8px;
+  color: rgba(232, 230, 239, 0.66);
 }
 .vertical-timeline .vertical-timeline-element-content li {
-  margin-bottom: 6px !important;
+  margin-bottom: 6px;
 }
 
 /* Slightly increase the width available for the experience section on large screens */
@@ -856,34 +923,158 @@ textarea {
 
 /* Force narrower timeline cards inside Experience and keep the date aligned outside the center line */
 .experience-section .vertical-timeline .vertical-timeline-element-content {
-  width: 46% !important;
-  max-width: 680px !important;
-  padding: 18px 22px !important;
-  box-sizing: border-box !important;
+  width: 46%;
+  max-width: 680px;
+  padding: 18px 22px;
+  box-sizing: border-box;
 }
 
 .experience-section .vertical-timeline .vertical-timeline-element-date {
-  position: absolute !important;
-  left: calc(
-    50% + 18px
-  ) !important; /* put date just right of the vertical line */
-  transform: translateX(0) !important;
-  white-space: nowrap !important;
-  color: rgba(232, 230, 239, 0.75) !important;
+  position: absolute;
+  left: calc(50% + 18px); /* put date just right of the vertical line */
+  transform: translateX(0);
+  white-space: nowrap;
+  color: rgba(232, 230, 239, 0.75);
 }
 
 /* Responsive: stack timeline content and move date below content on small screens */
 @media (max-width: 767px) {
   .experience-section .vertical-timeline .vertical-timeline-element-content {
-    width: 100% !important;
-    max-width: none !important;
+    width: 100%;
+    max-width: none;
   }
 
   .experience-section .vertical-timeline .vertical-timeline-element-date {
-    position: relative !important;
-    left: auto !important;
-    transform: none !important;
-    display: block !important;
-    margin-top: 8px !important;
+    position: relative;
+    left: auto;
+    transform: none;
+    display: block;
+    margin-top: 8px;
+  }
+}
+
+/* Timeline custom styles to replace inline styles */
+.vertical-timeline-element-content {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid rgba(232, 230, 239, 0.04);
+  position: relative;
+}
+
+.timeline-date {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  color: rgba(232, 230, 239, 0.75);
+  font-size: 0.9rem;
+}
+
+.timeline-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.timeline-subtitle {
+  margin-top: 6px;
+  color: rgba(232, 230, 239, 0.4);
+  font-weight: 400;
+}
+
+.timeline-subtitle strong {
+  color: var(--text-primary);
+}
+
+.timeline-list {
+  color: var(--text-primary);
+  margin-top: 8px;
+  padding-left: 18px;
+}
+
+.timeline-description {
+  color: var(--text-primary);
+  margin-top: 8px;
+}
+
+.timeline-description p {
+  margin: 8px 0 0 0;
+}
+
+.timeline-description p.first {
+  margin: 0;
+}
+
+/* Contact Section */
+.contact-section {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(92, 32, 223, 0.02) 50%,
+    transparent 100%
+  );
+}
+
+.contact-card {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(92, 32, 223, 0.1);
+  border-radius: 1rem;
+  transition: all 300ms ease;
+}
+
+.contact-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(122, 72, 229, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(92, 32, 223, 0.15);
+}
+
+.contact-link {
+  font-size: 1.125rem;
+  color: var(--text-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(92, 32, 223, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 250ms ease;
+  font-weight: 300;
+}
+
+.contact-link:hover {
+  background: var(--color-500);
+  border-color: var(--color-400);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(92, 32, 223, 0.25);
+}
+
+.back-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(92, 32, 223, 0.2);
+  color: var(--color-400);
+  transition: all 300ms ease;
+}
+
+.back-to-top:hover {
+  background: var(--color-500);
+  border-color: var(--color-400);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(92, 32, 223, 0.3);
+}
+
+@media (max-width: 767px) {
+  .contact-card {
+    padding: 1.5rem;
+  }
+
+  .contact-link {
+    font-size: 1rem;
+    padding: 0.625rem 1.25rem;
   }
 }
