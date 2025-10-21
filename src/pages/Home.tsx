@@ -4,7 +4,7 @@ import { NavDot, InPageNavManager, MobileMenu } from '../components/navigation'
 import { Timeline } from '../components/layout'
 import { SectionDivider, Toast } from '../components/common'
 import { AboutSection, ContactSection, SkillsSection } from '../components/sections'
-// MUI icons for social buttons - optimized imports
+
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
@@ -14,30 +14,30 @@ import { useClipboard } from '../hooks'
 import { debounce } from '../utils'
 
 export default function Home(){
-  // Ensure we reset scroll to top before first paint to avoid jump on reload
+  // Asegurar que resetemos el scroll al top antes del primer paint para evitar saltos al recargar
   useLayoutEffect(()=>{ window.scrollTo(0,0) }, [])
   
-  // Use custom clipboard hook
+  // Usar el hook personalizado de portapapeles
   const { copyToClipboard, showToast, setShowToast, toastMessage } = useClipboard()
   
-  // expose hero content left inset as a CSS variable so the right-side visual nav can align to it
+  // exponer la diferencia izquierda del contenido del hero como variable CSS para que la navegación visual derecha pueda alinearse
   useEffect(() => {
     const setInset = () => {
       try {
-        // measure the hero content container (site-container) to avoid counting the fixed left nav
+  // medir el contenedor del contenido del hero (site-container) para evitar contar la navegación izquierda fija
         const heroContainer = document.querySelector('.hero-content-container')
         if (!heroContainer) return
         const rect = heroContainer.getBoundingClientRect()
         const inset = Math.round(rect.left)
         document.documentElement.style.setProperty('--hero-left-inset', `${inset}px`)
       } catch (err) {
-        // ignore
+  // ignorar
       }
     }
 
     setInset()
     
-    // Debounce resize handler to avoid excessive calculations
+  // Debounce del manejador de resize para evitar cálculos excesivos
     const debouncedSetInset = debounce(setInset, 150)
     window.addEventListener('resize', debouncedSetInset)
     
@@ -49,11 +49,11 @@ export default function Home(){
   return (
   <>
   <main id="main-content" className="min-h-screen relative overflow-hidden">
-    {/* Skip link for keyboard users */}
+  {/* Enlace de salto para usuarios de teclado */}
     <a href="#main-content" className="skip-link">Saltar al contenido</a>
     <InPageNavManager />
     <MobileMenu />
-      {/* left nav with anchors to sections - hidden on mobile */}
+    {/* navegación izquierda con anclas a secciones - oculto en móvil */}
       <nav className="fixed left-0 top-0 h-screen w-16 z-50 hidden md:flex" aria-label="Main navigation">
         <div className="relative h-full flex items-center">
             <div className="absolute top-6 left-0 w-full flex flex-col items-center gap-2">
@@ -72,7 +72,7 @@ export default function Home(){
       </nav>
 
   <div className="content md:ml-14 lg:ml-14 xl:ml-14">
-        {/* HERO */}
+  {/* HERO */}
         <section id="home" className="hero min-h-screen flex items-center section-padding relative">
           <div className="hero-content-container site-container flex items-center justify-between gap-4">
             <header className="hero-content flex-1 max-w-2xl" aria-labelledby="hero-title">
@@ -81,7 +81,7 @@ export default function Home(){
               </motion.div>
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-                {/* Inlined GradientHero content (moved from src/components/GradientHero.jsx)") */}
+                {/* Contenido GradientHero integrado (movido desde src/components/GradientHero.jsx) */}
                 {(() => {
                   const highlight = 'Analista QA'
                   const titleRest = '& Desarrollador Fullstack'
@@ -99,7 +99,7 @@ export default function Home(){
                         <GitHubIcon className="icon-md icon-hover" />
                       </a>
 
-                      {/* Email icon + address shown next to GitHub - matches social buttons spacing and style */}
+                      {/* Icono de email + dirección mostrado junto a GitHub - coincide con el espaciado y estilo de los botones sociales */}
                       <button
                         type="button"
                         aria-label="Copiar email"
@@ -116,7 +116,7 @@ export default function Home(){
                     </>
                   )
 
-                  // allow newline in highlight ("QA\nAUTOMATION")
+                  // permitir nueva línea en el highlight ("QA\nAUTOMATION")
                   const parts = String(highlight).split('\n')
 
                   return (
@@ -140,7 +140,7 @@ export default function Home(){
                       {ctaLabel && ctaHref && (
                         <div className="mt-6 hero-cta-wrapper">
                           <a href={ctaHref} download={ctaDownload} className="btn-primary inline-flex items-center hero-cta-large" aria-label={ctaLabel}>
-                            {/* download icon */}
+                            {/* ícono de descarga */}
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="-ml-1">
                               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                               <polyline points="7 10 12 15 17 10" />
@@ -162,9 +162,9 @@ export default function Home(){
               </motion.div>
             </header>
 
-            {/* right visual nav placed side-by-side with hero content to avoid vertical scroll */}
-            {/* right-side menu: absolutely positioned to the right on md+, hidden on small */}
-            <aside className="hero-visual" aria-label="Quick navigation">
+            {/* navegación visual derecha colocada junto al contenido del hero para evitar scroll vertical */}
+            {/* menú lateral derecho: posicionado absolutamente a la derecha en md+, oculto en pantallas pequeñas */}
+            <aside className="hero-visual" aria-label="Navegación rápida">
               <div className="visual-nav-inner">
                 <div className="grid grid-cols-1 gap-6">
                   {navItems.map((item) => (
@@ -180,11 +180,11 @@ export default function Home(){
 
         
 
-        {/* ABOUT (merged) */}
+  {/* ABOUT (fusionado) */}
   <SectionDivider label="SOBRE MÍ" />
   <AboutSection />
 
-        {/* EXPERIENCE (moved out from About) */}
+  {/* EXPERIENCE (movido fuera de About) */}
   <SectionDivider label="EXPERIENCIA" />
   <section id="experience" className="experience-section section-padding">
           <div className="site-container">
@@ -192,7 +192,7 @@ export default function Home(){
           </div>
         </section>
 
-  {/* PROJECTS (merged) */}
+  {/* PROJECTS*/}
   <SectionDivider label="PROYECTOS" />
   <section id="projects" className="projects-section section-padding">
           <div className="projects-list site-container">
@@ -229,7 +229,7 @@ export default function Home(){
 
         </section>
 
-        {/* SKILLS (moved out from Projects) */}
+  {/* SKILLS*/}
         <SectionDivider label="HABILIDADES" />
         <section id="skills" className="skills-section section-padding">
           <div className="site-container">
@@ -237,13 +237,13 @@ export default function Home(){
           </div>
         </section>
 
-        {/* CONTACT SECTION */}
+  {/*CONTACTO */}
         <SectionDivider label="CONTACTO" />
         <ContactSection />
 
       </div>
     </main>
-    {/* Toast portal */}
+  {/* Portal de Toast */}
     <Toast message={toastMessage} show={showToast} onClose={() => setShowToast(false)} />
   </>
   )

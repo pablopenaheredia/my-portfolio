@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { motion } from 'framer-motion'
-// Optimized MUI import
+// Import optimizado de MUI
 import GitHubIcon from '@mui/icons-material/GitHub'
 
 import htmlSvg from '../../assets/html.svg'
@@ -61,7 +61,7 @@ interface SkillItemProps {
   index: number;
 }
 
-// Memoized skill item component
+// Componente de item de skill memoizado
 const SkillItem = memo(({ skill }: SkillItemProps) => {
   const itemVariant = {
     hidden: { opacity: 0, y: 8, scale: 0.9 },
@@ -90,9 +90,9 @@ const SkillItem = memo(({ skill }: SkillItemProps) => {
 SkillItem.displayName = 'SkillItem'
 
 function SkillsSection(){
-  // Removed categoryVariant and itemVariant from here - moved to SkillItem component
+  // Se quitaron categoryVariant e itemVariant de aquí - movidos al componente SkillItem
   
-  // Flatten all categories into a single array to render without headings
+  // Aplanar todas las categorías en un solo array para renderizar sin encabezados
   const allSkills = [
     ...skillCategories.Frontend,
     ...skillCategories.Backend,
@@ -113,5 +113,5 @@ function SkillsSection(){
   )
 }
 
-// Memoize the entire component to prevent unnecessary re-renders
+// Memorizar el componente completo para prevenir re-renderizados innecesarios
 export default memo(SkillsSection)

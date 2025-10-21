@@ -2,8 +2,8 @@ import React from 'react'
 import AnimatedRoutes from './AnimatedRoutes'
 import './index.css'
 
-// App renders the animated routes container.
-// The Router should be created once at the root (main.jsx).
+// Componente raíz que renderiza las rutas con animación.
+// Nota: El Router se inicializa en `main.tsx`.
 export default function App(){
   return (
     <AnimatedRoutes />

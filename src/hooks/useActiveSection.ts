@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from 'react'
 
 /**
- * Hook to track active section using IntersectionObserver
- * Adds 'active' class to navigation links when their section is in view
+ * Hook para rastrear la sección activa usando IntersectionObserver
+ * Añade la clase 'active' a los enlaces de navegación cuando su sección está en vista
  */
 export function useActiveSection(): void {
-  // Memoize observer options to prevent recreation
+  // Memorizar opciones del observer para evitar recreación
   const observerOptions = useMemo(
     () => ({
       root: null,
@@ -25,7 +25,7 @@ export function useActiveSection(): void {
         if (!entry.target.id) return
         const id = entry.target.id
 
-        // Mark anchors that reference this section
+  // Marcar las anclas que referencian esta sección
         const matches = Array.from(
           document.querySelectorAll(`a[href="#${id}"], a[href$="/${id}"], a[href$="${id}"]`)
         )

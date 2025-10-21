@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
+// Encabezado reutilizable para secciones de la página
 export default function SectionHeader({ title, subtitle }){
   return (
     <header className="section-header mb-16" role="banner">

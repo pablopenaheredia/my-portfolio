@@ -1,6 +1,6 @@
 /**
- * Centralized Framer Motion animation variants
- * Used across the app for consistent animations
+ * Variantes centralizadas de animación para Framer Motion
+ * Usadas en toda la app para animaciones consistentes
  */
 
 export const fadeInUp = {

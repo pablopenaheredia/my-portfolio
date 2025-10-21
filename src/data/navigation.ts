@@ -1,4 +1,4 @@
-// Centralized navigation items used across the app
+// Elementos de navegación centralizados usados en toda la app
 export interface NavItem {
   href: string;
   label: string;

@@ -1,37 +1,37 @@
 import { useEffect } from 'react'
 
 /**
- * Hook to handle smooth scroll to sections with overshoot animation
- * Intercepts clicks on hash links and provides custom smooth scroll behavior
+ * Hook para manejar el desplazamiento suave a secciones con animación de sobrepaso
+ * Intercepta clics en enlaces con hash y proporciona un comportamiento de scroll suave personalizado
  */
 export function useScrollToSection(): void {
   useEffect(() => {
-    // Custom smooth-scroll for hash links with overshoot + settle animation
+  // Implementación de scroll suave personalizado para enlaces con hash con sobrepaso y asentamiento
     function onClick(e: any) {
       const el = e.target.closest && e.target.closest('a[href]')
       if (!el) return
       let href = el.getAttribute('href')
       if (!href) return
 
-      // Ignore external links (different origin)
+      // Ignorar enlaces externos (origen diferente)
       try {
         const url = new URL(href, window.location.href)
         if (url.origin !== window.location.origin) return
       } catch (err) {
-        /* ignore malformed URLs */
+        /* ignorar URLs malformadas */
       }
 
-      // Prevent native navigation for hashes and internal paths
+      // Prevenir la navegación nativa para hashes y rutas internas
       if (href.startsWith('#') || href.startsWith('/')) {
         e.preventDefault()
       } else {
-        // Relative links - treat as path
+        // Enlaces relativos - tratarlos como rutas
         if (!href.startsWith('http')) {
           e.preventDefault()
         }
       }
 
-      // Normalize to an id
+  // Normalizar a un id objetivo
       let id = null
       if (href.startsWith('#')) {
         if (href === '#') return
@@ -47,7 +47,7 @@ export function useScrollToSection(): void {
       const target = document.getElementById(id)
       if (!target) return
 
-      // Check if there's a section divider before the section
+  // Comprobar si hay un divisor de sección antes de la sección
       let scrollTarget = target
       let isDivider = false
       try {
@@ -65,14 +65,14 @@ export function useScrollToSection(): void {
       const offset = isDivider ? 40 : 80
       const targetY = startY + rect.top - offset
 
-      // Overshoot amount
+  // Cantidad de sobrepaso
       const overshoot = Math.max(48, Math.min(120, Math.abs(targetY - startY) * 0.08))
       const direction = targetY >= startY ? 1 : -1
 
-      // Ease function (cubic in/out)
+  // Función de easing (cúbica in/out)
       const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
 
-      // Animate to y position
+  // Animar hacia la posición y
       function animateTo(y, duration) {
         return new Promise((resolve) => {
           const from = window.scrollY || window.pageYOffset
@@ -94,11 +94,11 @@ export function useScrollToSection(): void {
       }
 
       const firstY = targetY + direction * overshoot
-      // Run overshoot then settle
+      // Ejecutar sobrepaso y luego asentamiento
       animateTo(firstY, 380).then(() => animateTo(targetY, 320))
     }
 
-    // Attach click listener after load
+    // Adjuntar listener de click después de la carga
     function attach() {
       document.addEventListener('click', onClick)
     }

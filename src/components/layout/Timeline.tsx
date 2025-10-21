@@ -21,7 +21,7 @@ export default function Timeline({ limit = 3 }: TimelineProps) {
           iconStyle={{ background: 'linear-gradient(135deg,#7B4BE2,#5E24DB)', color: '#fff' }}
           icon={<WorkIcon />}
         >
-          {/* Render the date inside the card to avoid overlap with the center line */}
+          {/* Renderizar la fecha dentro de la tarjeta para evitar solaparse con la línea central */}
           <div className="timeline-date">{it.year}</div>
           <h3 className="vertical-timeline-element-title timeline-title">{it.title}</h3>
           <h4 className="vertical-timeline-element-subtitle timeline-subtitle">{it.position} — <strong>{it.company}</strong></h4>

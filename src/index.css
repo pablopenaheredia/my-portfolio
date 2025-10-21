@@ -2,41 +2,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&display=swap");
 
 /* ========================================
-   1. VARIABLES Y TOKENS DE DISEÑO
-   ======================================== */
+  1. VARIABLES Y TOKENS DE DISEÑO
+  ======================================== */
 :root {
-  /* Colors */
+  /* Colores */
   --bg-primary: #0a0614;
   --text-primary: #e8e6ef;
   --color-300: #9770eb;
   --color-400: #7a48e5;
   --color-500: #5c20df;
 
-  /* Shadows */
+  /* Sombras */
   --shadow-primary: 0 18px 60px rgba(92, 32, 223, 0.16);
   --shadow-hover: 0 24px 80px rgba(92, 32, 223, 0.28);
 
-  /* Typography */
+  /* Tipografía */
   --lh-regular: 1.6;
 
-  /* Border Radius */
+  /* Radio de borde */
   --radius-sm: 0.5rem;
   --radius-md: 0.6rem;
   --radius-lg: 1rem;
 
-  /* Transitions */
+  /* Transiciones */
   --duration-fast: 160ms;
   --duration-normal: 220ms;
   --duration-slow: 380ms;
 
-  /* Spacing */
+  /* Espaciado */
   --spacing-section: 3.5rem;
   --spacing-section-mobile: 2rem;
 }
 
 /* ========================================
-   2. RESET Y ESTILOS BASE
-   ======================================== */
+  2. RESET Y ESTILOS BASE
+  ======================================== */
 * {
   box-sizing: border-box;
 }
@@ -56,7 +56,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Enforce left alignment */
+/* Forzar alineación a la izquierda */
 body,
 p,
 li,
@@ -74,12 +74,12 @@ textarea {
   text-align: left;
 }
 
-/* Tailwind directives */
+/* Directivas de Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Scrollbar */
+/* Barra de desplazamiento */
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -95,8 +95,8 @@ textarea {
 }
 
 /* ========================================
-   3. LAYOUT Y CONTENEDORES
-   ======================================== */
+  3. LAYOUT Y CONTENEDORES
+  ======================================== */
 @layer utilities {
   .section-padding {
     @apply px-4 md:px-12;
@@ -114,7 +114,7 @@ textarea {
   padding: 0 1rem;
 }
 
-/* Section Spacing */
+/* Espaciado de secciones */
 .about-section,
 .projects-section,
 .experience-section {
@@ -150,7 +150,7 @@ body > main .content {
   padding-bottom: 6rem;
 }
 
-/* Hero Layout */
+/* Layout del hero */
 .hero .hero-content-container {
   padding-bottom: 2.5rem;
   width: 100%;
@@ -168,7 +168,7 @@ body > main .content {
   margin-left: 0;
 }
 
-/* Section Divider */
+/* Divisor de sección */
 .section-divider-wrapper {
   display: flex;
   justify-content: center;
@@ -211,7 +211,7 @@ body > main .content {
   right: calc(-26vw - 1.2rem);
 }
 
-/* Skip Link */
+/* Enlace de salto (Skip Link) */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -231,8 +231,8 @@ body > main .content {
 }
 
 /* ========================================
-   4. COMPONENTES - Navegación
-   ======================================== */
+  4. COMPONENTES - Navegación
+  ======================================== */
 .nav-icon {
   transition: transform var(--duration-fast) ease,
     background var(--duration-fast) ease;
@@ -297,7 +297,7 @@ body > main .content {
   pointer-events: auto;
 }
 
-/* Visual Nav */
+/* Navegación visual */
 .visual-nav-inner {
   display: flex;
   flex-direction: column;
@@ -334,8 +334,8 @@ body > main .content {
 }
 
 /* ========================================
-   5. COMPONENTES - Botones
-   ======================================== */
+  5. COMPONENTES - Botones
+  ======================================== */
 .btn-base {
   display: inline-flex;
   align-items: center;
@@ -498,8 +498,8 @@ body > main .content {
 }
 
 /* ========================================
-   6. COMPONENTES - Cards y Secciones
-   ======================================== */
+  6. COMPONENTES - Cards y Secciones
+  ======================================== */
 /* Typography */
 .app-h2 {
   font-size: clamp(1.6rem, 3.6vw, 2.6rem);
@@ -538,7 +538,7 @@ body > main .content {
   font-weight: 300;
 }
 
-/* Projects */
+/* Proyectos */
 .projects-list {
   padding-bottom: 5.5rem;
 }
@@ -597,7 +597,7 @@ body > main .content {
   transform: translateY(-1px);
 }
 
-/* Skills */
+/* Habilidades (Skills) */
 .skills-wrapper {
   max-width: 1100px;
   margin-left: auto;
@@ -712,7 +712,7 @@ body > main .content {
   letter-spacing: 0.14em;
 }
 
-/* Contact */
+/* Contacto */
 .contact-section {
   background: linear-gradient(
     180deg,
@@ -756,8 +756,8 @@ body > main .content {
 }
 
 /* ========================================
-   7. COMPONENTES - Timeline
-   ======================================== */
+  7. COMPONENTES - Timeline
+  ======================================== */
 .vertical-timeline {
   padding: 0;
   position: relative;
@@ -861,8 +861,8 @@ body > main .content {
 }
 
 /* ========================================
-   8. UTILIDADES Y HELPERS
-   ======================================== */
+  8. UTILIDADES Y HELPERS
+  ======================================== */
 .icon-sm svg,
 .icon-sm {
   font-size: 20px;
@@ -927,8 +927,8 @@ body > main .content {
 }
 
 /* ========================================
-   9. MEDIA QUERIES CONSOLIDADOS
-   ======================================== */
+  9. MEDIA QUERIES CONSOLIDADOS
+  ======================================== */
 
 /* Desktop (min-width: 768px) */
 @media (min-width: 768px) {

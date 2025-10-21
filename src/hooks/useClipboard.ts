@@ -8,7 +8,7 @@ interface UseClipboardReturn {
 }
 
 /**
- * Custom hook for copying text to clipboard with toast notifications
+ * Hook personalizado para copiar texto al portapapeles con notificaciones tipo toast
  */
 export function useClipboard(): UseClipboardReturn {
   const [showToast, setShowToast] = useState<boolean>(false)
@@ -25,13 +25,13 @@ export function useClipboard(): UseClipboardReturn {
       setShowToast(true)
     }
 
-    // Modern clipboard API with fallback
+  // API moderna del portapapeles con fallback
     if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text)
         .then(() => doShowSuccess())
         .catch(() => doShowFail())
     } else {
-      // Fallback for older browsers
+  // Fallback para navegadores antiguos
       try {
         const ta = document.createElement('textarea')
         ta.value = text

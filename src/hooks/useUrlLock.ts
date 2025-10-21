@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 
 /**
- * Hook to prevent URL changes and lock navigation to root path
- * Normalizes URL on load and prevents back/forward navigation
+ * Hook para prevenir cambios de URL y bloquear la navegación en la ruta raíz
+ * Normaliza la URL en la carga y previene navegación hacia atrás/adelante
  */
 export function useUrlLock(): void {
   useEffect(() => {
-    // Normalize URL on load: remove any path or hash so the app stays at root
+  // Normalizar la URL al cargar: eliminar cualquier path o hash para que la app quede en la raíz
     try {
       const loc = window.location
       const isRoot = loc.pathname === '/' && !loc.hash
@@ -17,7 +17,7 @@ export function useUrlLock(): void {
       /* ignore */
     }
 
-    // Prevent manual navigation via back/forward: keep user at root
+  // Prevenir la navegación manual con atrás/adelante: mantener al usuario en la raíz
     const onPop = () => {
       try {
         if (window.location.pathname !== '/' || window.location.hash) {

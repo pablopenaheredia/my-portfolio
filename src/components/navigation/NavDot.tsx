@@ -7,6 +7,7 @@ interface NavDotProps {
 }
 
 export default function NavDot({ href, label, active = false, onClick }: NavDotProps) {
+  // Props comunes para el enlace de navegación
   const commonProps = {
     onClick,
     className: `nav-icon flex items-center justify-center group relative ${active ? 'active' : ''}`,

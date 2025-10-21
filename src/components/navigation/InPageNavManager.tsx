@@ -1,10 +1,10 @@
 import { useUrlLock, useScrollToSection, useActiveSection } from '../../hooks'
 
 /**
- * Component that manages in-page navigation behavior
- * - Locks URL to root path
- * - Provides smooth scroll to sections
- * - Tracks active section and updates navigation links
+ * Componente que gestiona el comportamiento de navegación dentro de la página
+ * - Bloquea la URL al path raíz
+ * - Proporciona scroll suave hacia las secciones
+ * - Rastrea la sección activa y actualiza los enlaces de navegación
  */
 export default function InPageNavManager(): null {
   useUrlLock()

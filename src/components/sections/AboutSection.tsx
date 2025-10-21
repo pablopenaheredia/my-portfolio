@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 /**
- * About section component - extracted from Home.jsx
+ * Sección "Sobre mí" - extraída e integrada desde Home.jsx
  */
 export default function AboutSection() {
   return (
@@ -18,7 +18,7 @@ export default function AboutSection() {
           >
             <img 
               src="/profile.svg" 
-              alt="Pablo Peña" 
+              alt="Pablo Pena" 
               loading="lazy" 
               width="560" 
               height="420" 

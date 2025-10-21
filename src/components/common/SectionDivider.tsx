@@ -3,7 +3,7 @@ interface SectionDividerProps {
 }
 
 /**
- * Reusable section divider component
+ * Componente reutilizable para dividir secciones
  */
 export default function SectionDivider({ label }: SectionDividerProps) {
   return (

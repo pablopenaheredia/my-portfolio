@@ -14,11 +14,11 @@ export default function MobileMenu() {
 
   return (
     <>
-      {/* Hamburger Button */}
+  {/* Botón hamburguesa */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="mobile-menu-btn fixed top-6 right-6 z-[100] md:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 bg-color-800/40 backdrop-blur-md rounded-lg border border-color-500/20 hover:border-color-400/40 transition-all"
-        aria-label="Toggle menu"
+  aria-label="Alternar menú"
         aria-expanded={isOpen}
       >
         <span className={`w-6 h-0.5 bg-color-300 rounded-full transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
@@ -26,7 +26,7 @@ export default function MobileMenu() {
         <span className={`w-6 h-0.5 bg-color-300 rounded-full transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
       </button>
 
-      {/* Mobile Menu */}
+  {/* Menú móvil */}
       <AnimatePresence>
         {isOpen && (
           <>
@@ -40,7 +40,7 @@ export default function MobileMenu() {
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Menu Panel */}
+            {/* Panel del menú */}
             <motion.nav
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -114,7 +114,7 @@ export default function MobileMenu() {
                           }
                         }
 
-                        // close menu after copying
+                        // cerrar menú después de copiar
                         setIsOpen(false)
                       }}
                       className="w-10 h-10 flex items-center justify-center rounded-lg bg-color-500/10 hover:bg-color-500/20 border border-color-500/20 hover:border-color-400/40 transition-all"

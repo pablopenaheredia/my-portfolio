@@ -9,7 +9,7 @@ interface LazyImageProps {
 }
 
 /**
- * LazyImage component using IntersectionObserver for true lazy loading
+ * Componente LazyImage que usa IntersectionObserver para carga diferida real
  */
 export default function LazyImage({ src, alt, className = '', width, height }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
@@ -24,12 +24,12 @@ export default function LazyImage({ src, alt, className = '', width, height }: L
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true)
-            observer.disconnect() // Disconnect after loading
+            observer.disconnect() // Desconectar después de entrar en vista
           }
         })
       },
       {
-        rootMargin: '100px' // Pre-load 100px before entering viewport
+        rootMargin: '100px' // Precargar 100px antes de entrar en la ventana de visualización
       }
     )
 
@@ -46,7 +46,7 @@ export default function LazyImage({ src, alt, className = '', width, height }: L
         <img
           src={src}
           alt={alt}
-          loading="lazy" // Fallback for browsers without IntersectionObserver
+    loading="lazy" // Fallback para navegadores sin IntersectionObserver
           width={width}
           height={height}
           className={`${className} ${isLoaded ? 'loaded' : 'loading'}`}

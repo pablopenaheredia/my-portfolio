@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Componente Button simple y reutilizable
 const Button = ({ children, variant = 'outline', type = 'button', ...props }) => {
   const base = "px-8 py-3 rounded-sm text-sm tracking-wider uppercase transition-all duration-300"
   const variants = {

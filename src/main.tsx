@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './index.css'
 
-// Prevent the browser from restoring scroll position automatically
-// before the app and fonts/styles are fully loaded which can cause jumps.
+// Evitar que el navegador restaure la posición de scroll automáticamente
+// antes de que la app y fuentes/estilos estén totalmente cargados, lo cual puede causar saltos.
 try{
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
 }catch(e){/* ignore */}
@@ -21,20 +21,20 @@ root.render(
   </React.StrictMode>
 )
 
-// Once the window is fully loaded (fonts/images), allow the browser to manage scroll again
+// Una vez que la ventana esté completamente cargada (fuentes/imagenes), permitir que el navegador gestione el scroll nuevamente
 window.addEventListener('load', ()=>{
   try{ if ('scrollRestoration' in history) history.scrollRestoration = 'auto' }catch(e){}
 })
 
-// Additional protections to avoid initial jump caused by hash restore or focus
+// Protecciones adicionales para evitar el salto inicial causado por la restauración del hash o el foco
 try{
-  // Remove any existing hash from the URL to avoid browser auto-jump on reload
+  // Eliminar cualquier hash existente de la URL para evitar que el navegador haga un salto automático al recargar
   const initialHash = window.location.hash
   if(initialHash){
     history.replaceState(null, '', window.location.pathname + window.location.search)
   }
 
-  // Force scroll to top for a short window to avoid jumps due to late layout shifts
+  // Forzar el scroll a la parte superior durante una breve ventana para evitar saltos por cambios tardíos de layout
   const holdScrollTop = ()=>{
     window.scrollTo(0,0)
     const start = performance.now()

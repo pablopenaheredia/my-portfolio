@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 /**
- * Contact section component - extracted from Home.jsx
+ * Sección de contacto - extraída desde Home.jsx
  */
 export default function ContactSection() {
   return (
@@ -18,7 +18,7 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {/* Offer Job Opportunity */}
+          {/* Ofrecer oportunidad laboral */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -34,7 +34,7 @@ export default function ContactSection() {
             </p>
           </motion.div>
 
-          {/* Connect */}
+          {/* Conectar */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -50,7 +50,7 @@ export default function ContactSection() {
             </p>
           </motion.div>
 
-          {/* Build Something */}
+          {/* Construir algo */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -67,7 +67,7 @@ export default function ContactSection() {
           </motion.div>
         </div>
 
-        {/* Contact Links */}
+  {/* Enlaces de contacto */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
@@ -81,7 +81,7 @@ export default function ContactSection() {
           <a href="/resume.pdf" download className="contact-link">CV</a>
         </motion.div>
 
-        {/* Back to top arrow */}
+  {/* Flecha de volver arriba */}
         <motion.div 
           initial={{ opacity: 0 }} 
           whileInView={{ opacity: 1 }} 
@@ -89,7 +89,7 @@ export default function ContactSection() {
           transition={{ delay: 0.5 }} 
           className="flex justify-center mt-12"
         >
-          <a href="#home" className="back-to-top" aria-label="Back to top">
+          <a href="#home" className="back-to-top" aria-label="Volver arriba">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 9l7-7 7 7" />
