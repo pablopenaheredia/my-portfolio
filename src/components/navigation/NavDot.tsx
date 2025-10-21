@@ -1,12 +1,18 @@
-import React from 'react'
+interface NavDotProps {
+  href: string;
+  label: string;
+  active?: boolean;
+  icon?: null;
+  onClick?: () => void;
+}
 
-export default function NavDot({ href, label, active=false, icon=null, onClick }){
+export default function NavDot({ href, label, active = false, onClick }: NavDotProps) {
   const commonProps = {
     onClick,
     className: `nav-icon flex items-center justify-center group relative ${active ? 'active' : ''}`,
     title: label,
     'aria-label': label,
-    'aria-current': active ? 'page' : undefined
+    'aria-current': active ? ('page' as const) : undefined
   }
 
   const content = (

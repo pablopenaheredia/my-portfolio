@@ -1,6 +1,13 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
-export default function Toast({ message = '', show = false, timeout = 2400, onClose = () => {} }) {
+interface ToastProps {
+  message?: string;
+  show?: boolean;
+  timeout?: number;
+  onClose?: () => void;
+}
+
+export default function Toast({ message = '', show = false, timeout = 2400, onClose = () => {} }: ToastProps) {
   useEffect(() => {
     if (!show) return
     const t = setTimeout(() => onClose(), timeout)

@@ -1,19 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Toast from './Toast'
+import { Toast } from '../common'
+import { navItems } from '../../data'
 
 export default function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [showToast, setShowToast] = useState(false)
-  const [toastMessage, setToastMessage] = useState('')
-
-  const menuItems = [
-    { href: '#about', label: 'Sobre mí' },
-    { href: '#experience', label: 'Experiencia' },
-    { href: '#projects', label: 'Proyectos' },
-    { href: '#skills', label: 'Habilidades' },
-    { href: '#contact', label: 'Contacto' }
-  ]
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [showToast, setShowToast] = useState<boolean>(false)
+  const [toastMessage, setToastMessage] = useState<string>('')
 
   const handleLinkClick = () => {
     setIsOpen(false)
@@ -62,7 +55,7 @@ export default function MobileMenu() {
                 </div>
 
                 <ul className="flex flex-col gap-2">
-                  {menuItems.map((item, index) => (
+                  {navItems.map((item, index) => (
                     <motion.li
                       key={item.href}
                       initial={{ opacity: 0, x: 20 }}

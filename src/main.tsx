@@ -34,23 +34,6 @@ try{
     history.replaceState(null, '', window.location.pathname + window.location.search)
   }
 
-  // Make skip-link unfocusable initially; enable on first Tab press
-  const makeSkipLinkKeyboardAccessible = ()=>{
-    const skip = document.querySelector('.skip-link')
-    if(!skip) return
-    skip.setAttribute('tabindex','-1')
-    function enableOnTab(e){
-      if(e.key === 'Tab'){
-        skip.removeAttribute('tabindex')
-        window.removeEventListener('keydown', enableOnTab)
-      }
-    }
-    window.addEventListener('keydown', enableOnTab)
-  }
-  // If DOM is ready run immediately, otherwise wait for load
-  if(document.readyState === 'complete') makeSkipLinkKeyboardAccessible()
-  else window.addEventListener('load', makeSkipLinkKeyboardAccessible, { once: true })
-
   // Force scroll to top for a short window to avoid jumps due to late layout shifts
   const holdScrollTop = ()=>{
     window.scrollTo(0,0)

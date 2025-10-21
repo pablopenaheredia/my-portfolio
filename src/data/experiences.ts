@@ -1,4 +1,12 @@
-const experiences = [
+export interface Experience {
+  year: string;
+  title: string;
+  position: string;
+  company: string;
+  description: string;
+}
+
+const experiences: Experience[] = [
   {
     year: '2025',
     title: 'XAcademy - QA Automation',

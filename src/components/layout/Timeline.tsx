@@ -1,10 +1,13 @@
-import React from 'react'
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
 import 'react-vertical-timeline-component/style.min.css'
 import WorkIcon from '@mui/icons-material/Work'
-import experiences from '../data/experiences'
+import { experiences } from '../../data'
 
-export default function TimelineOld({ limit = 3 }){
+interface TimelineProps {
+  limit?: number;
+}
+
+export default function Timeline({ limit = 3 }: TimelineProps) {
   const items = (experiences || []).slice(0, limit)
 
   return (
