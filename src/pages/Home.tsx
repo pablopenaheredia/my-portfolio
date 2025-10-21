@@ -1,9 +1,10 @@
-import { useEffect, useLayoutEffect, Fragment } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { motion } from 'framer-motion'
 import { NavDot, InPageNavManager, MobileMenu } from '../components/navigation'
 import { Timeline } from '../components/layout'
 import { SectionDivider, Toast } from '../components/common'
 import { AboutSection, ContactSection, SkillsSection } from '../components/sections'
+import GradientHero from '../components/GradientHero'
 
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import GitHubIcon from '@mui/icons-material/GitHub'
@@ -19,6 +20,40 @@ export default function Home(){
   
   // Usar el hook personalizado de portapapeles
   const { copyToClipboard, showToast, setShowToast, toastMessage } = useClipboard()
+
+  // Contenido del hero trasladado a componente
+  const highlight = 'Analista QA'
+  const titleRest = '& Desarrollador Fullstack'
+  const description = 'Ingeniero de QA y desarrollador Fullstack enfocado en automatización de pruebas, confiabilidad y arquitecturas claras. Actualmente disponible para proyectos y colaboraciones.'
+  const ctaLabel = 'Descargar CV'
+  const ctaHref = '/resume.pdf'
+  const ctaDownload = true
+  const extraActions = (
+    <>
+      <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="btn-subtle btn-no-border btn-gloss focus-ring" title="LinkedIn">
+        <LinkedInIcon className="icon-md icon-hover" />
+      </a>
+
+      <a href="https://github.com/" target="_blank" rel="noreferrer noopener" aria-label="GitHub" className="btn-subtle btn-no-border btn-gloss focus-ring" title="GitHub">
+        <GitHubIcon className="icon-md icon-hover" />
+      </a>
+
+      {/* Icono de email + dirección mostrado junto a GitHub - coincide con el espaciado y estilo de los botones sociales */}
+      <button
+        type="button"
+        aria-label="Copiar email"
+        title="Copiar email"
+        className="btn-subtle btn-no-border btn-gloss focus-ring flex items-center gap-2"
+        onClick={(e) => {
+          e.preventDefault()
+          copyToClipboard('pablopenaheredia@gmail.com')
+        }}
+      >
+        <EmailOutlinedIcon className="icon-md icon-hover" />
+        <span className="text-color-100 text-base font-medium hidden sm:inline">pablopenaheredia@gmail.com</span>
+      </button>
+    </>
+  )
   
   // exponer la diferencia izquierda del contenido del hero como variable CSS para que la navegación visual derecha pueda alinearse
   useEffect(() => {
@@ -81,84 +116,15 @@ export default function Home(){
               </motion.div>
 
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-                {/* Contenido GradientHero integrado (movido desde src/components/GradientHero.jsx) */}
-                {(() => {
-                  const highlight = 'Analista QA'
-                  const titleRest = '& Desarrollador Fullstack'
-                  const description = 'Ingeniero de QA y desarrollador Fullstack enfocado en automatización de pruebas, confiabilidad y arquitecturas claras. Actualmente disponible para proyectos y colaboraciones.'
-                  const ctaLabel = 'Descargar CV'
-                  const ctaHref = '/resume.pdf'
-                  const ctaDownload = true
-                  const extraActions = (
-                    <>
-                      <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="btn-subtle btn-no-border btn-gloss focus-ring" title="LinkedIn">
-                        <LinkedInIcon className="icon-md icon-hover" />
-                      </a>
-
-                      <a href="https://github.com/" target="_blank" rel="noreferrer noopener" aria-label="GitHub" className="btn-subtle btn-no-border btn-gloss focus-ring" title="GitHub">
-                        <GitHubIcon className="icon-md icon-hover" />
-                      </a>
-
-                      {/* Icono de email + dirección mostrado junto a GitHub - coincide con el espaciado y estilo de los botones sociales */}
-                      <button
-                        type="button"
-                        aria-label="Copiar email"
-                        title="Copiar email"
-                        className="btn-subtle btn-no-border btn-gloss focus-ring flex items-center gap-2"
-                        onClick={(e) => {
-                          e.preventDefault()
-                          copyToClipboard('pablopenaheredia@gmail.com')
-                        }}
-                      >
-                        <EmailOutlinedIcon className="icon-md icon-hover" />
-                        <span className="text-color-100 text-base font-medium hidden sm:inline">pablopenaheredia@gmail.com</span>
-                      </button>
-                    </>
-                  )
-
-                  // permitir nueva línea en el highlight ("QA\nAUTOMATION")
-                  const parts = String(highlight).split('\n')
-
-                  return (
-                    <div>
-                      <h1 className="mb-6 text-color-100 font-light">
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-color-300 to-color-500 block hero-headline-large">
-                          {parts.map((p, i) => (
-                            <Fragment key={i}>
-                              {p}
-                              {i < parts.length - 1 ? <br /> : ''}
-                            </Fragment>
-                          ))}
-                        </span>
-                        {titleRest && <span className="block text-color-100/70 mt-1 hero-headline-small">{titleRest}</span>}
-                      </h1>
-
-                      {description && (
-                        <p className="text-color-100 text-base lg:text-lg max-w-xl font-light">{description}</p>
-                      )}
-
-                      {ctaLabel && ctaHref && (
-                        <div className="mt-6 hero-cta-wrapper">
-                          <a href={ctaHref} download={ctaDownload} className="btn-primary inline-flex items-center hero-cta-large" aria-label={ctaLabel}>
-                            {/* ícono de descarga */}
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="-ml-1">
-                              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                              <polyline points="7 10 12 15 17 10" />
-                              <line x1="12" y1="15" x2="12" y2="3" />
-                            </svg>
-                            <span className="ml-2">{ctaLabel}</span>
-                          </a>
-
-                          {extraActions && (
-                            <div className="ml-4 flex items-center gap-3">
-                              {extraActions}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  )
-                })()}
+                <GradientHero
+                  highlight={highlight}
+                  titleRest={titleRest}
+                  description={description}
+                  ctaLabel={ctaLabel}
+                  ctaHref={ctaHref}
+                  ctaDownload={ctaDownload}
+                  extraActions={extraActions}
+                />
               </motion.div>
             </header>
 
