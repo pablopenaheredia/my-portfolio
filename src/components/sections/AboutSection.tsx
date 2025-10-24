@@ -34,7 +34,7 @@ export default function AboutSection() {
             transition={{ delay: 0.2 }} 
             className="text-color-100 text-xl font-light leading-relaxed mb-8"
           >
-            Me llamo Pablo Pena Heredia, y soy Analista QA y Desarrollador Fullstack. Me apasiona asegurar la calidad del software desde el inicio del ciclo de vida del desarrollo.
+            Soy Pablo Pena Heredia, Analista QA y Desarrollador Fullstack. Me apasiona asegurar la calidad del software desde el inicio del ciclo de vida del desarrollo. Tengo experiencia en testing manual y automatizado, así como en desarrollo web. Me gusta aprender y compartir conocimientos.
           </motion.p>
 
           <motion.div 
