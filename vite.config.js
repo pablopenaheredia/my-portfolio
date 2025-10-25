@@ -36,19 +36,9 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'router': ['react-router-dom'],
-          'motion': ['framer-motion'],
-          'mui': ['@mui/material', '@mui/icons-material']
-        },
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash].[ext]'
-      },
-      treeshake: {
-        moduleSideEffects: false,
-        preset: 'recommended'
       }
     },
     chunkSizeWarningLimit: 500,
