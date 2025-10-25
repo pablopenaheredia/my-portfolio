@@ -23,7 +23,7 @@ export default defineConfig({
       brotliSize: true
     })
   ],
-  base: '/',
+  base: '/portfolio/',
   build: {
     target: 'es2015',
     minify: 'terser',

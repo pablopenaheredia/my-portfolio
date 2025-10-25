@@ -11,7 +11,7 @@ try{
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
 }catch(e){/* ignore */}
 
-const basename = ''
+const basename = '/portfolio'
 
 const root = createRoot(document.getElementById('root'))
 root.render(
