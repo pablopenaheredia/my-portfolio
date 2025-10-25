@@ -1,6 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Expletus+Sans:ital,wght@0,400..700;1,400..700&display=swap");
-
 /* ========================================
   1. VARIABLES Y TOKENS DE DISEÑO
   ======================================== */
@@ -33,6 +30,11 @@
   --spacing-section: 3.5rem;
   --spacing-section-mobile: 2rem;
 }
+
+/* ========================================
+  1.5 FONT CONFIGURATION
+  ======================================== */
+/* Fuentes cargadas desde Google Fonts en index.html */
 
 /* ========================================
   2. RESET Y ESTILOS BASE

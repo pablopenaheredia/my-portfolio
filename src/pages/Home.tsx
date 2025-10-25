@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { NavDot, InPageNavManager, MobileMenu } from '../components/navigation'
 import { Timeline } from '../components/layout'
@@ -21,14 +21,21 @@ export default function Home(){
   // Usar el hook personalizado de portapapeles
   const { copyToClipboard, showToast, setShowToast, toastMessage } = useClipboard()
 
-  // Contenido del hero trasladado a componente
-  const highlight = 'Analista QA'
-  const titleRest = '& Desarrollador Fullstack'
-  const description = 'Ingeniero de QA y desarrollador Fullstack enfocado en automatización de pruebas, confiabilidad y arquitecturas claras. Actualmente disponible para proyectos y colaboraciones.'
-  const ctaLabel = 'Descargar CV'
-  const ctaHref = '/resume.pdf'
-  const ctaDownload = true
-  const extraActions = (
+  // Contenido del hero trasladado a componente - memoizado para evitar re-creación
+  const highlight = useMemo(() => 'Analista QA', [])
+  const titleRest = useMemo(() => '& Desarrollador Fullstack', [])
+  const description = useMemo(() => 'Ingeniero de QA y desarrollador Fullstack enfocado en automatización de pruebas, confiabilidad y arquitecturas claras. Actualmente disponible para proyectos y colaboraciones.', [])
+  const ctaLabel = useMemo(() => 'Descargar CV', [])
+  const ctaHref = useMemo(() => '/resume.pdf', [])
+  const ctaDownload = useMemo(() => true, [])
+  
+  // Memoizar el handler de email
+  const handleEmailClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    copyToClipboard('pablopenaheredia@gmail.com')
+  }, [copyToClipboard])
+  
+  const extraActions = useMemo(() => (
     <>
       <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="btn-subtle btn-no-border btn-gloss focus-ring" title="LinkedIn">
         <LinkedInIcon className="icon-md icon-hover" />
@@ -44,16 +51,13 @@ export default function Home(){
         aria-label="Copiar email"
         title="Copiar email"
         className="btn-subtle btn-no-border btn-gloss focus-ring flex items-center gap-2"
-        onClick={(e) => {
-          e.preventDefault()
-          copyToClipboard('pablopenaheredia@gmail.com')
-        }}
+        onClick={handleEmailClick}
       >
         <EmailOutlinedIcon className="icon-md icon-hover" />
         <span className="text-color-100 text-base font-medium hidden sm:inline">pablopenaheredia@gmail.com</span>
       </button>
     </>
-  )
+  ), [handleEmailClick])
   
   // exponer la diferencia izquierda del contenido del hero como variable CSS para que la navegación visual derecha pueda alinearse
   useEffect(() => {
@@ -170,19 +174,45 @@ export default function Home(){
                 return (
                   <motion.article key={project.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }} className={`project-item group ${itemClass} bg-gradient-to-br from-color-900/30 to-color-950/30 rounded-xl border border-color-500/10 hover:border-color-400/30 transition-all duration-300 overflow-hidden`}>
                     <div className="overflow-hidden">
-                      <img src={project.image} alt={project.name} loading="lazy" width="1000" height="600" className={`${imgClass} transition-transform duration-500 group-hover:scale-105`} />
+                      <img 
+                        src={project.image} 
+                        alt={`Captura de pantalla del proyecto ${project.name}`} 
+                        loading={i === 0 ? "eager" : "lazy"} 
+                        width="1000" 
+                        height="600" 
+                        decoding="async"
+                        className={`${imgClass} transition-transform duration-500 group-hover:scale-105`} 
+                      />
                     </div>
 
                     <div className="p-6">
                       <h3 className="text-color-300 text-xl md:text-2xl font-light mb-3 group-hover:text-color-400 transition-colors">{project.name}</h3>
-                      <p className="text-color-100/80 font-light mb-4 text-sm md:text-base leading-relaxed">{project.description}</p>
+                      <p className="text-color-100/80 font-light mb-3 text-sm md:text-base leading-relaxed">{project.description}</p>
+                      
+                      {/* Explicación detallada con icono y estilo destacado */}
+                      {project.explanation && (
+                        <div className="mb-4 p-3 rounded-lg bg-color-500/5 border-l-2 border-color-400/40">
+                          <div className="flex items-start gap-2">
+                            <svg className="w-4 h-4 text-color-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <p className="text-color-100/70 font-light text-xs md:text-sm leading-relaxed">{project.explanation}</p>
+                          </div>
+                        </div>
+                      )}
+                      
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.technologies.map((tech, idx) => (
                           <span key={idx} className="project-tech-tag">{tech}</span>
                         ))}
                       </div>
-                      <a href={`#projects`} className="inline-flex items-center gap-2 text-color-400 text-sm hover:text-color-300 transition-colors group/link">
-                        <svg className="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <a 
+                        href={`#projects`} 
+                        className="inline-flex items-center gap-2 text-color-400 text-sm hover:text-color-300 transition-colors group/link"
+                        aria-label={`Ver más detalles del proyecto ${project.name}`}
+                      >
+                        Ver más
+                        <svg className="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                       </a>

@@ -1,10 +1,10 @@
-import React from 'react'
+import { memo } from 'react'
 import { motion } from 'framer-motion'
 
 /**
  * Sección de contacto - extraída desde Home.jsx
  */
-export default function ContactSection() {
+function ContactSection() {
   return (
     <section id="contact" className="contact-section section-padding py-16">
       <div className="site-container max-w-4xl">
@@ -100,3 +100,5 @@ export default function ContactSection() {
     </section>
   )
 }
+
+export default memo(ContactSection)

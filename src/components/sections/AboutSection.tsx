@@ -1,10 +1,10 @@
-import React from 'react'
+import { memo } from 'react'
 import { motion } from 'framer-motion'
 
 /**
  * Sección "Sobre mí" - extraída e integrada desde Home.jsx
  */
-export default function AboutSection() {
+function AboutSection() {
   return (
     <section id="about" className="about-section section-padding">
       <div className="about-container site-container grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -59,3 +59,5 @@ export default function AboutSection() {
     </section>
   )
 }
+
+export default memo(AboutSection)

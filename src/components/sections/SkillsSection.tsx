@@ -1,7 +1,8 @@
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 // Import optimizado de MUI
 import GitHubIcon from '@mui/icons-material/GitHub'
+import { useIntersectionObserver } from '../../hooks'
 
 import htmlSvg from '../../assets/html.svg'
 import tailwindSvg from '../../assets/tailwind.svg'
@@ -63,10 +64,10 @@ interface SkillItemProps {
 
 // Componente de item de skill memoizado
 const SkillItem = memo(({ skill }: SkillItemProps) => {
-  const itemVariant = {
+  const itemVariant = useMemo(() => ({
     hidden: { opacity: 0, y: 8, scale: 0.9 },
     visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', damping: 16, stiffness: 220 } }
-  }
+  }), [])
 
   return (
     <motion.li 
@@ -76,39 +77,55 @@ const SkillItem = memo(({ skill }: SkillItemProps) => {
       aria-label={skill.name}
     >
       {skill.name === 'GitHub' ? (
-        <div className="w-12 h-12 flex items-center justify-center rounded-md elevated icon-img" aria-hidden>
+        <div className="w-12 h-12 flex items-center justify-center rounded-md elevated icon-img" aria-hidden="true">
           <GitHubIcon className="icon-svg" />
         </div>
       ) : (
-        <img src={skill.src} alt={skill.name} loading="lazy" className="w-12 h-12 object-contain elevated rounded-md" />
+        <img 
+          src={skill.src} 
+          alt="" 
+          role="presentation"
+          loading="lazy" 
+          className="w-12 h-12 object-contain elevated rounded-md" 
+        />
       )}
       <span className="skill-label">{skill.name}</span>
     </motion.li>
   )
-})
+}, (prevProps, nextProps) => prevProps.skill.name === nextProps.skill.name)
 
 SkillItem.displayName = 'SkillItem'
 
 function SkillsSection(){
-  // Se quitaron categoryVariant e itemVariant de aquí - movidos al componente SkillItem
+  const [containerRef, isVisible] = useIntersectionObserver({ threshold: 0.1, rootMargin: '100px' })
   
   // Aplanar todas las categorías en un solo array para renderizar sin encabezados
-  const allSkills = [
+  const allSkills = useMemo(() => [
     ...skillCategories.Frontend,
     ...skillCategories.Backend,
     ...skillCategories.Testing,
     ...skillCategories.Tools
-  ]
+  ], [])
 
   return (
-    <div className="stack-block">
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-4 p-6 rounded-lg elevated skills-wrapper">
-        <ul className="skills-grid">
-          {allSkills.map((skill, i) => (
-            <SkillItem key={i} skill={skill} index={i} />
-          ))}
-        </ul>
-      </div>
+    <div className="stack-block" ref={containerRef}>
+      {isVisible ? (
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4 p-6 rounded-lg elevated skills-wrapper">
+          <ul className="skills-grid">
+            {allSkills.map((skill, i) => (
+              <SkillItem key={skill.name} skill={skill} index={i} />
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4 p-6 rounded-lg elevated skills-wrapper" style={{ minHeight: '300px' }}>
+          <div className="skills-grid animate-pulse">
+            {Array.from({ length: 24 }).map((_, i) => (
+              <div key={i} className="w-12 h-12 bg-color-500/10 rounded-md" />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

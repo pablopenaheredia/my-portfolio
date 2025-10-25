@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
-  <rect width="1200" height="800" fill="#0a0614" />
-  <g fill="#e8e6ef" font-family="Inter, sans-serif" font-weight="300" font-size="42">
-    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">Profile Image</text>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" fill="none" viewBox="0 0 1200 800"><path fill="#0a0614" d="M0 0H1200V800H0z"/><text x="50%" y="50%" fill="#e8e6ef" dominant-baseline="middle" font-family="Inter, sans-serif" font-size="42" font-weight="300" text-anchor="middle">Profile Image</text></svg>
