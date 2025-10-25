@@ -23,7 +23,7 @@ export default defineConfig({
       brotliSize: true
     })
   ],
-  base: process.env.NODE_ENV === 'production' ? '/portfolio/' : '/',
+  base: '/',
   build: {
     target: 'es2015',
     minify: 'terser',

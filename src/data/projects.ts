@@ -1,4 +1,6 @@
-import orangehrmDemo from '../assets/orangehrmdemo.png'
+import orangehrmdemo from '../assets/orangehrmdemo.png'
+import trimly from '../assets/trimly.png'
+import spaceInvaders from '../assets/spaceinvaders.png'
 
 export interface Project {
   id: string;
@@ -12,26 +14,26 @@ export interface Project {
 const projects: Project[] = [
   { 
     id: 'p1', 
-    name: 'OrangeHRM Demo Test Automation Suite', 
-    description: 'Suite E2E basada en Playwright para la demo de la aplicación web, realizando pruebas automatizadas de las funcionalidades principales.', 
-    explanation: 'Proyecto de automatización end-to-end que valida flujos críticos como login, gestión de empleados y reportes. Implementa patrones Page Object Model (POM) y reporting integrado con CI/CD.',
-    image: '/placeholder.svg', 
-    technologies: ['Playwright','TypeScript', 'NodeJS'] 
+    name: 'TRIMLY', 
+    description: 'Sistema full-stack para gestión de salones de belleza desarrollado como proyecto de tesis.', 
+    explanation: 'Sistema full-stack desarrollado como proyecto de tesis para gestionar salones de estética. El backend usa NestJS con TypeScript y el frontend React, ambos con una arquitectura modular. La base de datos MySQL maneja 5 módulos: clientes, servicios, turnos, productos, usuarios y reportes, con roles de administrador y empleado. La API REST incluye validaciones con class-validator y manejo de errores. Todo está documentado con especificaciones funcionales, historias de usuario y gestión de sprints.',
+    image: trimly, 
+    technologies: ['React','TypeScript', 'NodeJS', 'NestJS', 'MySQL', 'Vite'] 
   },
   { 
     id: 'p2', 
-    name: 'TRIMLY', 
-    description: 'Aplicacion Fullstack orientada a salones de estética.', 
-    explanation: 'Sistema completo de gestión para salones de belleza con módulos de reservas, clientes, servicios y facturación. Arquitectura REST API con autenticación JWT y base de datos relacional optimizada.',
-    image: orangehrmDemo, 
-    technologies: ['React','TypeScript', 'NodeJS', 'NestJS', 'MySQL'] 
+    name: 'OrangeHRM Demo Test Automation Suite', 
+    description: 'Proyecto freelance de automatización de pruebas con plan completo de testing y documentación.', 
+    explanation: 'Se desarrolló el plan de pruebas, historias de usuario, los respectivos casos de prueba basado en criterios de aceptacion y la ejecución de los mismos, incluyendo los bugs encontrados. Validé los flujos principales sobre login, gestion de usuarios y administración de roles, encontrando varios defectos que afectaban la experiencia. Desarrollado en Playwright con TypeScript, usando Page Object Model para que el código sea reutilizable y cada test funcione independiente.',
+    image: orangehrmdemo, 
+    technologies: ['Playwright','TypeScript', 'NodeJS'] 
   },
   { 
     id: 'p3', 
     name: 'Space Invaders controlado por Gestos', 
-    description: 'Desarrollo del clásico juego clásico utilizando IA para reconocimiento de gestos para el control de la nave.', 
-    explanation: 'Videojuego interactivo que utiliza visión por computadora para detectar gestos de mano en tiempo real mediante OpenCV. Los movimientos físicos del jugador controlan la nave espacial sin necesidad de teclado o mouse.',
-    image: '/placeholder.svg', 
+    description: 'Versión interactiva del clásico juego controlado con gestos de mano mediante visión por computadora.', 
+    explanation: 'Versión del clásico Space Invaders pero controlado con gestos de mano usando la cámara. El juego permite disparar al cerrar la mano y mover la nave con gestos laterales en tiempo real.',
+    image: spaceInvaders, 
     technologies: ['Python','OpenCV'] 
   },
 ]

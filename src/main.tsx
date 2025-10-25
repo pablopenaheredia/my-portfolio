@@ -11,7 +11,7 @@ try{
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
 }catch(e){/* ignore */}
 
-const basename = import.meta.env.MODE === 'production' ? '/portfolio' : ''
+const basename = ''
 
 const root = createRoot(document.getElementById('root'))
 root.render(
