@@ -96,7 +96,7 @@ export default function Home(){
       <nav className="fixed left-0 top-0 h-screen w-16 z-50 hidden md:flex" aria-label="Main navigation">
         <div className="relative h-full flex items-center">
             <div className="absolute top-6 left-0 w-full flex flex-col items-center gap-2">
-              <a href="#home" className="hidden md:inline-block text-color-100 text-sm font-light tracking-wider rotate-180 vertical-rl">INICIO</a>
+              <a href="#home" className="hidden md:inline-block text-color-1npm run00 text-sm font-light tracking-wider rotate-180 vertical-rl">INICIO</a>
               <a href="#home" className="md:hidden text-color-100 text-sm font-light tracking-wider">INICIO</a>
           </div>
 
@@ -189,33 +189,48 @@ export default function Home(){
                       <h3 className="text-color-300 text-xl md:text-2xl font-light mb-3 group-hover:text-color-400 transition-colors">{project.name}</h3>
                       <p className="text-color-100/80 font-light mb-3 text-sm md:text-base leading-relaxed">{project.description}</p>
                       
-                      {/* Explicación detallada con icono y estilo destacado */}
+                      {/* Explicación detallada sin icono */}
                       {project.explanation && (
-                        <div className="mb-4 p-3 rounded-lg bg-color-500/5 border-l-2 border-color-400/40">
-                          <div className="flex items-start gap-2">
-                            <svg className="w-4 h-4 text-color-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <p className="text-color-100/70 font-light text-xs md:text-sm leading-relaxed">{project.explanation}</p>
-                          </div>
+                        <div className="mb-4 p-4 rounded-lg bg-color-500/5 border-l-2 border-color-400/40">
+                          <p className="text-color-100/70 font-light text-xs md:text-sm leading-relaxed">{project.explanation}</p>
                         </div>
                       )}
                       
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-2 mb-5">
                         {project.technologies.map((tech, idx) => (
                           <span key={idx} className="project-tech-tag">{tech}</span>
                         ))}
                       </div>
-                      <a 
-                        href={`#projects`} 
-                        className="inline-flex items-center gap-2 text-color-400 text-sm hover:text-color-300 transition-colors group/link"
-                        aria-label={`Ver más detalles del proyecto ${project.name}`}
-                      >
-                        Ver más
-                        <svg className="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </a>
+                      
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <a 
+                          href={project.githubUrl} 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-color-500/10 hover:bg-color-500/20 border border-color-500/20 hover:border-color-400/40 text-color-300 hover:text-color-200 text-sm font-medium transition-all duration-300"
+                          aria-label={`Ver repositorio de GitHub de ${project.name}`}
+                        >
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                          </svg>
+                          Ver GitHub
+                        </a>
+                        
+                        {project.docsUrl && (
+                          <a 
+                            href={project.docsUrl} 
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-color-400/10 hover:bg-color-400/20 border border-color-400/20 hover:border-color-400/40 text-color-300 hover:text-color-200 text-sm font-medium transition-all duration-300"
+                            aria-label={`Ver documentación de ${project.name}`}
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Ver Documentación
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </motion.article>
                 )
