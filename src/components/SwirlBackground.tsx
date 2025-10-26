@@ -224,20 +224,24 @@ const SwirlBackground = () => {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '100%',
-        height: '100%',
+        width: '100vw',
+        height: '100vh',
+        minHeight: '100vh',
+        maxHeight: '100vh',
         zIndex: -1,
         pointerEvents: 'none',
+        overflow: 'hidden',
       }}
     >
       <canvas
         ref={canvasRef}
         style={{
-          position: 'fixed',
+          position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
+          minHeight: '100vh',
         }}
       />
     </div>

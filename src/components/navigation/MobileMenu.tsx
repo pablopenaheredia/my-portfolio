@@ -46,37 +46,39 @@ export default function MobileMenu() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-screen w-72 bg-gradient-to-b from-color-900/95 to-color-950/95 backdrop-blur-xl z-[95] md:hidden border-l border-color-500/10 shadow-2xl"
+              className="fixed top-0 right-0 h-screen w-72 bg-gradient-to-b from-color-900/95 to-color-950/95 backdrop-blur-xl z-[95] md:hidden border-l border-color-500/10 shadow-2xl overflow-hidden"
             >
-              <div className="flex flex-col h-full pt-24 px-6">
-                <div className="mb-8">
+              <div className="flex flex-col h-full pt-24 px-6 pb-6">
+                <div className="mb-6">
                   <p className="text-color-300 text-xs tracking-[0.3em] uppercase font-light mb-2">Navegación</p>
                   <div className="h-px bg-gradient-to-r from-color-500/50 to-transparent" />
                 </div>
 
-                <ul className="flex flex-col gap-2">
-                  {navItems.map((item, index) => (
-                    <motion.li
-                      key={item.href}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <a
-                        href={item.href}
-                        onClick={handleLinkClick}
-                        className="mobile-nav-link block py-3 px-4 rounded-lg text-color-100 hover:text-color-300 hover:bg-color-500/10 transition-all duration-200 border border-transparent hover:border-color-500/20 text-lg font-light"
+                <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+                  <ul className="flex flex-col gap-2 pr-2">
+                    {navItems.map((item, index) => (
+                      <motion.li
+                        key={item.href}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
                       >
-                        <span className="flex items-center gap-3">
-                          <span className="w-1 h-1 rounded-full bg-color-400" />
-                          {item.label}
-                        </span>
-                      </a>
-                    </motion.li>
-                  ))}
-                </ul>
+                        <a
+                          href={item.href}
+                          onClick={handleLinkClick}
+                          className="mobile-nav-link block py-3 px-4 rounded-lg text-color-100 hover:text-color-300 hover:bg-color-500/10 transition-all duration-200 border border-transparent hover:border-color-500/20 text-lg font-light"
+                        >
+                          <span className="flex items-center gap-3">
+                            <span className="w-1 h-1 rounded-full bg-color-400" />
+                            {item.label}
+                          </span>
+                        </a>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
 
-                <div className="mt-auto pb-8">
+                <div className="mt-auto pt-6 flex-shrink-0">
                   <div className="h-px bg-gradient-to-r from-transparent via-color-500/30 to-transparent mb-6" />
                   <div className="flex justify-center gap-4">
                     <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 flex items-center justify-center rounded-lg bg-color-500/10 hover:bg-color-500/20 border border-color-500/20 hover:border-color-400/40 transition-all" aria-label="GitHub">
