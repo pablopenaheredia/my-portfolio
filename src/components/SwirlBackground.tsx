@@ -13,16 +13,16 @@ const fadeInOut = (t: number, m: number) => {
 const lerp = (n1: number, n2: number, speed: number) => (1 - speed) * n1 + speed * n2;
 
 // Configuration
-const particleCount = 2000;
+const particleCount = 500;
 const particlePropCount = 9;
 const particlePropsLength = particleCount * particlePropCount;
-const rangeY = 400;
+const rangeY = 350;
 const baseTTL = 50;
-const rangeTTL = 150;
+const rangeTTL = 100;
 const baseSpeed = 0.05;
 const rangeSpeed = 1;
-const baseRadius = 0.3;
-const rangeRadius = 2;
+const baseRadius = 0.1;
+const rangeRadius = 3;
 const baseHue = 160;
 const rangeHue = 200;
 const noiseSteps = 30;
