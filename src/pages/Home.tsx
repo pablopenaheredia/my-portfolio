@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect } from 'react'
 import { motion } from 'framer-motion'
 import { NavDot, InPageNavManager, MobileMenu } from '../components/navigation'
 import { Timeline } from '../components/layout'
-import { SectionDivider, Toast, OptimizedImage } from '../components/common'
+import { SectionDivider, Toast } from '../components/common'
 import { AboutSection, ContactSection, SkillsSection } from '../components/sections'
 import GradientHero from '../components/GradientHero'
 
@@ -111,11 +111,11 @@ export default function Home(){
         <section id="home" className="hero min-h-screen flex items-center section-padding relative">
           <div className="hero-content-container site-container flex items-center justify-between gap-4">
             <header className="hero-content flex-1 max-w-2xl" aria-labelledby="hero-title">
-              <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="hero-label mb-8">
+              <div className="hero-label mb-8 animate-fade-in">
                 <p className="text-color-100/60 text-sm tracking-[0.3em] uppercase font-light">PABLO PENA HEREDIA</p>
-              </motion.div>
+              </div>
 
-              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
+              <div className="animate-fade-in-delayed">
                 <GradientHero
                   highlight={highlight}
                   titleRest={titleRest}
@@ -125,7 +125,7 @@ export default function Home(){
                   ctaDownload={ctaDownload}
                   extraActions={extraActions}
                 />
-              </motion.div>
+              </div>
             </header>
 
             {/* navegación visual derecha colocada junto al contenido del hero para evitar scroll vertical */}
@@ -134,9 +134,9 @@ export default function Home(){
               <div className="visual-nav-inner">
                 <div className="grid grid-cols-1 gap-6">
                   {navItems.map((item) => (
-                    <motion.div key={item.href} whileHover={{ x: -20 }} className="nav-word">
+                    <div key={item.href} className="nav-word">
                       <a href={item.href} className="underline-animated">{item.label.toUpperCase()}</a>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -170,10 +170,11 @@ export default function Home(){
                 return (
                   <motion.article key={project.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.06 }} className={`project-item group ${itemClass} bg-gradient-to-br from-color-900/30 to-color-950/30 rounded-xl border border-color-500/10 hover:border-color-400/30 transition-all duration-300 overflow-hidden`}>
                     <div className="overflow-hidden">
-                      <OptimizedImage 
+                      <img 
                         src={project.image} 
                         alt={`Captura de pantalla del proyecto ${project.name}`} 
-                        priority={i === 0}
+                        loading={i === 0 ? "eager" : "lazy"}
+                        decoding="async"
                         width={1000} 
                         height={600}
                         className={`${imgClass} transition-transform duration-500 group-hover:scale-105`} 

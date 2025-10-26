@@ -32,16 +32,35 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: false, // Mantener console.log para debugging
-        drop_debugger: false,
-        pure_funcs: []
+        drop_console: true,        // Eliminar console.log en producción
+        drop_debugger: true,
+        pure_funcs: ['console.log'], // Eliminar específicamente console.log
+        passes: 2                   // Dos pasadas de minificación
+      },
+      mangle: {
+        safari10: true
       }
     },
     rollupOptions: {
       output: {
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash].[ext]'
+        assetFileNames: 'assets/[name].[hash].[ext]',
+        // Separar vendor chunks grandes
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('framer-motion')) {
+              return 'framer-motion'
+            }
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor'
+            }
+            if (id.includes('@mui')) {
+              return 'mui'
+            }
+            return 'vendor'
+          }
+        }
       }
     },
     chunkSizeWarningLimit: 500,
