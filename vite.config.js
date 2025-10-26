@@ -9,13 +9,13 @@ export default defineConfig({
     react(),
     ViteImageOptimizer({
       png: { 
-        quality: 75,
+        quality: 70,
         compressionLevel: 9
       },
-      jpeg: { quality: 75 },
-      jpg: { quality: 75 },
-      webp: { quality: 75 },
-      avif: { quality: 65 },
+      jpeg: { quality: 70 },
+      jpg: { quality: 70 },
+      webp: { quality: 70 },
+      avif: { quality: 60 },
       includePublic: true,
       logStats: true
     }),
