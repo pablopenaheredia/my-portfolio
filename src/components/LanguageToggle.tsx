@@ -38,7 +38,7 @@ export default function LanguageToggle() {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-2 right-0 bg-color-900/95 backdrop-blur-sm border border-color-500/20 rounded-lg shadow-xl overflow-hidden z-50 min-w-[80px]">
+        <div className="absolute top-full mt-2 right-0 bg-color-900/95 backdrop-blur-sm border border-color-500/20 rounded-lg shadow-xl overflow-hidden z-[200] min-w-[80px]">
           <button
             className="block w-full text-center px-4 py-3 text-color-100 hover:bg-color-500/10 hover:text-color-300 transition-colors text-sm font-medium"
             onClick={handleLanguageChange}
