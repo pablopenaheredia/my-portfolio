@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 interface UseClipboardReturn {
   copyToClipboard: (text: string) => void;
@@ -13,15 +14,16 @@ interface UseClipboardReturn {
 export function useClipboard(): UseClipboardReturn {
   const [showToast, setShowToast] = useState<boolean>(false)
   const [toastMessage, setToastMessage] = useState<string>('')
+  const { t } = useLanguage()
 
   const copyToClipboard = (text: string): void => {
     const doShowSuccess = () => {
-      setToastMessage('Email copiado en el portapapeles')
+      setToastMessage(t('clipboard.success'))
       setShowToast(true)
     }
 
     const doShowFail = () => {
-      setToastMessage('No se pudo copiar el email')
+      setToastMessage(t('clipboard.error'))
       setShowToast(true)
     }
 

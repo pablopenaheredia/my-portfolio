@@ -1,44 +1,75 @@
-/* ========================================
-  1. VARIABLES Y TOKENS DE DISEÑO
-  ======================================== */
+/* design tokens */
 :root {
-  /* Colores */
+  /* colors */
   --bg-primary: #0a0614;
   --text-primary: #e8e6ef;
   --color-300: #9770eb;
   --color-400: #7a48e5;
   --color-500: #5c20df;
 
-  /* Sombras */
+  /* shadows */
   --shadow-primary: 0 18px 60px rgba(92, 32, 223, 0.16);
   --shadow-hover: 0 24px 80px rgba(92, 32, 223, 0.28);
+  --shadow-md: 0 8px 24px rgba(92, 32, 223, 0.3);
+  --shadow-lg: 0 12px 40px rgba(92, 32, 223, 0.15);
+  --shadow-xl: 0 14px 44px rgba(92, 32, 223, 0.22);
 
-  /* Tipografía */
+  /* typography */
   --lh-regular: 1.6;
 
-  /* Radio de borde */
+  /* borders */
+  --border-primary: 1px solid rgba(92, 32, 223, 0.14);
+  --border-hover: 1px solid rgba(92, 32, 223, 0.22);
+  --border-subtle: 1px solid rgba(232, 230, 239, 0.04);
+  --border-accent: 1px solid rgba(92, 32, 223, 0.2);
+
+  /* backgrounds */
+  --bg-glass: rgba(255, 255, 255, 0.02);
+  --bg-glass-hover: rgba(255, 255, 255, 0.04);
+
+  /* gradients */
+  --gradient-primary: linear-gradient(
+    90deg,
+    var(--color-300),
+    var(--color-500)
+  );
+  --gradient-button: linear-gradient(
+    90deg,
+    rgba(92, 32, 223, 1),
+    rgba(124, 58, 237, 1)
+  );
+  --gradient-subtle: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.15),
+    rgba(109, 40, 217, 0.15)
+  );
+  --gradient-section: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(92, 32, 223, 0.02) 50%,
+    transparent 100%
+  );
+
+  /* radius */
   --radius-sm: 0.5rem;
   --radius-md: 0.6rem;
   --radius-lg: 1rem;
 
-  /* Transiciones */
+  /* transitions */
   --duration-fast: 160ms;
   --duration-normal: 220ms;
   --duration-slow: 380ms;
+  --transition-standard: transform var(--duration-fast) ease,
+    box-shadow var(--duration-normal) ease;
 
-  /* Espaciado */
+  /* spacing */
   --spacing-section: 3.5rem;
   --spacing-section-mobile: 2rem;
 }
 
-/* ========================================
-  1.5 FONT CONFIGURATION
-  ======================================== */
-/* Fuentes cargadas desde Google Fonts en index.html */
+/* fonts loaded from google fonts in index.html */
 
-/* ========================================
-  2. RESET Y ESTILOS BASE
-  ======================================== */
+/* base reset */
 * {
   box-sizing: border-box;
 }
@@ -58,7 +89,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Forzar alineación a la izquierda */
+/* force left alignment */
 body,
 p,
 li,
@@ -76,12 +107,12 @@ textarea {
   text-align: left;
 }
 
-/* Directivas de Tailwind */
+/* tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Barra de desplazamiento */
+/* custom scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -96,9 +127,7 @@ textarea {
   background: rgba(139, 92, 246, 0.35);
 }
 
-/* ========================================
-  3. LAYOUT Y CONTENEDORES
-  ======================================== */
+/* layout utilities */
 @layer utilities {
   .section-padding {
     @apply px-4 md:px-12;
@@ -116,27 +145,21 @@ textarea {
   padding: 0 1rem;
 }
 
-/* Espaciado de secciones */
+/* section spacing */
 .about-section,
 .projects-section,
 .experience-section {
   @apply content-section;
 }
 
-.skills-section {
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-}
-
-section#experience {
-  margin-top: 6rem;
-  margin-bottom: 4rem;
-  padding-top: 6.5rem;
-}
-
+section#experience,
 section#projects {
   margin-top: 6rem;
   margin-bottom: 4rem;
+}
+
+section#experience {
+  padding-top: 6.5rem;
 }
 
 section#skills {
@@ -148,11 +171,16 @@ section#about {
   padding-top: 4.5rem;
 }
 
+.skills-section {
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+
 body > main .content {
   padding-bottom: 6rem;
 }
 
-/* Layout del hero */
+/* hero layout */
 .hero .hero-content-container {
   padding-bottom: 2.5rem;
   width: 100%;
@@ -163,14 +191,33 @@ body > main .content {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .hero-cta-wrapper .btn-primary {
   margin-left: 0;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.95rem;
 }
 
-/* Divisor de sección */
+.hero-cta-wrapper .btn-subtle,
+.hero-cta-wrapper button {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.95rem;
+}
+
+.hero-cta-wrapper .icon-md {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+}
+
+.hero-cta-wrapper .icon-md svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* section divider */
 .section-divider-wrapper {
   display: flex;
   justify-content: center;
@@ -188,7 +235,7 @@ body > main .content {
   background: transparent;
   font-size: clamp(1.5rem, 2.6vw, 2.2rem);
   color: transparent;
-  background-image: linear-gradient(90deg, var(--color-300), var(--color-500));
+  background-image: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -213,7 +260,7 @@ body > main .content {
   right: calc(-26vw - 1.2rem);
 }
 
-/* Enlace de salto (Skip Link) */
+/* skip link for accessibility */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -232,9 +279,7 @@ body > main .content {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
 
-/* ========================================
-  4. COMPONENTES - Navegación
-  ======================================== */
+/* navigation */
 .nav-icon {
   transition: transform var(--duration-fast) ease,
     background var(--duration-fast) ease;
@@ -292,6 +337,7 @@ body > main .content {
   transform-origin: left center;
 }
 
+/* visual navigation on desktop */
 .nav-icon:focus-within .nav-label,
 .nav-icon:hover .nav-label {
   opacity: 1;
@@ -299,7 +345,6 @@ body > main .content {
   pointer-events: auto;
 }
 
-/* Navegación visual */
 .visual-nav-inner {
   display: flex;
   flex-direction: column;
@@ -325,48 +370,42 @@ body > main .content {
   display: inline-block;
   cursor: pointer;
   color: var(--color-300);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .visual-nav-inner .nav-word a:hover {
   color: var(--color-400);
+  transform: translateX(-8px);
 }
 
 .vertical-rl {
   writing-mode: vertical-rl;
 }
 
-/* ========================================
-  5. COMPONENTES - Botones
-  ======================================== */
+/* buttons */
 .btn-base {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   border-radius: var(--radius-sm);
-  transition: transform 180ms cubic-bezier(0.2, 0.9, 0.3, 1),
-    box-shadow var(--duration-normal) ease, color var(--duration-fast) ease,
+  transition: var(--transition-standard), color var(--duration-fast) ease,
     background var(--duration-fast) ease;
 }
 
 .btn-subtle {
   padding: 0.45rem 0.85rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(92, 32, 223, 0.14);
+  background: var(--bg-glass);
+  border: var(--border-primary);
 }
 
 .btn-subtle:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 14px 44px rgba(92, 32, 223, 0.18);
-  border-color: rgba(92, 32, 223, 0.22);
-  background: linear-gradient(
-    180deg,
-    rgba(92, 32, 223, 0.06),
-    rgba(255, 255, 255, 0.02)
-  );
+  transform: translateY(-4px);
+  background: linear-gradient(180deg, rgba(92, 32, 223, 0.06), var(--bg-glass));
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .btn-subtle:active {
-  transform: translateY(-1px) scale(0.995);
+  transform: translateY(-1px);
 }
 
 .btn-subtle:focus-visible {
@@ -377,13 +416,11 @@ body > main .content {
 .btn-no-border {
   border: none;
   background: transparent;
-  box-shadow: none;
   padding: 0.5rem;
 }
 
 .btn-no-border:hover {
   border-color: transparent;
-  box-shadow: 0 10px 30px rgba(92, 32, 223, 0.08);
 }
 
 .btn-gloss {
@@ -428,23 +465,18 @@ body > main .content {
 .btn-primary {
   padding: 0.6rem 1rem;
   border-radius: var(--radius-md);
-  background: linear-gradient(
-    90deg,
-    rgba(92, 32, 223, 1) 0%,
-    rgba(124, 58, 237, 1) 100%
-  );
+  background: var(--gradient-button);
   color: white;
   font-weight: 500;
-  box-shadow: 0 14px 44px rgba(92, 32, 223, 0.22);
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+  transition: transform 0.3s ease;
 }
 
 .btn-primary:active {
-  transform: translateY(-1px) scale(0.997);
+  transform: translateY(-1px);
 }
 
 .btn-primary:focus-visible {
@@ -485,8 +517,8 @@ body > main .content {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(92, 32, 223, 0.2);
+  background: var(--bg-glass);
+  border: var(--border-accent);
   color: var(--color-400);
   transition: all 300ms ease;
 }
@@ -496,13 +528,12 @@ body > main .content {
   border-color: var(--color-400);
   color: white;
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(92, 32, 223, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
-/* ========================================
-  6. COMPONENTES - Cards y Secciones
-  ======================================== */
-/* Typography */
+/* cards and sections */
+
+/* typography */
 .app-h2 {
   font-size: clamp(1.6rem, 3.6vw, 2.6rem);
   line-height: 1.05;
@@ -540,7 +571,7 @@ body > main .content {
   font-weight: 300;
 }
 
-/* Proyectos */
+/* projects */
 .projects-list {
   padding-bottom: 5.5rem;
 }
@@ -577,11 +608,7 @@ body > main .content {
 
 .project-tech-tag {
   @apply px-3 py-1.5 rounded-full text-xs font-medium;
-  background: linear-gradient(
-    135deg,
-    rgba(139, 92, 246, 0.15),
-    rgba(109, 40, 217, 0.15)
-  );
+  background: var(--gradient-subtle);
   border: 1px solid rgba(139, 92, 246, 0.3);
   color: rgb(var(--color-300));
   transition: all 0.3s ease;
@@ -599,7 +626,7 @@ body > main .content {
   transform: translateY(-1px);
 }
 
-/* Habilidades (Skills) */
+/* skills */
 .skills-wrapper {
   max-width: 1100px;
   margin-left: auto;
@@ -631,8 +658,7 @@ body > main .content {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  transition: box-shadow var(--duration-normal) ease, background 200ms ease,
-    transform 180ms ease;
+  transition: var(--transition-standard), background 200ms ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -671,7 +697,7 @@ body > main .content {
 .skills-grid img,
 .skill-sheen img {
   transform: rotate(0deg);
-  transition: transform 180ms ease, box-shadow 180ms ease, filter 200ms ease;
+  transition: var(--transition-standard), filter 200ms ease;
   will-change: transform, box-shadow;
 }
 
@@ -714,29 +740,24 @@ body > main .content {
   letter-spacing: 0.14em;
 }
 
-/* Contacto */
+/* contact */
 .contact-section {
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(92, 32, 223, 0.02) 50%,
-    transparent 100%
-  );
+  background: var(--gradient-section);
 }
 
 .contact-card {
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(92, 32, 223, 0.1);
+  background: var(--bg-glass);
+  border: var(--border-primary);
   border-radius: var(--radius-lg);
   transition: all 300ms ease;
 }
 
 .contact-card:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--bg-glass-hover);
   border-color: rgba(122, 72, 229, 0.3);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(92, 32, 223, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .contact-link {
@@ -744,8 +765,8 @@ body > main .content {
   color: var(--text-primary);
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(92, 32, 223, 0.2);
-  background: rgba(255, 255, 255, 0.02);
+  border: var(--border-accent);
+  background: var(--bg-glass);
   transition: all 250ms ease;
   font-weight: 300;
 }
@@ -754,12 +775,11 @@ body > main .content {
   background: var(--color-500);
   border-color: var(--color-400);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(92, 32, 223, 0.25);
+  box-shadow: var(--shadow-md);
 }
 
-/* ========================================
-  7. COMPONENTES - Timeline
-  ======================================== */
+/* timeline */
+
 .vertical-timeline {
   padding: 0;
   position: relative;
@@ -775,16 +795,15 @@ body > main .content {
   padding: 18px 22px;
   background: var(--bg-primary);
   color: var(--text-primary);
-  border: 1px solid rgba(232, 230, 239, 0.04);
+  border: var(--border-subtle);
   position: relative;
-  transition: transform var(--duration-normal) ease,
-    box-shadow var(--duration-normal) ease,
+  transition: var(--transition-standard),
     border-color var(--duration-normal) ease;
 }
 
 .vertical-timeline .vertical-timeline-element-content:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 34px rgba(92, 32, 223, 0.08);
+  box-shadow: var(--shadow-lg);
   border-color: rgba(92, 32, 223, 0.06);
 }
 
@@ -862,9 +881,7 @@ body > main .content {
   margin: 0;
 }
 
-/* ========================================
-  8. UTILIDADES Y HELPERS
-  ======================================== */
+/* utilities */
 .icon-sm svg,
 .icon-sm {
   font-size: 20px;
@@ -902,7 +919,7 @@ body > main .content {
 }
 
 .icon-hover {
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition: var(--transition-standard), opacity 180ms ease;
 }
 
 .icon-hover:hover {
@@ -963,11 +980,9 @@ body > main .content {
   animation: fadeInUp 0.5s ease-out backwards;
 }
 
-/* ========================================
-  9. MEDIA QUERIES CONSOLIDADOS
-  ======================================== */
+/* responsive media queries */
 
-/* Desktop (min-width: 768px) */
+/* desktop */
 @media (min-width: 768px) {
   .hero-visual {
     display: block;
@@ -1010,19 +1025,20 @@ body > main .content {
   }
 }
 
-/* Large Desktop (min-width: 1400px) */
+/* large desktop */
 @media (min-width: 1400px) {
   .experience-section .vertical-timeline .vertical-timeline-element-content {
     max-width: 1100px;
   }
 }
 
-/* Mobile (max-width: 767px) */
+/* mobile */
 @media (max-width: 767px) {
   .site-container {
     padding: 0 0.75rem;
   }
 
+  /* section spacing mobile */
   .about-section,
   .projects-section,
   .experience-section,
@@ -1042,6 +1058,7 @@ body > main .content {
     padding-top: 2rem;
   }
 
+  /* hero mobile layout */
   .hero {
     padding: 1rem;
     overflow-x: hidden;
@@ -1066,6 +1083,7 @@ body > main .content {
     overflow: hidden;
   }
 
+  /* section divider mobile */
   .section-divider-wrapper {
     display: flex;
     justify-content: center;
@@ -1083,11 +1101,7 @@ body > main .content {
     background: transparent;
     font-size: clamp(1.25rem, 2.2vw, 1.8rem);
     color: transparent;
-    background-image: linear-gradient(
-      90deg,
-      var(--color-300),
-      var(--color-500)
-    );
+    background-image: var(--gradient-primary);
     -webkit-background-clip: text;
     background-clip: text;
   }

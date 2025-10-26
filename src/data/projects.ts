@@ -18,16 +18,16 @@ const projects: Project[] = [
     id: 'p1', 
     name: 'TRIMLY', 
     description: 'Sistema full-stack para gestión de salones de belleza desarrollado como proyecto de tesis.', 
-    explanation: 'Sistema full-stack desarrollado como proyecto de tesis para gestionar salones de estética. El backend usa NestJS con TypeScript y el frontend React, ambos con una arquitectura modular. La base de datos MySQL maneja 5 módulos: clientes, servicios, turnos, productos, usuarios y reportes, con roles de administrador y empleado. La API REST incluye validaciones con class-validator y manejo de errores. Todo está documentado con especificaciones funcionales, historias de usuario y gestión de sprints.',
+    explanation: 'Sistema full-stack con backend en NestJS/TypeScript y frontend en React/TypeScript. Base de datos MySQL con TypeORM implementando 5 módulos: clientes, servicios, turnos, productos, usuarios y reportes con autenticación por roles. API RESTful con validaciones mediante class-validator y manejo de errores. Incluye documentación con especificaciones funcionales e historias de usuario.',
     image: trimly, 
     technologies: ['React','TypeScript', 'NodeJS', 'NestJS', 'MySQL', 'Vite'],
-    githubUrl: 'https://github.com/pablopenaheredia/trimly-app'
+    githubUrl: 'https://github.com/pablopenaheredia/Trimly-APP'
   },
   { 
     id: 'p2', 
     name: 'OrangeHRM Demo Test Automation Suite', 
     description: 'Proyecto freelance de automatización de pruebas con plan completo de testing y documentación.', 
-    explanation: 'Se desarrolló el plan de pruebas, historias de usuario, los respectivos casos de prueba basado en criterios de aceptacion y la ejecución de los mismos, incluyendo los bugs encontrados. Validé los flujos principales sobre login, gestion de usuarios y administración de roles, encontrando varios defectos que afectaban la experiencia. Desarrollado en Playwright con TypeScript, usando Page Object Model para que el código sea reutilizable y cada test funcione independiente.',
+    explanation: 'Plan de pruebas completo con historias de usuario, casos de uso y reporte de defectos. Validación de flujos end-to-end: autenticación, gestión de usuarios y permisos. Automatización con Playwright y TypeScript usando Page Object Model y fixtures para reutilización y aislamiento de tests. Arquitectura escalable que facilita incorporar nuevas funcionalidades.',
     image: orangehrmdemo, 
     technologies: ['Playwright','TypeScript', 'NodeJS'],
     githubUrl: 'https://github.com/pablopenaheredia/OrangeHRM-Demo',
@@ -36,8 +36,8 @@ const projects: Project[] = [
   { 
     id: 'p3', 
     name: 'Space Invaders controlado por Gestos', 
-    description: 'Versión interactiva del clásico juego controlado con gestos de mano mediante visión por computadora.', 
-    explanation: 'Versión del clásico Space Invaders pero controlado con gestos de mano usando la cámara. El juego permite disparar al cerrar la mano y mover la nave con gestos laterales en tiempo real.',
+    description: 'Versión interactiva del clásico juego controlado mediante gestos por webcam.', 
+    explanation: 'Versión del clásico Space Invaders controlado mediante gestos capturados por webcam. Reconocimiento en tiempo real para mover la nave lateralmente y disparar al cerrar el puño.',
     image: spaceInvaders, 
     technologies: ['Python','OpenCV'],
     githubUrl: 'https://github.com/pablopenaheredia/ExpoCarreras2025'

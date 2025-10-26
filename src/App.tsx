@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import AnimatedRoutes from './AnimatedRoutes'
 import SwirlBackground from './components/SwirlBackground'
+import { LanguageProvider } from './contexts/LanguageContext'
 import './index.css'
 
-// Componente raíz que renderiza las rutas con animación.
-// Nota: El Router se inicializa en `main.tsx`.
+// root component with routes. router initialized in main.tsx
 export default function App(){
   const [isMobile, setIsMobile] = useState(false)
   
@@ -16,9 +16,9 @@ export default function App(){
   }, [])
   
   return (
-    <>
+    <LanguageProvider>
       {!isMobile && <SwirlBackground />}
       <AnimatedRoutes />
-    </>
+    </LanguageProvider>
   )
 }

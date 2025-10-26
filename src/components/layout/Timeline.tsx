@@ -1,33 +1,46 @@
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
 import 'react-vertical-timeline-component/style.min.css'
 import WorkIcon from '@mui/icons-material/Work'
-import { experiences } from '../../data'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 interface TimelineProps {
   limit?: number;
 }
 
+const experienceKeys = [
+  'experience.xacademy.automation',
+  'experience.xacademy.manual',
+  'experience.upex'
+]
+
 export default function Timeline({ limit = 3 }: TimelineProps) {
-  const items = (experiences || []).slice(0, limit)
+  const { t } = useLanguage()
+  const items = experienceKeys.slice(0, limit)
 
   return (
     <VerticalTimeline>
-      {items.map((it, idx) => {
+      {items.map((key, idx) => {
+        const year = t(`${key}.year`)
+        const title = t(`${key}.title`)
+        const position = t(`${key}.position`)
+        const company = t(`${key}.company`)
+        const description = t(`${key}.description`)
+        
         return (
         <VerticalTimelineElement
-          key={it.year + '-' + idx}
+          key={key + '-' + idx}
           className="vertical-timeline-element--work"
           contentArrowStyle={{ borderRight: '7px solid #0a0614' }}
           iconStyle={{ background: 'linear-gradient(135deg,#7B4BE2,#5E24DB)', color: '#fff' }}
           icon={<WorkIcon />}
         >
           {/* Renderizar la fecha dentro de la tarjeta para evitar solaparse con la línea central */}
-          <div className="timeline-date">{it.year}</div>
-          <h3 className="vertical-timeline-element-title timeline-title">{it.title}</h3>
-          <h4 className="vertical-timeline-element-subtitle timeline-subtitle">{it.position} — <strong>{it.company}</strong></h4>
+          <div className="timeline-date">{year}</div>
+          <h3 className="vertical-timeline-element-title timeline-title">{title}</h3>
+          <h4 className="vertical-timeline-element-subtitle timeline-subtitle">{position} — <strong>{company}</strong></h4>
           {
             (() => {
-              const desc = it.description || ''
+              const desc = description || ''
               const lines = desc.split('\n').map(l => l.trim()).filter(Boolean)
               const isBullet = lines.length > 0 && lines.every(l => /^[-•*]/.test(l))
 

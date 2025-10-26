@@ -1,10 +1,13 @@
 import { memo } from 'react'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 /**
  * Sección "Sobre mí" - extraída e integrada desde Home.jsx
  */
 function AboutSection() {
+  const { t } = useLanguage()
+  
   return (
     <section id="about" className="about-section section-padding">
       <div className="about-container site-container grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -34,7 +37,7 @@ function AboutSection() {
             transition={{ delay: 0.2 }} 
             className="text-color-100 text-xl font-light leading-relaxed mb-8"
           >
-            Soy Pablo Pena Heredia, Analista QA y Desarrollador Fullstack. Me apasiona asegurar la calidad del software desde el inicio del ciclo de vida del desarrollo. Tengo experiencia en testing manual y automatizado, así como en desarrollo web. Me gusta aprender y compartir conocimientos.
+            {t('about.intro')}
           </motion.p>
 
           <motion.div 
@@ -43,16 +46,9 @@ function AboutSection() {
             transition={{ delay: 0.4 }} 
             className="bio-text space-y-6 text-color-100/70 font-light"
           >
-            <p>
-              Durante mi recorrido, trabajé como QA Manual Trainee, diseñando planes de prueba, ejecutando casos y gestionando defectos en Jira X-Ray.
-              Además, desarrollé un proyecto personal de automatización con Playwright y TypeScript. También participé en equipos de trabajo donde aplicamos estrategias de testing reales en entornos de prueba de aplicaciones web de Startups.
-            </p>
-            <p>
-              En mi tésis, desarrollé un sistema fullstack orientado a salones de estética con React, TypeScript, NestJS y MySQL, aplicando buenas prácticas de desarrollo y metodologías ágiles.
-            </p>
-            <p>
-              Hoy mi objetivo es seguir creciendo en el campo de la calidad de software y el desarrollo del mismo, aportando soluciones escalables. Me motiva aprender nuevas tecnologías y compartir lo que aprendo, colaborar con equipos y construyendo productos que ofrezcan experiencias confiables.
-            </p>
+            <p>{t('about.paragraph1')}</p>
+            <p>{t('about.paragraph2')}</p>
+            <p>{t('about.paragraph3')}</p>
           </motion.div>
         </article>
       </div>

@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { motion } from 'framer-motion'
+import CVDropdown from './CVDropdown'
 
 interface GradientHeroProps {
   highlight: string
@@ -40,16 +41,9 @@ export default function GradientHero({
         <p className="text-color-100 text-base lg:text-lg max-w-xl font-light">{description}</p>
       )}
 
-      {ctaLabel && ctaHref && (
+      {ctaLabel && (
         <div className="mt-6 hero-cta-wrapper">
-          <a href={ctaHref} download={ctaDownload} className="btn-primary inline-flex items-center hero-cta-large" aria-label={ctaLabel}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className="-ml-1">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            <span className="ml-2">{ctaLabel}</span>
-          </a>
+          <CVDropdown ctaLabel={ctaLabel} />
 
           {extraActions && (
             <div className="ml-4 flex items-center gap-3">

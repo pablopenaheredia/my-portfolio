@@ -1,10 +1,13 @@
 import { memo } from 'react'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 /**
  * Sección de contacto - extraída desde Home.jsx
  */
 function ContactSection() {
+  const { t } = useLanguage()
+  
   return (
     <section id="contact" className="contact-section section-padding py-16">
       <div className="site-container max-w-4xl">
@@ -14,7 +17,7 @@ function ContactSection() {
           viewport={{ once: true }} 
           className="text-center mb-12"
         >
-          <h2 className="text-color-100 text-3xl md:text-4xl font-light mb-4">¿Quieres...</h2>
+          <h2 className="text-color-100 text-3xl md:text-4xl font-light mb-4">{t('contact.title')}</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
@@ -27,10 +30,10 @@ function ContactSection() {
             className="contact-card"
           >
             <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">
-              ¿Ofrecer una oportunidad laboral?
+              {t('contact.card1.title')}
             </h3>
             <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-              Estoy abierto a oportunidades laborales o colaboraciones. Con experiencia en aseguramiento de calidad y desarrollo de software, me interesan roles que me permitan trabajar en proyectos desafiantes y significativos. Si tienes un proyecto o una posición en mente contáctame!.
+              {t('contact.card1.description')}
             </p>
           </motion.div>
 
@@ -43,10 +46,10 @@ function ContactSection() {
             className="contact-card"
           >
             <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">
-              ¿Conectar?
+              {t('contact.card2.title')}
             </h3>
             <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-              El networking es clave en la industria IT, y siempre busco conocer gente nueva y ampliar mi círculo profesional. Si compartes intereses similares o estas interesado en conversar sobre algo, no dudes en contactarme.
+              {t('contact.card2.description')}
             </p>
           </motion.div>
 
@@ -59,10 +62,10 @@ function ContactSection() {
             className="contact-card"
           >
             <h3 className="text-color-400 text-xl md:text-2xl font-light mb-4">
-              ¿Que testee tu software o construir algo juntos?
+              {t('contact.card3.title')}
             </h3>
             <p className="text-color-100/70 text-sm md:text-base leading-relaxed">
-              Me apasiona tanto el testing como el desarrollo de software aplicando buenas prácticas. Ya sea desarrollar un proyecto o testear uno existente, estoy listo para nuevos desafíos. Si tienes una idea o proyecto en mente, hablemos y veamos cómo podemos colaborar.
+              {t('contact.card3.description')}
             </p>
           </motion.div>
         </div>
@@ -75,10 +78,9 @@ function ContactSection() {
           transition={{ delay: 0.4 }} 
           className="flex flex-wrap justify-center items-center gap-6 md:gap-8"
         >
-          <a href="mailto:pablopenaheredia@gmail.com" className="contact-link">Correo</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="contact-link">GitHub</a>
-          <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noopener noreferrer" className="contact-link">LinkedIn</a>
-          <a href="/resume.pdf" download className="contact-link">CV</a>
+          <a href="mailto:pablopenaheredia@gmail.com" className="contact-link">{t('contact.links.email')}</a>
+          <a href="https://github.com/pablopenaheredia" target="_blank" rel="noopener noreferrer" className="contact-link">{t('contact.links.github')}</a>
+          <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noopener noreferrer" className="contact-link">{t('contact.links.linkedin')}</a>
         </motion.div>
 
   {/* Flecha de volver arriba */}
