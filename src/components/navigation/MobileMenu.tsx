@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Toast } from '../common'
 import { navItems } from '../../data'
-import { useLanguage } from '../../contexts/LanguageContext'
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -12,11 +11,6 @@ export default function MobileMenu() {
   const handleLinkClick = () => {
     setIsOpen(false)
   }
-  const { t } = useLanguage()
-  // Framer-motion typings in this project are a bit strict; create any-typed wrappers
-  const MotionDiv: any = motion.div as any
-  const MotionNav: any = motion.nav as any
-  const MotionLi: any = motion.li as any
 
   return (
     <>
@@ -37,7 +31,7 @@ export default function MobileMenu() {
         {isOpen && (
           <>
             {/* Backdrop */}
-            <MotionDiv
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -47,7 +41,7 @@ export default function MobileMenu() {
             />
 
             {/* Panel del menú */}
-            <MotionNav
+            <motion.nav
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -63,7 +57,7 @@ export default function MobileMenu() {
                 <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 280px)' }}>
                   <ul className="flex flex-col gap-2 pr-2">
                     {navItems.map((item, index) => (
-                      <MotionLi
+                      <motion.li
                         key={item.href}
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -76,10 +70,10 @@ export default function MobileMenu() {
                         >
                           <span className="flex items-center gap-3">
                             <span className="w-1 h-1 rounded-full bg-color-400" />
-                            {item.key ? t(`nav.${item.key}`) : item.label}
+                            {item.label}
                           </span>
                         </a>
-                      </MotionLi>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
@@ -133,7 +127,7 @@ export default function MobileMenu() {
                   </div>
                 </div>
               </div>
-            </MotionNav>
+            </motion.nav>
           </>
         )}
       </AnimatePresence>
