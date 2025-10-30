@@ -13,7 +13,7 @@ const fadeInOut = (t: number, m: number) => {
 const lerp = (n1: number, n2: number, speed: number) => (1 - speed) * n1 + speed * n2;
 
 // Configuration - Optimized for performance
-const particleCount = 600;
+const particleCount = 400;
 const particlePropCount = 9;
 const particlePropsLength = particleCount * particlePropCount;
 const rangeY = 350;

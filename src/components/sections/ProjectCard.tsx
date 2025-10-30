@@ -28,15 +28,41 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       style={{ animationDelay: `${index * 0.06}s` }}
     >
       <div className="overflow-hidden">
-        <img
-          src={project.image}
-          alt={`Captura de pantalla del proyecto ${project.name}`}
-          loading={index === 0 ? "eager" : "lazy"}
-          decoding="async"
-          width={1000}
-          height={600}
-          className={`${imgClass} project-card-image`}
-        />
+        <picture>
+          <source
+            media="(max-width: 768px)"
+            srcSet={`${project.image}?w=400&format=avif 400w, ${project.image}?w=800&format=avif 800w`}
+            type="image/avif"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          <source
+            media="(max-width: 768px)"
+            srcSet={`${project.image}?w=400&format=webp 400w, ${project.image}?w=800&format=webp 800w`}
+            type="image/webp"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          <source
+            media="(min-width: 769px)"
+            srcSet={`${project.image}?w=800&format=avif 800w, ${project.image}?w=1200&format=avif 1200w`}
+            type="image/avif"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+          <source
+            media="(min-width: 769px)"
+            srcSet={`${project.image}?w=800&format=webp 800w, ${project.image}?w=1200&format=webp 1200w`}
+            type="image/webp"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+          />
+          <img
+            src={project.image}
+            alt={`Captura de pantalla del proyecto ${project.name}`}
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+            width={1000}
+            height={600}
+            className={`${imgClass} project-card-image`}
+          />
+        </picture>
       </div>
 
       <div className="p-6">

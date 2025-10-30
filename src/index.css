@@ -502,7 +502,20 @@ body > main .content {
   font-size: 1.02rem;
 }
 
-/* Consolidated button classes */
+/* Mobile Menu Classes */
+.mobile-menu-panel {
+  @apply fixed top-0 right-0 h-screen w-72 bg-gradient-to-b from-color-900/95 to-color-950/95 backdrop-blur-xl z-[95] md:hidden border-l border-color-500/10 shadow-2xl overflow-hidden;
+}
+
+.mobile-nav-link {
+  @apply block py-3 px-4 rounded-lg text-color-100 hover:text-color-300 hover:bg-color-500/10 transition-all duration-200 border border-transparent hover:border-color-500/20 text-lg font-light;
+}
+
+.mobile-social-btn {
+  @apply w-10 h-10 flex items-center justify-center rounded-lg bg-color-500/10 hover:bg-color-500/20 border border-color-500/20 hover:border-color-400/40 transition-all;
+}
+
+/* Consolidated Button and Dropdown Classes */
 .btn-social {
   display: inline-flex;
   align-items: center;
