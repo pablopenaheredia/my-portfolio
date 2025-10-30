@@ -3,7 +3,6 @@ import { useLanguage } from '../../contexts/LanguageContext'
 import { useClipboard } from '../../hooks'
 import { debounce } from '../../utils'
 import { GradientHero, LanguageToggle } from '../ui'
-import { navItems } from '../../data'
 
 export default function HeroSection() {
   const { t } = useLanguage()
@@ -113,13 +112,21 @@ export default function HeroSection() {
         <aside className="hero-visual" aria-label="Navegación rápida">
           <div className="visual-nav-inner">
             <div className="grid grid-cols-1 gap-6">
-              {navItems.map((item) => (
-                <div key={item.href} className="nav-word">
-                  <a href={item.href} className="underline-animated">
-                    {t(`nav.${item.label.toLowerCase().replace(' ', '')}`)}
-                  </a>
-                </div>
-              ))}
+              <div className="nav-word">
+                <a href="#about" className="underline-animated">{t('nav.about')}</a>
+              </div>
+              <div className="nav-word">
+                <a href="#experience" className="underline-animated">{t('nav.experience')}</a>
+              </div>
+              <div className="nav-word">
+                <a href="#projects" className="underline-animated">{t('nav.projects')}</a>
+              </div>
+              <div className="nav-word">
+                <a href="#skills" className="underline-animated">{t('nav.skills')}</a>
+              </div>
+              <div className="nav-word">
+                <a href="#contact" className="underline-animated">{t('nav.contact')}</a>
+              </div>
             </div>
           </div>
         </aside>

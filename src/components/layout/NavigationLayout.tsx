@@ -24,7 +24,7 @@ export default function NavigationLayout() {
           <div className="mx-auto">
             <div className="nav-icons flex flex-col gap-8 items-center">
               {navItems.map((item) => (
-                <NavDot key={item.href} href={item.href} label={item.label} />
+                <NavDot key={item.href} href={item.href} label={t(`nav.${item.key}`) ?? item.label ?? ''} />
               ))}
             </div>
           </div>

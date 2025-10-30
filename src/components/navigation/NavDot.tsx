@@ -7,9 +7,15 @@ interface NavDotProps {
 }
 
 export default function NavDot({ href, label, active = false, onClick }: NavDotProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Forzar blur para quitar el hover state
+    e.currentTarget.blur()
+    if (onClick) onClick()
+  }
+
   // Props comunes para el enlace de navegación
   const commonProps = {
-    onClick,
+    onClick: handleClick,
     className: `nav-icon flex items-center justify-center group relative ${active ? 'active' : ''}`,
     title: label,
     'aria-label': label,
