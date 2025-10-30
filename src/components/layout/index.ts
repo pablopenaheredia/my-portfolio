@@ -1,2 +1,2 @@
-export { default as Timeline } from './Timeline';
 export { default as SectionHeader } from './SectionHeader';
+export { default as NavigationLayout } from './NavigationLayout';

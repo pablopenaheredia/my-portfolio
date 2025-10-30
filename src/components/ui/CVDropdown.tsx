@@ -1,26 +1,17 @@
-import { useState, useRef, useEffect } from 'react'
+import { useDropdown } from '../../hooks'
 
 interface CVDropdownProps {
   ctaLabel: string
 }
 
 export default function CVDropdown({ ctaLabel }: CVDropdownProps) {
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+  const { isOpen, setIsOpen, ref } = useDropdown()
+  
+  // Base path dinámico según el entorno
+  const basePath = import.meta.env.MODE === 'production' ? '/my-portfolio' : ''
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative" ref={ref}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -39,7 +30,7 @@ export default function CVDropdown({ ctaLabel }: CVDropdownProps) {
       {isOpen && (
         <div className="absolute top-full mt-2 left-0 bg-color-900/95 backdrop-blur-sm border border-color-500/20 rounded-lg shadow-xl overflow-hidden z-[200] min-w-[120px]">
           <a
-            href="/portfolio/CV Pablo Pena Heredia - QA Tester1.pdf"
+            href={`${basePath}/CV Pablo Pena Heredia - QA Tester1.pdf`}
             download="CV_Pablo_Pena_Heredia_QA_ES.pdf"
             className="block px-4 py-3 text-color-100 hover:bg-color-500/10 hover:text-color-300 transition-colors text-sm font-medium"
             onClick={() => setIsOpen(false)}
@@ -48,7 +39,7 @@ export default function CVDropdown({ ctaLabel }: CVDropdownProps) {
           </a>
           <div className="h-px bg-color-500/10"></div>
           <a
-            href="/portfolio/CV Pablo Pena Heredia - QA Tester Eng.pdf"
+            href={`${basePath}/CV Pablo Pena Heredia - QA Tester Eng.pdf`}
             download="CV_Pablo_Pena_Heredia_QA_EN.pdf"
             className="block px-4 py-3 text-color-100 hover:bg-color-500/10 hover:text-color-300 transition-colors text-sm font-medium"
             onClick={() => setIsOpen(false)}

@@ -1,21 +1,9 @@
-import { useState, useRef, useEffect } from 'react'
-import { useLanguage } from '../contexts/LanguageContext'
+import { useLanguage } from '../../contexts/LanguageContext'
+import { useDropdown } from '../../hooks'
 
 export default function LanguageToggle() {
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const { isOpen, setIsOpen, ref } = useDropdown()
   const { language, setLanguage } = useLanguage()
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
 
   const handleLanguageChange = () => {
     setLanguage(language === 'es' ? 'en' : 'es')
@@ -23,7 +11,7 @@ export default function LanguageToggle() {
   }
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative" ref={ref}>
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}

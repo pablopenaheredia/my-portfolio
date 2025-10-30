@@ -11,9 +11,10 @@ try{
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
 }catch(e){/* ignore */}
 
-const basename = '/portfolio'
+// Basename dinámico: "/" en local, "/my-portfolio" en producción
+const basename = import.meta.env.MODE === 'production' ? '/my-portfolio' : '/'
 
-const root = createRoot(document.getElementById('root'))
+const root = createRoot(document.getElementById('root')!)
 root.render(
   <React.StrictMode>
     <BrowserRouter basename={basename} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
