@@ -20,7 +20,7 @@ const projects: Project[] = [
     description: 'Sistema full-stack para gestión de salones de belleza desarrollado como proyecto de tesis.', 
     explanation: 'Sistema full-stack con backend en NestJS/TypeScript y frontend en React/TypeScript. Base de datos MySQL con TypeORM implementando 5 módulos: clientes, servicios, turnos, productos, usuarios y reportes con autenticación por roles. API RESTful con validaciones mediante class-validator y manejo de errores. Incluye documentación con especificaciones funcionales e historias de usuario.',
     image: trimly, 
-    technologies: ['React','TypeScript', 'NodeJS', 'NestJS', 'MySQL', 'Vite'],
+    technologies: ['React','TypeScript', 'NodeJS', 'NestJS', 'PostgreSQL', 'Vite', 'Vercel', 'Supabase', 'TailwindCSS'],
     githubUrl: 'https://github.com/pablopenaheredia/Trimly-APP'
   },
   { 

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useLanguage } from '../../contexts/LanguageContext'
 
 interface ProjectCardProps {
@@ -12,7 +13,7 @@ interface ProjectCardProps {
   index: number
 }
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
+function ProjectCard({ project, index }: ProjectCardProps) {
   const { t } = useLanguage()
 
   const itemClass = index === 0 ? 'col-span-1 md:col-span-4 md:row-span-2' : 'col-span-1 md:col-span-2'
@@ -23,7 +24,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <article
-      className={`project-item group fade-in-on-scroll ${itemClass} bg-gradient-to-br from-color-900/30 to-color-950/30 rounded-xl border border-color-500/10 hover:border-color-400/30 transition-all duration-300 overflow-hidden`}
+      className={`project-item group fade-in-on-scroll project-card ${itemClass}`}
       style={{ animationDelay: `${index * 0.06}s` }}
     >
       <div className="overflow-hidden">
@@ -34,7 +35,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           decoding="async"
           width={1000}
           height={600}
-          className={`${imgClass} transition-transform duration-500 group-hover:scale-105`}
+          className={`${imgClass} project-card-image`}
         />
       </div>
 
@@ -60,7 +61,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             href={project.githubUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 px-3 py-1.5 bg-color-500/10 hover:bg-color-500/20 border border-color-500/20 hover:border-color-400/30 rounded-lg text-color-400 text-sm hover:text-color-300 transition-all group/github"
+            className="project-link-btn group/github"
             aria-label={`Ver código de ${project.name} en GitHub`}
           >
             <svg className="w-4 h-4 transition-transform group-hover/github:scale-110" fill="currentColor" viewBox="0 0 24 24">
@@ -73,7 +74,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               href={project.docsUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-color-500/10 hover:bg-color-500/20 border border-color-500/20 hover:border-color-400/30 rounded-lg text-color-400 text-sm hover:text-color-300 transition-all group/docs"
+              className="project-link-btn group/docs"
               aria-label={`Ver documentación de ${project.name}`}
             >
               <svg className="w-4 h-4 transition-transform group-hover/docs:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -87,3 +88,5 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     </article>
   )
 }
+
+export default memo(ProjectCard)

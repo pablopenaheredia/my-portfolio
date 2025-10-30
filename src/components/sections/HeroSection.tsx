@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, memo } from 'react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { useClipboard } from '../../hooks'
 import { debounce } from '../../utils'
 import { GradientHero, LanguageToggle } from '../ui'
 
-export default function HeroSection() {
+function HeroSection() {
   const { t } = useLanguage()
   const { copyToClipboard } = useClipboard()
 
@@ -14,14 +14,14 @@ export default function HeroSection() {
   const description = t('hero.description')
   const ctaLabel = t('hero.downloadCV')
 
-  const extraActions = (
+  const extraActions = useMemo(() => (
     <>
       <a
         href="https://www.linkedin.com/in/pablopenah/"
         target="_blank"
         rel="noreferrer noopener"
         aria-label="LinkedIn"
-        className="btn-subtle btn-no-border btn-gloss focus-ring"
+        className="btn-social"
         title="LinkedIn"
       >
         <svg className="icon-md icon-hover" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
@@ -34,7 +34,7 @@ export default function HeroSection() {
         target="_blank"
         rel="noreferrer noopener"
         aria-label="GitHub"
-        className="btn-subtle btn-no-border btn-gloss focus-ring"
+        className="btn-social"
         title="GitHub"
       >
         <svg className="icon-md icon-hover" fill="currentColor" viewBox="0 0 24 24" width="24" height="24">
@@ -46,7 +46,7 @@ export default function HeroSection() {
         type="button"
         aria-label="Copiar email"
         title="Copiar email"
-        className="btn-subtle btn-no-border btn-gloss focus-ring flex items-center gap-2"
+        className="btn-social flex items-center gap-2"
         onClick={(e) => {
           e.preventDefault()
           copyToClipboard('pablopenaheredia@gmail.com')
@@ -62,7 +62,7 @@ export default function HeroSection() {
 
       <LanguageToggle />
     </>
-  )
+  ), [copyToClipboard])
 
   // CSS variable for visual nav alignment
   useEffect(() => {
@@ -134,3 +134,5 @@ export default function HeroSection() {
     </section>
   )
 }
+
+export default memo(HeroSection)

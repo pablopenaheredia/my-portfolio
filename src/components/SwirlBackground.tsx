@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
 
 // Math utilities
-const { PI, cos, sin, abs, random, atan2 } = Math;
+const { PI, cos, sin, abs, random } = Math;
 const TAU = 2 * PI;
 const rand = (n: number) => n * random();
 const randRange = (n: number) => n - rand(2 * n);

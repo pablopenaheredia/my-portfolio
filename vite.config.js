@@ -8,14 +8,14 @@ export default defineConfig({
   plugins: [
     react(),
     ViteImageOptimizer({
+      avif: { quality: 50 },
+      webp: { quality: 65 },
       png: { 
-        quality: 70,
+        quality: 60,
         compressionLevel: 9
       },
-      jpeg: { quality: 70 },
-      jpg: { quality: 70 },
-      webp: { quality: 70 },
-      avif: { quality: 60 },
+      jpeg: { quality: 65 },
+      jpg: { quality: 65 },
       includePublic: true,
       logStats: true
     }),
@@ -34,7 +34,13 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
-        passes: 2
+        passes: 3,
+        pure_funcs: ['console.log', 'console.info'],
+        dead_code: true,
+        unused: true
+      },
+      mangle: {
+        safari10: true
       }
     },
     rollupOptions: {
@@ -42,8 +48,12 @@ export default defineConfig({
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash].[ext]',
-        // Dejar que Vite maneje el code splitting automáticamente
-        manualChunks: undefined
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-animation': ['framer-motion'],
+          'vendor-three': ['simplex-noise'],
+          'swirl': ['/src/components/SwirlBackground.tsx']
+        }
       }
     },
     chunkSizeWarningLimit: 500,

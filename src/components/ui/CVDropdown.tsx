@@ -28,20 +28,20 @@ export default function CVDropdown({ ctaLabel }: CVDropdownProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full mt-2 left-0 bg-color-900/95 backdrop-blur-sm border border-color-500/20 rounded-lg shadow-xl overflow-hidden z-[200] min-w-[120px]">
+        <div className="dropdown-menu dropdown-menu-left">
           <a
             href={`${basePath}/CV Pablo Pena Heredia - QA Tester1.pdf`}
             download="CV_Pablo_Pena_Heredia_QA_ES.pdf"
-            className="block px-4 py-3 text-color-100 hover:bg-color-500/10 hover:text-color-300 transition-colors text-sm font-medium"
+            className="dropdown-item"
             onClick={() => setIsOpen(false)}
           >
             ES
           </a>
-          <div className="h-px bg-color-500/10"></div>
+          <div className="dropdown-divider"></div>
           <a
             href={`${basePath}/CV Pablo Pena Heredia - QA Tester Eng.pdf`}
             download="CV_Pablo_Pena_Heredia_QA_EN.pdf"
-            className="block px-4 py-3 text-color-100 hover:bg-color-500/10 hover:text-color-300 transition-colors text-sm font-medium"
+            className="dropdown-item"
             onClick={() => setIsOpen(false)}
           >
             EN

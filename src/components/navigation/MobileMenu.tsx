@@ -17,7 +17,7 @@ export default function MobileMenu() {
   {/* Botón hamburguesa */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="mobile-menu-btn fixed top-6 right-6 z-[100] md:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 bg-color-800/40 backdrop-blur-md rounded-lg border border-color-500/20 hover:border-color-400/40 transition-all"
+        className="mobile-menu-btn"
   aria-label="Alternar menú"
         aria-expanded={isOpen}
       >

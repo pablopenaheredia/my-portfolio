@@ -1,7 +1,8 @@
+import { memo } from 'react'
 import projects from '../../data/projects'
 import ProjectCard from './ProjectCard'
 
-export default function ProjectsSection() {
+function ProjectsSection() {
   return (
     <section id="projects" className="projects-section section-padding">
       <div className="projects-list site-container">
@@ -14,3 +15,5 @@ export default function ProjectsSection() {
     </section>
   )
 }
+
+export default memo(ProjectsSection)
