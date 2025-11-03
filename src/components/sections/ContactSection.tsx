@@ -43,7 +43,7 @@ function ContactSection() {
   
   return (
     <section id="contact" className="contact-section section-padding py-16">
-      <div className="site-container max-w-4xl">
+      <div className="site-container max-w-5xl">
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 

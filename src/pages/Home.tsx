@@ -52,7 +52,7 @@ export default function Home() {
           {/* Skills */}
           <SectionDivider label={t('section.skills')} />
           <section id="skills" className="skills-section section-padding">
-            <div className="site-container">
+            <div className="site-container max-w-5xl">
               <SkillsSection />
             </div>
           </section>

@@ -204,7 +204,6 @@ section#experience {
 
 section#skills {
   margin-top: 4.5rem; /* Reducido de 5rem (90%) */
-  padding-top: 5.4rem; /* Reducido de 6rem (90%) */
 }
 
 section#about {
@@ -212,8 +211,8 @@ section#about {
 }
 
 .skills-section {
-  padding-top: 1.8rem; /* Reducido de 2rem (90%) */
-  padding-bottom: 4.5rem; /* Reducido de 5rem (90%) */
+  padding-top: 3.15rem; /* Igualado con section spacing */
+  padding-bottom: 3.15rem; /* Igualado con section spacing */
 }
 
 body > main .content {
@@ -233,6 +232,8 @@ body > main .content {
   flex-wrap: wrap;
   gap: 0.45rem; /* Reducido de 0.5rem (90%) */
 }
+
+/* Open-to-work badge - pill style (non-button) */
 
 .hero-cta-wrapper .btn-primary {
   margin-left: 0;
@@ -436,16 +437,16 @@ body > main .content {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.9rem; /* Reducido de 1rem (90%) */
+  gap: 0.99rem; /* Aumentado 10% de 0.9rem */
   text-align: right;
 }
 
 .visual-nav-inner .nav-word {
   font-size: clamp(
-    1.8rem,
-    4.5vw,
-    2.88rem
-  ); /* Reducido de clamp(2rem, 5vw, 3.2rem) (90%) */
+    1.98rem,
+    4.95vw,
+    3.168rem
+  ); /* Aumentado 10% de clamp(1.8rem, 4.5vw, 2.88rem) */
   color: var(--text-subtle);
   letter-spacing: -0.02em;
   line-height: 1;
@@ -803,13 +804,21 @@ body > main .content {
 }
 
 .hero-headline-large {
-  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-size: clamp(
+    2.42rem,
+    6.6vw,
+    3.96rem
+  ); /* Aumentado 10% de clamp(2.2rem, 6vw, 3.6rem) */
   line-height: 0.95;
   letter-spacing: -0.02em;
 }
 
 .hero-headline-small {
-  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  font-size: clamp(
+    1.76rem,
+    4.95vw,
+    3.08rem
+  ); /* Aumentado 10% de clamp(1.6rem, 4.5vw, 2.8rem) */
   font-weight: 300;
 }
 
@@ -1182,9 +1191,9 @@ body > main .content {
 
   .skill-category-grid {
     grid-template-columns: repeat(
-      2,
+      4,
       minmax(38.88px, 1fr)
-    ); /* Reducido de minmax(43.2px, 1fr) (90%) */
+    ); /* Cambiado de 2 a 3 columnas */
     gap: 0.6075rem; /* Reducido de 0.675rem (90%) */
   }
 }

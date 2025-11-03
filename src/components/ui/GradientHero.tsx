@@ -37,8 +37,10 @@ export default function GradientHero({
         {titleRest && <span className="block text-color-100/70 mt-1 hero-headline-small">{titleRest}</span>}
       </h1>
 
+
+
       {description && (
-        <p className="text-color-100 text-base lg:text-lg max-w-xl font-light">{description}</p>
+        <p className="text-color-100 text-lg lg:text-xl max-w-xl font-light">{description}</p>
       )}
 
       {ctaLabel && (

@@ -44,7 +44,7 @@ function AboutSection() {
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             transition={{ delay: 0.4 }} 
-            className="bio-text space-y-6 text-color-100/70 font-light"
+            className="bio-text space-y-6 text-color-100/70 font-light text-base"
           >
             <p>{t('about.paragraph1')}</p>
             <p>{t('about.paragraph2')}</p>
