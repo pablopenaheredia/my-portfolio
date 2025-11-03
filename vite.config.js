@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     ViteImageOptimizer({
+
       avif: { quality: 50 },
       webp: { quality: 65 },
       png: { 

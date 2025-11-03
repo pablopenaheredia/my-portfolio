@@ -29,7 +29,7 @@ export default function Home() {
 
         <NavigationLayout />
 
-        <div className="content md:ml-14 lg:ml-14 xl:ml-14">
+        <div className="content md:ml-20 lg:ml-20 xl:ml-20">
           {/* Hero */}
           <HeroSection />
 

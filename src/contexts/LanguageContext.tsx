@@ -37,11 +37,11 @@ const translations = {
     // Projects
     'project.trimly.name': 'TRIMLY',
     'project.trimly.description': 'Sistema full-stack para gestión de salones de belleza desarrollado como proyecto de tesis.',
-    'project.trimly.explanation': 'Sistema full-stack con backend en NestJS/TypeScript y frontend en React/TypeScript. Base de datos MySQL con TypeORM implementando 5 módulos: clientes, servicios, turnos, productos, usuarios y reportes con autenticación por roles. API RESTful con validaciones mediante class-validator y manejo de errores. Incluye documentación con especificaciones funcionales e historias de usuario.',
+    'project.trimly.explanation': 'Desarrollé colaborativamente un sistema full-stack para gestión integral de salones estética, con backend en NestJS/TypeScript y frontend en React/TypeScript, implementando arquitectura modular y componentes reutilizables. Diseñé la base de datos en MySQL y TypeORM y luego la mudé a PostgreSQL y Supabase, gestionando módulos de clientes, servicios, turnos, productos, usuarios y reportes con autenticación basada en roles y control de accesos. Construí una API RESTful con validaciones, manejo de errores, y desplegué la aplicación en Vercel. Documenté especificaciones funcionales, historias de usuario y criterios de aceptación siguiendo metodología Agile, asegurando claridad técnica y trazabilidad del proyecto. Tambien se realizaron pruebas manuales sobre el mismo. Todo el proyecto se desarrolló con metodología Agile (Scrum) y Jira para el seguimiento del desarrollo.',
     
     'project.orangehrm.name': 'OrangeHRM Demo Test Automation Suite',
     'project.orangehrm.description': 'Proyecto freelance de automatización de pruebas con plan completo de testing y documentación.',
-    'project.orangehrm.explanation': 'Plan de pruebas completo con historias de usuario, casos de uso y reporte de defectos. Validación de flujos end-to-end: autenticación, gestión de usuarios y permisos. Automatización con Playwright y TypeScript usando Page Object Model y fixtures para reutilización y aislamiento de tests. Arquitectura escalable que facilita incorporar nuevas funcionalidades.',
+    'project.orangehrm.explanation': 'Desarrollé y ejecuté un plan de pruebas completo para una demo de una plataforma de gestión de Recursos Humanos, cubriendo autenticación, administración de usuarios y control de permisos. Implementé más de 40 scripts automatizados E2E utilizando Playwright y TypeScript bajo arquitectura Page Object Model, asegurando reutilización, mantenimiento y escalabilidad del framework. Documenté historias de usuario, casos de prueba, reporte de defectos y generé evidencia de ejecución.',
     
     'project.spaceinvaders.name': 'Space Invaders controlado por Gestos',
     'project.spaceinvaders.description': 'Versión interactiva del clásico juego controlado mediante gestos por webcam.',
@@ -49,6 +49,7 @@ const translations = {
     
     'project.button.github': 'GitHub',
     'project.button.docs': 'Documentación',
+    'project.button.demo': 'Ver Demo',
     
     // Contact
     'contact.title': '¿Quieres...',
@@ -118,11 +119,11 @@ const translations = {
     // Projects
     'project.trimly.name': 'TRIMLY',
     'project.trimly.description': 'Full-stack beauty salon management system developed as thesis project.',
-    'project.trimly.explanation': 'Full-stack system with NestJS/TypeScript backend and React/TypeScript frontend. MySQL database with TypeORM implementing 5 modules: clients, services, appointments, products, users and reports with role-based authentication. RESTful API with validations using class-validator and error handling. Includes documentation with functional specifications and user stories.',
+    'project.trimly.explanation': 'Full-stack system developed for comprehensive beauty salon management, using a NestJS/TypeScript backend and a React/TypeScript frontend. I implemented a modular architecture and reusable components. I designed the database in MySQL and later migrated it to PostgreSQL using TypeORM and Supabase, managing modules for clients, services, appointments, products, users, and reports with role-based authentication and access control. I built a RESTful API with validations and error handling, and deployed the application on Vercel. I documented functional specifications, user stories, and acceptance criteria following the Agile methodology, ensuring technical clarity and project traceability. Manual tests were also performed on the system. The entire project was developed using the Agile methodology (Scrum) and Jira for development tracking.',
     
     'project.orangehrm.name': 'OrangeHRM Demo Test Automation Suite',
     'project.orangehrm.description': 'Freelance test automation project with complete testing plan and documentation.',
-    'project.orangehrm.explanation': 'Complete test plan with user stories, use cases and defect reporting. End-to-end flow validation: authentication, user management and permissions. Automation with Playwright and TypeScript using Page Object Model and fixtures for test reusability and isolation. Scalable architecture that facilitates incorporating new features.',
+    'project.orangehrm.explanation': 'Developed and executed a comprehensive testing plan for a Human Resources management platform demo, covering authentication, user administration, and permission control. Implemented over 40 automated E2E scripts using Playwright and TypeScript under the Page Object Model (POM) architecture, ensuring framework reusability, maintainability, and scalability. Documented user stories, test cases, defect reports, and generated execution evidence.',
     
     'project.spaceinvaders.name': 'Gesture-Controlled Space Invaders',
     'project.spaceinvaders.description': 'Interactive version of the classic game controlled by webcam gestures.',
@@ -130,6 +131,7 @@ const translations = {
     
     'project.button.github': 'GitHub',
     'project.button.docs': 'Documentation',
+    'project.button.demo': 'View Demo',
     
     // Contact
     'contact.title': 'Want to...',

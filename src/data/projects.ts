@@ -11,6 +11,7 @@ export interface Project {
   technologies: string[];
   githubUrl: string;
   docsUrl?: string; // URL de documentación opcional
+  demoUrl?: string; // URL de demo opcional
 }
 
 const projects: Project[] = [
@@ -18,16 +19,17 @@ const projects: Project[] = [
     id: 'p1', 
     name: 'TRIMLY', 
     description: 'Sistema full-stack para gestión de salones de belleza desarrollado como proyecto de tesis.', 
-    explanation: 'Sistema full-stack con backend en NestJS/TypeScript y frontend en React/TypeScript. Base de datos MySQL con TypeORM implementando 5 módulos: clientes, servicios, turnos, productos, usuarios y reportes con autenticación por roles. API RESTful con validaciones mediante class-validator y manejo de errores. Incluye documentación con especificaciones funcionales e historias de usuario.',
+    explanation: 'Desarrollé colaborativamente un sistema full-stack para gestión integral de salones estética, con backend en NestJS/TypeScript y frontend en React/TypeScript, implementando arquitectura modular y componentes reutilizables. Diseñé la base de datos en MySQL y luego la mudé a PostgreSQL utilizando TypeORM y Supabase, gestionando módulos de clientes, servicios, turnos, productos, usuarios y reportes con autenticación basada en roles y control de accesos. Construí una API RESTful con validaciones, manejo de errores, y desplegué la aplicación en Vercel. Documenté especificaciones funcionales, historias de usuario y criterios de aceptación siguiendo metodología Agile, asegurando claridad técnica y trazabilidad del proyecto. Tambien se realizaron pruebas manuales sobre el mismo. Todo el proyecto se desarrolló con metodología Agile (Scrum) y Jira para el seguimiento del desarrollo',
     image: trimly, 
-    technologies: ['React','TypeScript', 'NodeJS', 'NestJS', 'PostgreSQL', 'Vite', 'Vercel', 'Supabase', 'TailwindCSS'],
-    githubUrl: 'https://github.com/pablopenaheredia/Trimly-APP'
+    technologies: ['HTML','TailwindCSS', 'TypeScript', 'React', 'Vite', 'Node.JS', 'NestJS', 'TypeORM', 'PostgreSQL','Supabase', 'Vercel'],
+    githubUrl: 'https://github.com/pablopenaheredia/Trimly-APP',
+    demoUrl: 'https://trimly-frontend-eta.vercel.app/'
   },
   { 
     id: 'p2', 
     name: 'OrangeHRM Demo Test Automation Suite', 
     description: 'Proyecto freelance de automatización de pruebas con plan completo de testing y documentación.', 
-    explanation: 'Plan de pruebas completo con historias de usuario, casos de uso y reporte de defectos. Validación de flujos end-to-end: autenticación, gestión de usuarios y permisos. Automatización con Playwright y TypeScript usando Page Object Model y fixtures para reutilización y aislamiento de tests. Arquitectura escalable que facilita incorporar nuevas funcionalidades.',
+    explanation: 'Desarrollé y ejecuté un plan de pruebas completo para una demo de una plataforma de gestión de Recursos Humanos, cubriendo autenticación, administración de usuarios y control de permisos. Implementé más de 40 scripts automatizados E2E utilizando Playwright y TypeScript bajo arquitectura Page Object Model, asegurando reutilización, mantenimiento y escalabilidad del framework. Documenté historias de usuario, casos de prueba, reporte de defectos y generé evidencia de ejecución.',
     image: orangehrmdemo, 
     technologies: ['Playwright','TypeScript', 'NodeJS'],
     githubUrl: 'https://github.com/pablopenaheredia/OrangeHRM-Demo',
@@ -39,7 +41,7 @@ const projects: Project[] = [
     description: 'Versión interactiva del clásico juego controlado mediante gestos por webcam.', 
     explanation: 'Versión del clásico Space Invaders controlado mediante gestos capturados por webcam. Reconocimiento en tiempo real para mover la nave lateralmente y disparar al cerrar el puño.',
     image: spaceInvaders, 
-    technologies: ['Python','OpenCV'],
+    technologies: ['Python','OpenCV', 'Mediapipe'],
     githubUrl: 'https://github.com/pablopenaheredia/ExpoCarreras2025'
   },
 ]

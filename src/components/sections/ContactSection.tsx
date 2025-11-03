@@ -1,12 +1,45 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../../contexts/LanguageContext'
+import { Toast } from '../common'
 
 /**
  * Sección de contacto - extraída desde Home.jsx
  */
 function ContactSection() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const [showToast, setShowToast] = useState(false)
+  const [toastMessage, setToastMessage] = useState('')
+
+  const handleCopyEmail = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    const email = 'pablopenaheredia@gmail.com'
+    
+    const doShowSuccess = () => {
+      setToastMessage(language === 'es' ? 'Email copiado' : 'Email copied')
+      setShowToast(true)
+    }
+    const doShowFail = () => {
+      setToastMessage(language === 'es' ? 'No se pudo copiar' : 'Could not copy')
+      setShowToast(true)
+    }
+
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(email).then(doShowSuccess).catch(doShowFail)
+    } else {
+      try {
+        const ta = document.createElement('textarea')
+        ta.value = email
+        document.body.appendChild(ta)
+        ta.select()
+        document.execCommand('copy')
+        document.body.removeChild(ta)
+        doShowSuccess()
+      } catch {
+        doShowFail()
+      }
+    }
+  }
   
   return (
     <section id="contact" className="contact-section section-padding py-16">
@@ -78,7 +111,13 @@ function ContactSection() {
           transition={{ delay: 0.4 }} 
           className="flex flex-wrap justify-center items-center gap-6 md:gap-8"
         >
-          <a href="mailto:pablopenaheredia@gmail.com" className="contact-link">{t('contact.links.email')}</a>
+          <a 
+            href="#" 
+            onClick={handleCopyEmail} 
+            className="contact-link"
+          >
+            {t('contact.links.email')}
+          </a>
           <a href="https://github.com/pablopenaheredia" target="_blank" rel="noopener noreferrer" className="contact-link">{t('contact.links.github')}</a>
           <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noopener noreferrer" className="contact-link">{t('contact.links.linkedin')}</a>
         </motion.div>
@@ -99,6 +138,8 @@ function ContactSection() {
           </a>
         </motion.div>
       </div>
+
+      <Toast message={toastMessage} show={showToast} onClose={() => setShowToast(false)} />
     </section>
   )
 }

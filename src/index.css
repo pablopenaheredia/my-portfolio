@@ -579,7 +579,7 @@ body > main .content {
   border: 1px solid rgba(92, 32, 223, 0.2);
   border-radius: var(--radius-md);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
+  overflow: visible;
   z-index: 200;
   min-width: 80px;
 }
@@ -853,7 +853,7 @@ body > main .content {
   background: rgba(92, 32, 223, 0.1);
   border: 1px solid rgba(92, 32, 223, 0.2);
   border-radius: var(--radius-md);
-  color: var(--color-400);
+  color: #e8e6ef;
   font-size: 0.875rem;
   transition: all 0.3s ease;
 }
@@ -861,17 +861,19 @@ body > main .content {
 .project-link-btn:hover {
   background: rgba(92, 32, 223, 0.2);
   border-color: rgba(122, 72, 229, 0.3);
-  color: var(--color-300);
+  color: #ffffff;
 }
 
 .project-link-btn svg {
   width: 1rem;
   height: 1rem;
   transition: transform 0.3s ease;
+  fill: #e8e6ef;
 }
 
 .project-link-btn:hover svg {
   transform: scale(1.1);
+  fill: #ffffff;
 }
 
 /* skills */
@@ -968,6 +970,162 @@ body > main .content {
 
 .stack-block {
   margin-top: 3rem;
+}
+
+/* ============================================
+   SKILLS GROUPED BY CATEGORY
+   ============================================ */
+
+.skills-wrapper-grouped {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 100%;
+}
+
+.skill-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skill-category-title {
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(123, 75, 226, 0.2);
+}
+
+.skill-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(48px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Wrapper para permitir que el tooltip sea visible */
+.skill-category-grid li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-item-grouped {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: var(--transition-standard), background 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 56px;
+  height: 56px;
+}
+
+.skill-category-grid li:hover .skill-item-grouped {
+  transform: scale(1.08);
+}
+
+.skill-item-grouped::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -120%;
+  width: 40%;
+  height: 180%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(-20deg) translateX(0);
+  transition: transform 420ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 300ms ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.skill-category-grid li:hover .skill-item-grouped::before {
+  transform: rotate(-20deg) translateX(320%);
+  opacity: 1;
+}
+
+.skill-category-grid li:hover .skill-item-grouped {
+  box-shadow: var(--shadow-primary);
+}
+
+.skill-item-grouped img,
+.skill-item-grouped svg,
+.skill-item-grouped > div {
+  position: relative;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+}
+
+/* Tooltip mejorado con diseño armonioso */
+.skill-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: linear-gradient(
+    135deg,
+    rgba(10, 6, 20, 0.98),
+    rgba(18, 10, 35, 0.98)
+  );
+  backdrop-filter: blur(12px);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+  white-space: nowrap;
+  border: 1px solid rgba(123, 75, 226, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(123, 75, 226, 0.15);
+  z-index: 10000;
+}
+
+.skill-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(10, 6, 20, 0.98);
+}
+
+.skill-category-grid li:hover .skill-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+@media (max-width: 768px) {
+  .skills-wrapper-grouped {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .skill-category-grid {
+    grid-template-columns: repeat(2, minmax(48px, 1fr));
+    gap: 0.75rem;
+  }
 }
 
 .category-block {
@@ -1419,4 +1577,234 @@ body > main .content {
     font-size: 1rem;
     padding: 0.625rem 1.25rem;
   }
+}
+
+/* ============================================
+   VERTICAL NAVIGATION BAR STYLES
+   ============================================ */
+
+/* Social icon buttons in vertical nav - same effects as .btn-social */
+.nav-social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-sm);
+  color: #e8e6ef;
+  background: transparent;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-standard), color var(--duration-fast) ease;
+}
+
+.nav-social-icon:hover {
+  transform: translateY(-4px);
+  transition: transform 0.3s ease;
+}
+
+.nav-social-icon:active {
+  transform: translateY(-1px);
+}
+
+.nav-social-icon:focus-visible {
+  box-shadow: 0 0 0 6px rgba(92, 32, 223, 0.08);
+  outline: none;
+  border-radius: var(--radius-sm);
+}
+
+.nav-social-icon::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -120%;
+  width: 40%;
+  height: 180%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0)
+  );
+  transform: rotate(-20deg) translateX(0);
+  transition: transform 420ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 300ms ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-social-icon:hover::after,
+.nav-social-icon:focus-visible::after {
+  transform: rotate(-20deg) translateX(320%);
+  opacity: 1;
+}
+
+/* CV Dropdown for vertical nav */
+.cv-dropdown-vertical {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 6, 20, 0.98),
+    rgba(18, 10, 35, 0.98)
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(123, 75, 226, 0.15);
+  border-radius: 12px;
+  padding: 0.75rem;
+  min-width: 140px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(123, 75, 226, 0.1);
+  z-index: 100;
+  animation: slideUpFade 0.2s ease-out;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.cv-role-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cv-role-button {
+  @apply flex items-center justify-between w-full px-3 py-2 rounded-lg text-color-100 hover:text-color-300 hover:bg-color-500/10 transition-all duration-200 text-sm font-light;
+}
+
+.cv-lang-buttons {
+  display: flex;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.cv-lang-link {
+  @apply flex-1 text-center px-3 py-1.5 rounded-md text-xs text-color-100/80 hover:text-color-300 bg-color-500/5 hover:bg-color-500/15 border border-color-500/10 hover:border-color-400/30 transition-all duration-200;
+}
+
+.cv-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(123, 75, 226, 0.2),
+    transparent
+  );
+  margin: 0.5rem 0;
+}
+
+/* CV Dropdown for horizontal menu (HeroSection) */
+.cv-role-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.cv-role-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  color: var(--text-primary);
+  background: transparent;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.cv-role-item:hover .cv-role-trigger {
+  color: var(--color-300);
+  background: rgba(123, 75, 226, 0.1);
+}
+
+.cv-lang-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 0;
+  background: rgba(10, 6, 20, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(92, 32, 223, 0.2);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  z-index: 250;
+  min-width: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Área invisible para mantener el submenu abierto */
+.cv-lang-submenu::before {
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: transparent;
+}
+
+.cv-lang-item {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 300;
+  background: transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.cv-lang-item:hover {
+  color: var(--color-300);
+  background: rgba(123, 75, 226, 0.15);
+}
+
+/* Old styles - keeping for compatibility */
+.cv-role-section-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cv-role-button-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.cv-role-button-horizontal:hover {
+  color: var(--color-300);
+  background: rgba(123, 75, 226, 0.1);
+}
+
+.cv-lang-buttons-horizontal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 1rem;
+  margin-top: 0.25rem;
 }

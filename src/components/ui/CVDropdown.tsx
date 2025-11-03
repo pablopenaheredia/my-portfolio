@@ -1,4 +1,12 @@
 import { useDropdown } from '../../hooks'
+import { useLanguage } from '../../contexts/LanguageContext'
+import { useState } from 'react'
+
+// Importar los PDFs
+import cvQaEs from '../../assets/QA Tester - Pablo Pena Heredia.pdf'
+import cvQaEn from '../../assets/QA Tester - Pablo Pena Heredia - English.pdf'
+import cvDevEs from '../../assets/Fullstack Developer - Pablo Pena Heredia.pdf'
+import cvDevEn from '../../assets/Fullstack Developer - Pablo Pena Heredia English.pdf'
 
 interface CVDropdownProps {
   ctaLabel: string
@@ -6,9 +14,13 @@ interface CVDropdownProps {
 
 export default function CVDropdown({ ctaLabel }: CVDropdownProps) {
   const { isOpen, setIsOpen, ref } = useDropdown()
-  
-  // Base path dinámico según el entorno
-  const basePath = import.meta.env.MODE === 'production' ? '/my-portfolio' : ''
+  const { language } = useLanguage()
+  const [hoveredRole, setHoveredRole] = useState<'qa' | 'dev' | null>(null)
+
+  const handleDownload = () => {
+    setIsOpen(false)
+    setHoveredRole(null)
+  }
 
   return (
     <div className="relative" ref={ref}>
@@ -28,24 +40,88 @@ export default function CVDropdown({ ctaLabel }: CVDropdownProps) {
       </button>
 
       {isOpen && (
-        <div className="dropdown-menu dropdown-menu-left">
-          <a
-            href={`${basePath}/CV Pablo Pena Heredia - QA Tester1.pdf`}
-            download="CV_Pablo_Pena_Heredia_QA_ES.pdf"
-            className="dropdown-item"
-            onClick={() => setIsOpen(false)}
+        <div className="dropdown-menu dropdown-menu-left" style={{ minWidth: '140px' }}>
+          {/* QA Section */}
+          <div 
+            className="cv-role-item"
+            onMouseEnter={() => setHoveredRole('qa')}
+            onMouseLeave={() => setHoveredRole(null)}
           >
-            ES
-          </a>
+            <div className="cv-role-trigger">
+              <span>QA</span>
+              <svg 
+                className="w-3 h-3" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+            {hoveredRole === 'qa' && (
+              <div className="cv-lang-submenu">
+                <a
+                  href={cvQaEs}
+                  download="CV_Pablo_Pena_Heredia_QA_ES.pdf"
+                  className="cv-lang-item"
+                  onClick={handleDownload}
+                >
+                  ES
+                </a>
+                <a
+                  href={cvQaEn}
+                  download="CV_Pablo_Pena_Heredia_QA_EN.pdf"
+                  className="cv-lang-item"
+                  onClick={handleDownload}
+                >
+                  EN
+                </a>
+              </div>
+            )}
+          </div>
+
           <div className="dropdown-divider"></div>
-          <a
-            href={`${basePath}/CV Pablo Pena Heredia - QA Tester Eng.pdf`}
-            download="CV_Pablo_Pena_Heredia_QA_EN.pdf"
-            className="dropdown-item"
-            onClick={() => setIsOpen(false)}
+
+          {/* Desarrollador Section */}
+          <div 
+            className="cv-role-item"
+            onMouseEnter={() => setHoveredRole('dev')}
+            onMouseLeave={() => setHoveredRole(null)}
           >
-            EN
-          </a>
+            <div className="cv-role-trigger">
+              <span>{language === 'es' ? 'Desarrollador' : 'Developer'}</span>
+              <svg 
+                className="w-3 h-3" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"/>
+              </svg>
+            </div>
+            {hoveredRole === 'dev' && (
+              <div className="cv-lang-submenu">
+                <a
+                  href={cvDevEs}
+                  download="CV_Pablo_Pena_Heredia_Dev_ES.pdf"
+                  className="cv-lang-item"
+                  onClick={handleDownload}
+                >
+                  ES
+                </a>
+                <a
+                  href={cvDevEn}
+                  download="CV_Pablo_Pena_Heredia_Dev_EN.pdf"
+                  className="cv-lang-item"
+                  onClick={handleDownload}
+                >
+                  EN
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
