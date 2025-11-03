@@ -56,7 +56,7 @@ export default function MobileMenu() {
                   <div className="h-px bg-gradient-to-r from-color-500/50 to-transparent" />
                 </div>
 
-                <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 280px)' }}>
+                <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 380px)' }}>
                   <ul className="flex flex-col gap-2 pr-2">
                     {navItems.map((item, index) => (
                       <motion.li

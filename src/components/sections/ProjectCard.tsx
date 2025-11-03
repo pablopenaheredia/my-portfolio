@@ -67,13 +67,13 @@ function ProjectCard({ project, index }: ProjectCardProps) {
       </div>
 
       <div className="p-6">
-        <h2 className="text-color-300 text-xl md:text-2xl font-light mb-3 group-hover:text-color-400 transition-colors">
+        <h2 className="text-color-300 text-2xl md:text-3xl font-light mb-3 group-hover:text-color-400 transition-colors">
           {t(`project.${translationKey}.name`)}
         </h2>
-        <p className="text-color-100/80 font-light mb-2 text-sm md:text-base leading-relaxed">
+        <p className="text-color-100/80 font-light mb-2 text-base md:text-lg leading-relaxed">
           {t(`project.${translationKey}.description`)}
         </p>
-        <p className="text-color-100/60 font-light mb-4 text-xs md:text-sm leading-relaxed">
+        <p className="text-color-100/60 font-light mb-4 text-sm md:text-base leading-relaxed">
           {t(`project.${translationKey}.explanation`)}
         </p>
         <div className="flex flex-wrap gap-2 mb-4">
