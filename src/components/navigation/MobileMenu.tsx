@@ -38,7 +38,7 @@ export default function MobileMenu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[90] md:hidden"
+              className="fixed inset-0 bg-black/70 z-[90] md:hidden"
               onClick={() => setIsOpen(false)}
             />
 
@@ -47,8 +47,9 @@ export default function MobileMenu() {
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              transition={{ type: 'spring', damping: 30, stiffness: 140 }}
               className="mobile-menu-panel"
+              style={{ willChange: 'transform' }}
             >
               <div className="flex flex-col h-full pt-24 px-6 pb-6">
                 <div className="mb-6">
@@ -56,7 +57,7 @@ export default function MobileMenu() {
                   <div className="h-px bg-gradient-to-r from-color-500/50 to-transparent" />
                 </div>
 
-                <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 420px)' }}>
+                <div className="flex-1 overflow-y-auto overflow-x-hidden" style={{ maxHeight: 'calc(100vh - 320px)' }}>
                   <ul className="flex flex-col gap-2 pr-2">
                     {navItems.map((item, index) => (
                       <motion.li
