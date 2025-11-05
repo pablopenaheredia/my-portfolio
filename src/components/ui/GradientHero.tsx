@@ -60,7 +60,7 @@ export default function GradientHero({
       )}
 
       {/* Social Icons - Visible only on mobile/tablet */}
-      <div className="mt-8 flex justify-center gap-4 md:hidden">
+      <div className="mt-8 flex justify-center gap-6 md:hidden">
         <a 
           href="https://github.com/pablopenaheredia" 
           target="_blank" 

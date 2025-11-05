@@ -1265,6 +1265,21 @@ body > main .content {
     ); /* Cambiado de 2 a 3 columnas */
     gap: 0.6075rem; /* Reducido de 0.675rem (90%) */
   }
+
+  /* Aumentar tamaño de botones en móvil */
+  .btn-primary {
+    padding: 0.875rem 1.75rem; /* Aumentado de 0.75rem 1.5rem */
+    font-size: 1rem; /* Aumentado */
+  }
+
+  .hero-social-btn {
+    padding: 0.625rem; /* Aumentado de 0.45rem */
+  }
+
+  .hero-social-btn svg {
+    width: 1.5rem; /* 24px - aumentado de 20px */
+    height: 1.5rem;
+  }
 }
 
 .category-block {
