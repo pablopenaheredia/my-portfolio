@@ -15,7 +15,7 @@ const translations = {
     // Hero
     'hero.title': 'Analista QA',
     'hero.subtitle': '& Desarrollador Fullstack',
-    'hero.description': 'Analista QA y desarrollador Fullstack enfocado en automatización de pruebas, confiabilidad y arquitecturas claras. Actualmente disponible para proyectos y colaboraciones.',
+    'hero.description': 'Mi enfoque está en la calidad del software y la mejora continua, aplicando buenas practicas y buena comunicación en cada etapa del desarrollo del proyecto.',
     'hero.downloadCV': 'Descargar CV',
     'hero.name': 'PABLO PENA HEREDIA',
     
@@ -53,11 +53,11 @@ const translations = {
     
     // Contact
     'contact.title': '¿Quieres...',
-    'contact.card1.title': '¿Ofrecer una oportunidad laboral?',
+    'contact.card1.title': 'ofrecerme una oportunidad laboral?',
     'contact.card1.description': 'Estoy abierto a oportunidades laborales o colaboraciones. Con experiencia en aseguramiento de calidad y desarrollo de software, me interesan roles que me permitan trabajar en proyectos desafiantes y significativos. Si tienes un proyecto o una posición en mente contáctame!.',
-    'contact.card2.title': '¿Conectar?',
-    'contact.card2.description': 'El networking es clave en la industria IT, y siempre busco conocer gente nueva y ampliar mi círculo profesional. Si compartes intereses similares o estas interesado en conversar sobre algo, no dudes en contactarme.',
-    'contact.card3.title': '¿Que testee tu software o construir algo juntos?',
+    'contact.card2.title': 'conectar?',
+    'contact.card2.description': 'El networking es clave en la industria IT, y siempre busco conocer gente nueva y ampliar mi círculo profesional. Si compartes intereses similares o estas interesado en conversar sobre algo, no dudes en conectar conmigo!.',
+    'contact.card3.title': 'que testee tu software o construir algo juntos?',
     'contact.card3.description': 'Me apasiona tanto el testing como el desarrollo de software aplicando buenas prácticas. Ya sea desarrollar un proyecto o testear uno existente, estoy listo para nuevos desafíos. Si tienes una idea o proyecto en mente, hablemos y veamos cómo podemos colaborar.',
     
     'contact.links.email': 'Correo',
@@ -65,7 +65,7 @@ const translations = {
     'contact.links.linkedin': 'LinkedIn',
     
     // About
-    'about.intro': 'Soy Pablo Pena Heredia, Analista QA y Desarrollador Fullstack. Me apasiona asegurar la calidad del software desde el inicio del ciclo de vida del desarrollo. Tengo experiencia en testing manual y automatizado, así como en desarrollo web. Me gusta aprender y compartir conocimientos.',
+    'about.intro': 'Soy Pablo Pena Heredia, egresado como Tecnico Superior en Desarrollo de Software. Me apasiona asegurar la calidad del software desde el inicio del ciclo de vida del desarrollo. Tengo experiencia en testing manual y automatizado, así como en desarrollo web. Me gusta aprender y compartir conocimientos.',
     'about.paragraph1': 'Durante mi recorrido, trabajé como QA Manual Trainee, diseñando planes de prueba, ejecutando casos y gestionando defectos en Jira X-Ray. Además, desarrollé un proyecto personal de automatización con Playwright y TypeScript. También participé en equipos de trabajo donde aplicamos estrategias de testing reales en entornos de prueba de aplicaciones web de Startups.',
     'about.paragraph2': 'En mi tésis, desarrollé un sistema fullstack orientado a salones de estética con React, TypeScript, NestJS y MySQL, aplicando buenas prácticas de desarrollo y metodologías ágiles.',
     'about.paragraph3': 'Hoy mi objetivo es seguir creciendo en el campo de la calidad de software y el desarrollo del mismo, aportando soluciones escalables. Me motiva aprender nuevas tecnologías y compartir lo que aprendo, colaborar con equipos y construyendo productos que ofrezcan experiencias confiables.',
@@ -97,7 +97,7 @@ const translations = {
     // Hero
     'hero.title': 'QA Analyst',
     'hero.subtitle': '& Fullstack Developer',
-    'hero.description': 'QA Analyst and Fullstack Developer focused on test automation, reliability and clear architectures. Currently available for projects and collaborations.',
+    'hero.description': 'My focus is on software quality and continuous improvement, applying best practices and effective communication at every stage of project development.',
     'hero.downloadCV': 'Download CV',
     'hero.name': 'PABLO PENA HEREDIA',
     
@@ -147,7 +147,7 @@ const translations = {
     'contact.links.linkedin': 'LinkedIn',
     
     // About
-    'about.intro': 'I am Pablo Pena Heredia, QA Analyst and Fullstack Developer. I am passionate about ensuring software quality from the beginning of the development lifecycle. I have experience in manual and automated testing, as well as web development. I enjoy learning and sharing knowledge.',
+    'about.intro': 'I am Pablo Pena Heredia, graduate with an Associate Degree in Software Development. I am passionate about ensuring software quality from the beginning of the development lifecycle. I have experience in manual and automated testing, as well as web development. I enjoy learning and sharing knowledge.',
     'about.paragraph1': 'Throughout my journey, I worked as a QA Manual Trainee, designing test plans, executing test cases, and managing defects in Jira X-Ray. Additionally, I developed a personal automation project with Playwright and TypeScript. I also participated in work teams where we applied real testing strategies in Startup web application testing environments.',
     'about.paragraph2': 'In my thesis, I developed a fullstack system oriented to beauty salons with React, TypeScript, NestJS and MySQL, applying development best practices and agile methodologies.',
     'about.paragraph3': 'Today my goal is to continue growing in the field of software quality and development, providing scalable solutions. I am motivated to learn new technologies and share what I learn, collaborate with teams and build products that offer reliable experiences.',
