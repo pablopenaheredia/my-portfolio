@@ -1,11 +1,9 @@
+// seccion de contacto con tarjetas informativas y enlaces sociales
 import { memo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { Toast } from '../common'
 
-/**
- * Sección de contacto - extraída desde Home.jsx
- */
 function ContactSection() {
   const { t, language } = useLanguage()
   const [showToast, setShowToast] = useState(false)
@@ -54,7 +52,6 @@ function ContactSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          {/* Ofrecer oportunidad laboral */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -70,7 +67,6 @@ function ContactSection() {
             </p>
           </motion.div>
 
-          {/* Conectar */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -86,7 +82,6 @@ function ContactSection() {
             </p>
           </motion.div>
 
-          {/* Construir algo */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             whileInView={{ opacity: 1, y: 0 }} 
@@ -103,7 +98,6 @@ function ContactSection() {
           </motion.div>
         </div>
 
-  {/* Enlaces de contacto */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }} 
           whileInView={{ opacity: 1, y: 0 }} 
@@ -122,7 +116,6 @@ function ContactSection() {
           <a href="https://www.linkedin.com/in/pablopenah/" target="_blank" rel="noopener noreferrer" className="contact-link">{t('contact.links.linkedin')}</a>
         </motion.div>
 
-  {/* Flecha de volver arriba */}
         <motion.div 
           initial={{ opacity: 0 }} 
           whileInView={{ opacity: 1 }} 

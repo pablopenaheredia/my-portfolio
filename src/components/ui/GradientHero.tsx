@@ -1,3 +1,4 @@
+// componente hero con titulo, descripcion, cta y botones sociales
 import { Fragment, useState } from 'react'
 import CVDropdown from './CVDropdown'
 import { Toast } from '../common'
@@ -59,7 +60,6 @@ export default function GradientHero({
         </div>
       )}
 
-      {/* Social Icons - Visible only on mobile/tablet */}
       <div className="mt-8 flex justify-center gap-6 md:hidden">
         <a 
           href="https://github.com/pablopenaheredia" 

@@ -1,8 +1,4 @@
-/**
- * Variantes centralizadas de animación para Framer Motion
- * Usadas en toda la app para animaciones consistentes
- */
-
+// variantes centralizadas de animacion para framer motion
 export const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 }

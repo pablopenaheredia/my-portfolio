@@ -1,14 +1,13 @@
+// configuracion de rutas con animaciones de transicion entre paginas
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import Home from './pages/Home'
-// About/Projects/Contact ahora son secciones internas dentro de Home
 
 export default function AnimatedRoutes(){
   const location = useLocation()
 
-  // Variantes de transición para las rutas (entrada/salida)
   const pageTransition = {
     initial: { opacity: 0, y: 12 },
     animate: { opacity: 1, y: 0 },

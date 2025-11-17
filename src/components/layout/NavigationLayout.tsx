@@ -1,3 +1,4 @@
+// barra de navegacion lateral con botones sociales y toggle de idioma
 import { InPageNavManager, MobileMenu } from '../navigation'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { useState } from 'react'
@@ -45,9 +46,7 @@ export default function NavigationLayout() {
       <InPageNavManager />
       <MobileMenu />
       
-      {/* Left nav - hidden on mobile */}
       <nav className="fixed left-0 top-0 h-screen w-20 z-50 hidden md:flex flex-col" aria-label="Main navigation">
-        {/* Top: INICIO button */}
         <div className="pt-6 pb-8 flex-shrink-0">
           <a 
             href="#home" 
@@ -104,7 +103,6 @@ export default function NavigationLayout() {
             </svg>
           </button>
 
-          {/* Language Toggle (simple toggle) */}
           <button
             type="button"
             onClick={handleLanguageToggle}

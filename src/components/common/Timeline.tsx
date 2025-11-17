@@ -1,8 +1,8 @@
+// linea de tiempo vertical con experiencias laborales
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
 import 'react-vertical-timeline-component/style.min.css'
 import { useLanguage } from '../../contexts/LanguageContext'
 
-// Work icon component (replaces MUI icon)
 const WorkIcon = () => (
   <svg 
   viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
@@ -41,7 +41,6 @@ export default function Timeline({ limit = 3 }: TimelineProps) {
           iconStyle={{ background: 'linear-gradient(135deg,#7B4BE2,#5E24DB)', color: '#fff' }}
           icon={<WorkIcon />}
         >
-          {/* Renderizar la fecha dentro de la tarjeta para evitar solaparse con la línea central */}
           <div className="timeline-date">{year}</div>
           <h3 className="vertical-timeline-element-title timeline-title">{title}</h3>
           <h4 className="vertical-timeline-element-subtitle timeline-subtitle">{position} — <strong>{company}</strong></h4>

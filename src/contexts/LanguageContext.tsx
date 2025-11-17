@@ -1,3 +1,4 @@
+// contexto para manejo de idiomas (español/ingles) con traducciones
 import { createContext, useContext, useState, ReactNode } from 'react'
 
 type Language = 'es' | 'en'
@@ -119,7 +120,7 @@ const translations = {
     // Projects
     'project.trimly.name': 'TRIMLY',
     'project.trimly.description': 'Full-stack beauty salon management system developed as thesis project.',
-    'project.trimly.explanation': 'Full-stack system developed for comprehensive beauty salon management, using a NestJS/TypeScript backend and a React/TypeScript frontend. I implemented a modular architecture and reusable components. I designed the database in MySQL and later migrated it to PostgreSQL using TypeORM and Supabase, managing modules for clients, services, appointments, products, users, and reports with role-based authentication and access control. I built a RESTful API with validations and error handling, and deployed the application on Vercel. I documented functional specifications, user stories, and acceptance criteria following the Agile methodology, ensuring technical clarity and project traceability. Manual tests were also performed on the system. The entire project was developed using the Agile methodology (Scrum) and Jira for development tracking.',
+    'project.trimly.explanation': 'Full-stack system developed for comprehensive beauty salon management, using a NestJS/TypeScript backend and a React/TypeScript frontend. Implemented a modular architecture and reusable components. Designed the database in MySQL and later migrated it to PostgreSQL using TypeORM and Supabase, managing modules for clients, services, appointments, products, users, and reports with role-based authentication and access control. Built a RESTful API with validations and error handling, and deployed the application on Vercel. Documented functional specifications, user stories, and acceptance criteria following the Agile methodology, ensuring technical clarity and project traceability. Manual tests were also performed on the system. The entire project was developed using the Agile methodology (Scrum) and Jira for development tracking.',
     
     'project.orangehrm.name': 'OrangeHRM Demo Test Automation Suite',
     'project.orangehrm.description': 'Freelance test automation project with complete testing plan and documentation.',

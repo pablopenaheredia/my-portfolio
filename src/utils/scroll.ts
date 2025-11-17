@@ -1,7 +1,4 @@
-/**
- * Scroll utilities for managing scroll behavior and restoration
- */
-
+// utilidades para manejo de scroll y restauracion de posicion
 export const resetScroll = () => {
   window.scrollTo(0, 0)
 }
@@ -12,7 +9,6 @@ export const disableScrollRestoration = () => {
       history.scrollRestoration = 'manual'
     }
   } catch (e) {
-    // Silent fail
   }
 }
 
@@ -22,7 +18,6 @@ export const enableScrollRestoration = () => {
       history.scrollRestoration = 'auto'
     }
   } catch (e) {
-    // Silent fail
   }
 }
 
@@ -44,6 +39,5 @@ export const removeHashFromUrl = () => {
       history.replaceState(null, '', window.location.pathname + window.location.search)
     }
   } catch (e) {
-    // Silent fail
   }
 }

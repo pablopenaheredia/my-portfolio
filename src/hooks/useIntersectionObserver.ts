@@ -1,3 +1,4 @@
+// hook para detectar cuando un elemento es visible en el viewport
 import { useEffect, useState, useRef, RefObject } from 'react'
 
 interface UseIntersectionObserverOptions {
@@ -6,10 +7,6 @@ interface UseIntersectionObserverOptions {
   triggerOnce?: boolean
 }
 
-/**
- * Hook para detectar cuando un elemento es visible en viewport
- * Útil para lazy rendering de componentes pesados
- */
 export function useIntersectionObserver(
   options: UseIntersectionObserverOptions = {}
 ): [RefObject<HTMLDivElement>, boolean] {

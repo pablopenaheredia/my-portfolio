@@ -1,3 +1,4 @@
+// seccion de proyectos con grid de tarjetas
 import { memo } from 'react'
 import projects from '../../data/projects'
 import ProjectCard from './ProjectCard'

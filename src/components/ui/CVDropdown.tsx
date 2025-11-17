@@ -1,3 +1,4 @@
+// boton de descarga de cv que abre google drive
 import { useLanguage } from '../../contexts/LanguageContext'
 
 interface CVDropdownProps {

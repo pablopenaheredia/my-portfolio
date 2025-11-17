@@ -1,11 +1,7 @@
+// hook para detectar la seccion activa visible en pantalla mediante intersection observer
 import { useEffect, useMemo } from 'react'
 
-/**
- * Hook para rastrear la sección activa usando IntersectionObserver
- * Añade la clase 'active' a los enlaces de navegación cuando su sección está en vista
- */
 export function useActiveSection(): void {
-  // Memorizar opciones del observer para evitar recreación
   const observerOptions = useMemo(
     () => ({
       root: null,
@@ -25,7 +21,6 @@ export function useActiveSection(): void {
         if (!entry.target.id) return
         const id = entry.target.id
 
-  // Marcar las anclas que referencian esta sección
         const matches = Array.from(
           document.querySelectorAll(`a[href="#${id}"], a[href$="/${id}"], a[href$="${id}"]`)
         )

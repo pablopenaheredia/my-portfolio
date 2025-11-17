@@ -1,3 +1,4 @@
+// componente de imagen con carga diferida usando intersection observer
 import { useEffect, useRef, useState } from 'react'
 
 interface LazyImageProps {
@@ -8,9 +9,6 @@ interface LazyImageProps {
   height?: number;
 }
 
-/**
- * Componente LazyImage que usa IntersectionObserver para carga diferida real
- */
 export default function LazyImage({ src, alt, className = '', width, height }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
   const [isInView, setIsInView] = useState<boolean>(false)
@@ -24,12 +22,12 @@ export default function LazyImage({ src, alt, className = '', width, height }: L
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true)
-            observer.disconnect() // Desconectar después de entrar en vista
+            observer.disconnect()
           }
         })
       },
       {
-        rootMargin: '100px' // Precargar 100px antes de entrar en la ventana de visualización
+        rootMargin: '100px'
       }
     )
 
@@ -46,7 +44,7 @@ export default function LazyImage({ src, alt, className = '', width, height }: L
         <img
           src={src}
           alt={alt}
-    loading="lazy" // Fallback para navegadores sin IntersectionObserver
+          loading="lazy"
           width={width}
           height={height}
           className={`${className} ${isLoaded ? 'loaded' : 'loading'}`}

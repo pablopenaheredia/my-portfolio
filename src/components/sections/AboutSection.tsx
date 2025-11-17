@@ -1,36 +1,15 @@
+// seccion sobre mi con biografia y foto de perfil
 import { memo } from 'react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../../contexts/LanguageContext'
 
-/**
- * Sección "Sobre mí" - extraída e integrada desde Home.jsx
- */
 function AboutSection() {
   const { t } = useLanguage()
   
   return (
     <section id="about" className="about-section section-padding">
-      <div className="about-container site-container grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-        {/* Foto primero en móvil, después en desktop */}
-        <aside className="about-visual order-1 lg:order-2" aria-labelledby="stack-heading">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.98 }} 
-            animate={{ opacity: 1, scale: 1 }} 
-            transition={{ duration: 0.8, delay: 0.4 }} 
-            className="max-w-md mx-auto lg:sticky lg:top-20 mb-8 lg:mb-0"
-          >
-            <img 
-              src="/profile.svg" 
-              alt="Pablo Pena" 
-              loading="lazy" 
-              width="560" 
-              height="420" 
-              className="w-full rounded-lg animate-soft-pulse elevated" 
-            />
-          </motion.div>
-        </aside>
-
-        <article className="about-text order-2 lg:order-1">
+      <div className="about-container site-container">
+        <article className="about-text">
           <motion.p 
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 

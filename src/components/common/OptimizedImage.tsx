@@ -1,3 +1,4 @@
+// componente de imagen optimizada con lazy loading
 import { ImgHTMLAttributes } from 'react'
 
 interface OptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
@@ -6,9 +7,6 @@ interface OptimizedImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   priority?: boolean
 }
 
-/**
- * Componente de imagen optimizada con lazy loading por defecto
- */
 export default function OptimizedImage({ 
   src, 
   alt, 

@@ -1,3 +1,4 @@
+// tarjeta de proyecto con imagen, descripcion, tecnologias y enlaces
 import { memo } from 'react'
 import { useLanguage } from '../../contexts/LanguageContext'
 
@@ -20,7 +21,6 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   const itemClass = index === 0 ? 'col-span-1 md:col-span-4 md:row-span-2' : 'col-span-1 md:col-span-2'
   const imgClass = index === 0 ? 'w-full h-auto md:h-[520px] object-cover' : 'w-full h-auto md:h-[260px] object-cover'
   
-  // Map project IDs to translation keys
   const translationKey = project.id === 'p1' ? 'trimly' : project.id === 'p2' ? 'orangehrm' : 'spaceinvaders'
 
   return (

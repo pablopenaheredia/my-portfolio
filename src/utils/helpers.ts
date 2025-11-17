@@ -1,9 +1,4 @@
-/**
- * debounce utility
- * @param {Function} func - function to debounce
- * @param {number} delay - delay in ms
- * @returns {Function} debounced function
- */
+// utilidades de debounce y throttle para optimizacion de eventos
 export function debounce(func, delay) {
   let timeoutId
   
@@ -15,12 +10,6 @@ export function debounce(func, delay) {
   }
 }
 
-/**
- * throttle utility
- * @param {Function} func - function to limit
- * @param {number} limit - interval in ms between executions
- * @returns {Function} throttled function
- */
 export function throttle(func, limit) {
   let inThrottle
   

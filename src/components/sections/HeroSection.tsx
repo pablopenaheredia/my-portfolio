@@ -1,3 +1,4 @@
+// seccion hero principal con titulo, descripcion y navegacion visual
 import { useEffect, memo } from 'react'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { debounce } from '../../utils'
@@ -6,13 +7,11 @@ import { GradientHero } from '../ui'
 function HeroSection() {
   const { t } = useLanguage()
 
-  // Hero content
   const highlight = t('hero.title')
   const titleRest = t('hero.subtitle')
   const description = t('hero.description')
   const ctaLabel = t('hero.downloadCV')
 
-  // CSS variable for visual nav alignment
   useEffect(() => {
     const setInset = () => {
       try {
@@ -22,7 +21,6 @@ function HeroSection() {
         const inset = Math.round(rect.left)
         document.documentElement.style.setProperty('--hero-left-inset', `${inset}px`)
       } catch (err) {
-        // Silent fail
       }
     }
 
@@ -55,7 +53,6 @@ function HeroSection() {
           </div>
         </header>
 
-        {/* Right visual nav - absolute positioned on md+, hidden on mobile */}
         <aside className="hero-visual" aria-label="Navegación rápida">
           <div className="visual-nav-inner">
             <div className="grid grid-cols-1 gap-6">

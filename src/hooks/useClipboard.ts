@@ -1,3 +1,4 @@
+// hook para copiar texto al portapapeles con notificaciones toast
 import { useState } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
 
@@ -8,9 +9,6 @@ interface UseClipboardReturn {
   toastMessage: string;
 }
 
-/**
- * Hook personalizado para copiar texto al portapapeles con notificaciones tipo toast
- */
 export function useClipboard(): UseClipboardReturn {
   const [showToast, setShowToast] = useState<boolean>(false)
   const [toastMessage, setToastMessage] = useState<string>('')
@@ -27,13 +25,11 @@ export function useClipboard(): UseClipboardReturn {
       setShowToast(true)
     }
 
-  // API moderna del portapapeles con fallback
     if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text)
         .then(() => doShowSuccess())
         .catch(() => doShowFail())
     } else {
-  // Fallback para navegadores antiguos
       try {
         const ta = document.createElement('textarea')
         ta.value = text

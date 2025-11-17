@@ -1,8 +1,8 @@
+// seccion de habilidades tecnicas organizadas por categoria
 import { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { useIntersectionObserver } from '../../hooks'
 
-// Frontend
 import htmlSvg from '../../assets/html.svg'
 import css3 from '../../assets/css3.svg'
 import tailwindSvg from '../../assets/tailwind.svg'
@@ -11,27 +11,22 @@ import tsImg from '../../assets/ts.svg'
 import reactImg from '../../assets/react.png'
 import viteSvg from '../../assets/Vite.svg'
 
-// Backend
 import nodePng from '../../assets/nodejs.png'
 import nestImg from '../../assets/nestjs.svg'
 import typeormPng from '../../assets/typeorm.png'
 
-// Bases de Datos
 import sqlPng from '../../assets/sql.png'
 import postgresqlSvg from '../../assets/postgresql-vertical.svg'
 import mysqlPng from '../../assets/mysql.png'
 
-// Testing / QA
 import cypressImg from '../../assets/cypress.svg'
 import pwImg from '../../assets/playwright-logo.svg'
 import xrayPng from '../../assets/xray.svg'
 import jiraPng from '../../assets/jira.svg'
 
-// Control de Versiones
 import gitPng from '../../assets/git.png'
 import githubSvg from '../../assets/github.svg'
 
-// Infra / Deployment
 import supabasePng from '../../assets/icons8-supabase-48.png'
 import vercelSvg from '../../assets/vercel.svg'
 
@@ -81,7 +76,6 @@ interface SkillItemProps {
   index: number;
 }
 
-// Componente de item de skill memoizado
 const SkillItem = memo(({ skill }: SkillItemProps) => {
   const itemVariant = useMemo(() => ({
     hidden: { opacity: 0, y: 8, scale: 0.9 },
@@ -127,7 +121,6 @@ function SkillsSection(){
     <div className="stack-block" ref={containerRef}>
       {isVisible ? (
         <div className="p-6 rounded-lg elevated skills-wrapper-grouped">
-          {/* Frontend */}
           <div className="skill-category">
             <h3 className="skill-category-title">Frontend</h3>
             <ul className="skill-category-grid">
@@ -137,7 +130,6 @@ function SkillsSection(){
             </ul>
           </div>
 
-          {/* Backend */}
           <div className="skill-category">
             <h3 className="skill-category-title">Backend</h3>
             <ul className="skill-category-grid">
@@ -147,7 +139,6 @@ function SkillsSection(){
             </ul>
           </div>
 
-          {/* Bases de Datos */}
           <div className="skill-category">
             <h3 className="skill-category-title">Bases de Datos</h3>
             <ul className="skill-category-grid">
@@ -157,7 +148,6 @@ function SkillsSection(){
             </ul>
           </div>
 
-          {/* Testing / QA */}
           <div className="skill-category">
             <h3 className="skill-category-title">Testing / QA</h3>
             <ul className="skill-category-grid">
@@ -167,7 +157,6 @@ function SkillsSection(){
             </ul>
           </div>
 
-          {/* Control de Versiones */}
           <div className="skill-category">
             <h3 className="skill-category-title">Control de Versiones</h3>
             <ul className="skill-category-grid">
@@ -177,7 +166,6 @@ function SkillsSection(){
             </ul>
           </div>
 
-          {/* Infra / Deployment */}
           <div className="skill-category">
             <h3 className="skill-category-title">Infra / Deployment</h3>
             <ul className="skill-category-grid">
@@ -200,5 +188,4 @@ function SkillsSection(){
   )
 }
 
-// Memorizar el componente completo para prevenir re-renderizados innecesarios
 export default memo(SkillsSection)

@@ -1,12 +1,11 @@
+// componente raiz de la aplicacion con proveedores de contexto y rutas
 import { lazy, Suspense } from 'react'
 import AnimatedRoutes from './AnimatedRoutes'
 import { LanguageProvider } from './contexts/LanguageContext'
 import './index.css'
 
-// Lazy load SwirlBackground to reduce initial bundle size
 const SwirlBackground = lazy(() => import('./components/SwirlBackground'))
 
-// root component with routes. router initialized in main.tsx
 export default function App(){
   return (
     <LanguageProvider>

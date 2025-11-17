@@ -1,3 +1,4 @@
+// componente de notificacion temporal tipo toast
 import { useEffect } from 'react'
 
 interface ToastProps {
@@ -7,7 +8,6 @@ interface ToastProps {
   onClose?: () => void;
 }
 
-// Componente de notificación breve (Toast)
 export default function Toast({ message = '', show = false, timeout = 2400, onClose = () => {} }: ToastProps) {
   useEffect(() => {
     if (!show) return

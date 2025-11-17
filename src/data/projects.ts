@@ -1,3 +1,4 @@
+// datos de proyectos del portfolio con imagenes, descripciones y enlaces
 import orangehrmdemo from '../assets/orangehrmdemo.png'
 import trimly from '../assets/trimly.png'
 import spaceInvaders from '../assets/spaceinvaders.png'
@@ -6,12 +7,12 @@ export interface Project {
   id: string;
   name: string;
   description: string;
-  explanation?: string; // Explicación detallada opcional
+  explanation?: string;
   image: string;
   technologies: string[];
   githubUrl: string;
-  docsUrl?: string; // URL de documentación opcional
-  demoUrl?: string; // URL de demo opcional
+  docsUrl?: string;
+  demoUrl?: string;
 }
 
 const projects: Project[] = [

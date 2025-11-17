@@ -1,3 +1,4 @@
+// componente de toggle para cambiar idioma
 import { useLanguage } from '../../contexts/LanguageContext'
 import { useDropdown } from '../../hooks'
 

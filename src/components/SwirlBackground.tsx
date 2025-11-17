@@ -1,7 +1,7 @@
+// fondo animado con particulas en movimiento usando simplex noise y canvas
 import { useEffect, useRef } from 'react';
 import { createNoise3D } from 'simplex-noise';
 
-// Math utilities
 const { PI, cos, sin, abs, random } = Math;
 const TAU = 2 * PI;
 const rand = (n: number) => n * random();
@@ -12,7 +12,6 @@ const fadeInOut = (t: number, m: number) => {
 };
 const lerp = (n1: number, n2: number, speed: number) => (1 - speed) * n1 + speed * n2;
 
-// Configuration - Optimized for performance
 const particleCount = 400;
 const particlePropCount = 9;
 const particlePropsLength = particleCount * particlePropCount;
@@ -54,7 +53,6 @@ const SwirlBackground = () => {
     const particleProps = new Float32Array(particlePropsLength);
     let animationId: number;
 
-    // Initialize particle
     const initParticle = (i: number) => {
       const x = rand(canvas.a.width);
       const y = center[1] + randRange(rangeY);
@@ -69,19 +67,16 @@ const SwirlBackground = () => {
       particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
     };
 
-    // Initialize all particles
     const initParticles = () => {
       for (let i = 0; i < particlePropsLength; i += particlePropCount) {
         initParticle(i);
       }
     };
 
-    // Check if particle is out of bounds
     const checkBounds = (x: number, y: number) => {
       return x > canvas.a.width || x < 0 || y > canvas.a.height || y < 0;
     };
 
-    // Update particle position
     const updateParticle = (i: number) => {
       const i2 = 1 + i;
       const i3 = 2 + i;
@@ -118,7 +113,6 @@ const SwirlBackground = () => {
       }
     };
 
-    // Draw particle
     const drawParticle = (
       x: number,
       y: number,
@@ -141,14 +135,12 @@ const SwirlBackground = () => {
       ctx.a.restore();
     };
 
-    // Draw all particles
     const drawParticles = () => {
       for (let i = 0; i < particlePropsLength; i += particlePropCount) {
         updateParticle(i);
       }
     };
 
-    // Render glow effect
     const renderGlow = () => {
       ctx.b.save();
       ctx.b.filter = 'blur(8px) brightness(200%)';
@@ -163,7 +155,6 @@ const SwirlBackground = () => {
       ctx.b.restore();
     };
 
-    // Render to screen
     const renderToScreen = () => {
       ctx.b.save();
       ctx.b.globalCompositeOperation = 'lighter';
@@ -171,7 +162,6 @@ const SwirlBackground = () => {
       ctx.b.restore();
     };
 
-    // Resize canvas
     const resize = () => {
       const { innerWidth, innerHeight } = window;
 
@@ -187,7 +177,6 @@ const SwirlBackground = () => {
       center[1] = 0.5 * canvas.a.height;
     };
 
-    // Animation loop
     const draw = () => {
       tick++;
 
@@ -202,15 +191,12 @@ const SwirlBackground = () => {
       animationId = requestAnimationFrame(draw);
     };
 
-    // Setup
     resize();
     initParticles();
     draw();
 
-    // Handle window resize
     window.addEventListener('resize', resize);
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationId);
