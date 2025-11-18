@@ -1,7 +1,7 @@
 // pagina principal con todas las secciones del portfolio
 import { useLayoutEffect } from 'react'
 import { useLanguage } from '../contexts/LanguageContext'
-import { useClipboard } from '../hooks'
+import { useClipboard, useUrlLock } from '../hooks'
 import { resetScroll } from '../utils'
 import {
   NavigationLayout,
@@ -17,6 +17,7 @@ import {
 
 export default function Home() {
   useLayoutEffect(() => { resetScroll() }, [])
+  useUrlLock()
 
   const { t } = useLanguage()
   const { showToast, setShowToast, toastMessage } = useClipboard()

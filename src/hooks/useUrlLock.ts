@@ -3,11 +3,16 @@ import { useEffect } from 'react'
 
 export function useUrlLock(): void {
   useEffect(() => {
+    const basename = import.meta.env.MODE === 'production' ? '/my-portfolio' : '/'
+    
     try {
       const loc = window.location
-      const isRoot = loc.pathname === '/' && !loc.hash
-      if (!isRoot) {
-        history.replaceState(null, '', '/')
+      const expectedPath = basename + (basename.endsWith('/') ? '' : '/')
+      const actualPath = loc.pathname + (loc.pathname.endsWith('/') ? '' : '/')
+      
+      // Si no está en la ruta base o tiene hash, redirigir a la base
+      if (actualPath !== expectedPath || loc.hash) {
+        history.replaceState(null, '', basename)
       }
     } catch (err) {
       /* ignore */
@@ -15,8 +20,12 @@ export function useUrlLock(): void {
 
     const onPop = () => {
       try {
-        if (window.location.pathname !== '/' || window.location.hash) {
-          history.replaceState(null, '', '/')
+        const loc = window.location
+        const expectedPath = basename + (basename.endsWith('/') ? '' : '/')
+        const actualPath = loc.pathname + (loc.pathname.endsWith('/') ? '' : '/')
+        
+        if (actualPath !== expectedPath || loc.hash) {
+          history.replaceState(null, '', basename)
         }
       } catch (err) {
         /* ignore */
