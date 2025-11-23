@@ -12,7 +12,7 @@ const fadeInOut = (t: number, m: number) => {
 };
 const lerp = (n1: number, n2: number, speed: number) => (1 - speed) * n1 + speed * n2;
 
-const particleCount = 400;
+const particleCount = 250;
 const particlePropCount = 9;
 const particlePropsLength = particleCount * particlePropCount;
 const rangeY = 350;
@@ -228,6 +228,7 @@ const SwirlBackground = () => {
           width: '100%',
           height: '100%',
           minHeight: '100vh',
+          willChange: 'transform',
         }}
       />
     </div>

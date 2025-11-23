@@ -1,21 +1,29 @@
 // menu hamburguesa responsive para navegacion movil con animaciones
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { navItems } from '../../data'
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const handleLinkClick = () => {
+  const handleLinkClick = useCallback(() => {
     setIsOpen(false)
-  }
+  }, [])
+
+  const toggleMenu = useCallback(() => {
+    setIsOpen(prev => !prev)
+  }, [])
+
+  const closeMenu = useCallback(() => {
+    setIsOpen(false)
+  }, [])
 
   return (
     <>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleMenu}
         className="mobile-menu-btn"
-  aria-label="Alternar menú"
+        aria-label="Alternar menú"
         aria-expanded={isOpen}
       >
         <span className={`w-6 h-0.5 bg-color-300 rounded-full transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
@@ -32,7 +40,8 @@ export default function MobileMenu() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="fixed inset-0 bg-black/70 z-[90] md:hidden"
-              onClick={() => setIsOpen(false)}
+              onClick={closeMenu}
+              style={{ willChange: 'opacity' }}
             />
 
             <motion.nav

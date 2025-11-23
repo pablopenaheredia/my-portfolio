@@ -6,7 +6,7 @@ export function useActiveSection(): void {
     () => ({
       root: null,
       rootMargin: '-20% 0% -60% 0%',
-      threshold: 0.1
+      threshold: [0, 0.1, 0.5]
     }),
     []
   )
