@@ -56,7 +56,21 @@ export function useScrollToSection(): void {
       const offset = isDivider ? 40 : 80
       const targetY = startY + rect.top - offset
 
-      const overshoot = Math.max(48, Math.min(120, Math.abs(targetY - startY) * 0.08))
+      const distance = Math.abs(targetY - startY)
+      const isMobile = window.innerWidth <= 768
+      
+      // En mobile, usar scroll nativo para distancias largas (mejor performance)
+      if (isMobile && distance > 1500) {
+        window.scrollTo({
+          top: targetY,
+          behavior: 'smooth'
+        })
+        return
+      }
+
+      const overshoot = isMobile 
+        ? Math.max(20, Math.min(60, distance * 0.04))
+        : Math.max(48, Math.min(120, distance * 0.08))
       const direction = targetY >= startY ? 1 : -1
 
       const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
@@ -82,7 +96,9 @@ export function useScrollToSection(): void {
       }
 
       const firstY = targetY + direction * overshoot
-      animateTo(firstY, 380).then(() => animateTo(targetY, 320))
+      const duration1 = isMobile ? 250 : 380
+      const duration2 = isMobile ? 200 : 320
+      animateTo(firstY, duration1).then(() => animateTo(targetY, duration2))
     }
 
     function attach() {

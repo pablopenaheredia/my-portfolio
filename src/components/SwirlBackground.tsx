@@ -188,8 +188,14 @@ const SwirlBackground = () => {
       ctx.b.fillRect(0, 0, canvas.a.width, canvas.a.height);
 
       drawParticles();
-      renderGlow();
-      renderToScreen();
+      
+      // En mobile, reducir calidad del glow durante scroll para mejor performance
+      if (isMobile) {
+        renderToScreen();
+      } else {
+        renderGlow();
+        renderToScreen();
+      }
 
       animationId = requestAnimationFrame(draw);
     };
