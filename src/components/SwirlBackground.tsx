@@ -12,9 +12,7 @@ const fadeInOut = (t: number, m: number) => {
 };
 const lerp = (n1: number, n2: number, speed: number) => (1 - speed) * n1 + speed * n2;
 
-const particleCount = 250;
 const particlePropCount = 9;
-const particlePropsLength = particleCount * particlePropCount;
 const rangeY = 350;
 const baseTTL = 30;
 const rangeTTL = 80;
@@ -37,6 +35,11 @@ const SwirlBackground = () => {
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return;
 
+    // Detectar si es mobile para ajustar performance
+    const isMobile = window.innerWidth <= 768;
+    const currentParticleCount = isMobile ? 100 : 400;
+    const currentParticlePropsLength = currentParticleCount * particlePropCount;
+
     const canvas = {
       a: document.createElement('canvas'),
       b: canvasRef.current,
@@ -50,7 +53,7 @@ const SwirlBackground = () => {
     const center: [number, number] = [0, 0];
     let tick = 0;
     const simplex = createNoise3D();
-    const particleProps = new Float32Array(particlePropsLength);
+    const particleProps = new Float32Array(currentParticlePropsLength);
     let animationId: number;
 
     const initParticle = (i: number) => {
@@ -68,7 +71,7 @@ const SwirlBackground = () => {
     };
 
     const initParticles = () => {
-      for (let i = 0; i < particlePropsLength; i += particlePropCount) {
+      for (let i = 0; i < currentParticlePropsLength; i += particlePropCount) {
         initParticle(i);
       }
     };
@@ -136,7 +139,7 @@ const SwirlBackground = () => {
     };
 
     const drawParticles = () => {
-      for (let i = 0; i < particlePropsLength; i += particlePropCount) {
+      for (let i = 0; i < currentParticlePropsLength; i += particlePropCount) {
         updateParticle(i);
       }
     };
